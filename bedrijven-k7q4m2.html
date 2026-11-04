@@ -57,6 +57,8 @@
   .cm-big { font: 26px/1.15 var(--serif); margin: 8px 0 14px; }
   .cm-steps { font-size: 13px; opacity: .8; }
 
+  .saved { margin: 14px 0 4px; padding: 14px 16px; border-radius: 14px; background: rgba(247,250,245,.10); border: 1px solid var(--edge); }
+  .saved #impactBig { font: 20px/1.3 var(--serif); }
   .nontech { text-align: center; font: italic 20px/1.35 var(--serif); margin-top: 28px; }
 
   /* ---------- Order ---------- */
@@ -214,6 +216,10 @@
         </div>
         <p class="hint" id="seatHint">Minimaal 5</p>
         <p class="promise" id="promise">Maandelijks opzegbaar.</p>
+        <div class="saved" aria-live="polite">
+          <p id="impactBig"></p>
+          <p class="hint" id="impactSmall"></p>
+        </div>
 
         <label for="start">Ingangsdatum</label>
         <input id="start" type="date">
@@ -265,6 +271,8 @@
 
 <script>
   const PRICE = { month: 4.49, year: 2.49 }, MIN = 5, VAT = 0.21;
+  // Impact: max's assumption (11-04) until the anonymous impact-review total gives a real number.
+  const HOURS_PER_DAY = 1;
   const $ = (id) => document.getElementById(id);
   const eur = (n) => n.toLocaleString("nl-NL", { style: "currency", currency: "EUR" });
   let plan = "month";
@@ -299,6 +307,12 @@
     $("startHint").textContent = later
       ? `Je betaalt de eerste maand nu; die gaat in op ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Daarna elke maand automatisch.`
       : "Start vandaag. Of kies een latere datum: je betaalt nu, Lowtide gaat in op die dag.";
+    const day = n * HOURS_PER_DAY, yearH = day * 365, yrs = yearH / 24 / 365;
+    const num = (x) => Math.round(x).toLocaleString("nl-NL");
+    $("impactBig").textContent = `U redt met deze aankoop ${num(day)} uur per dag.`;
+    $("impactSmall").textContent = `Dat is ${num(yearH)} uur per jaar` +
+      (yrs >= 1 ? `, samen ${yrs < 10 ? yrs.toLocaleString("nl-NL", { maximumFractionDigits: 1 }) : num(yrs)} jaar aan tijd terug.` : ".") +
+      ` Lowtide zorgt gemiddeld voor 1 uur per dag minder scrollen.`;
     const low = seats() < MIN;
     $("seatHint").textContent = low ? "Minimaal 5 accounts" : "Minimaal 5";
     $("seatHint").classList.toggle("err", low);
