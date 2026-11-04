@@ -302,7 +302,8 @@
     $("periodNote").textContent = months > 1
       ? `${months} maanden, elke maand afgeschreven. Je bespaart ${eur(other - excl)} per maand.`
       : `Maandelijks opzegbaar. Met jaarlijks betaal je ${eur(yearExcl)} per maand: ${eur(excl - yearExcl)} minder.`;
-    $("promise").textContent = months > 1 ? `${months} maanden. Per maand betaald.` : "Maandelijks opzegbaar.";
+    $("promise").textContent = "Maandelijks opzegbaar.";
+    $("promise").hidden = months > 1;
     const later = $("start").value && $("start").value > iso(new Date());
     $("startHint").textContent = later
       ? `Je betaalt de eerste maand nu; die gaat in op ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Daarna elke maand automatisch.`
