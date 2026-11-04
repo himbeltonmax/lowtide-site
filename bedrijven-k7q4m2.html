@@ -80,6 +80,7 @@
   .seats { display: flex; align-items: center; gap: 8px; }
   .seats button { width: 46px; height: 46px; flex: none; border-radius: 12px; border: 1px solid var(--edge); background: transparent; color: var(--foam); font-size: 22px; cursor: pointer; }
   .seats input { text-align: center; font-size: 20px; }
+  .promise { font-size: 15px; font-weight: 600; margin: 12px 0 4px; }
   .hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
   .err { color: #ffd8cc; }
 
@@ -199,6 +200,7 @@
             <div class="s">per persoon per maand<br>12 maanden, per maand betaald</div>
           </button>
         </div>
+        <p class="promise" id="promise">Stop wanneer je wilt. Maandelijks opzegbaar. Geen kleine letters.</p>
 
         <label for="seats">Aantal collega's</label>
         <div class="seats">
@@ -207,6 +209,10 @@
           <button type="button" id="plus" aria-label="Eén meer">+</button>
         </div>
         <p class="hint" id="seatHint">Minimaal 5.</p>
+
+        <label for="start">Ingangsdatum</label>
+        <input id="start" type="date">
+        <p class="hint" id="startHint">Vandaag of later, tot 3 maanden vooruit.</p>
 
 
         <label for="company">Bedrijfsnaam</label>
@@ -263,6 +269,10 @@
     return Number.isFinite(n) ? n : 0;
   }
 
+  const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  { const t = new Date(), m = new Date(); m.setMonth(m.getMonth() + 3);
+    $("start").value = $("start").min = iso(t); $("start").max = iso(m); }
+
   function render() {
     const n = Math.max(seats(), MIN);
     // Both plans are paid per month; the totals show one month.
@@ -274,13 +284,17 @@
     $("lineAmount").textContent = eur(excl);
     $("vat").textContent = eur(vat);
     $("incl").textContent = eur(excl + vat);
-    $("lineAmount").textContent = eur(excl);
-    $("vat").textContent = eur(vat);
-    $("incl").textContent = eur(excl + vat);
     const yearExcl = Math.round(n * PRICE.year * 100) / 100;
     $("periodNote").textContent = plan === "year"
       ? `Jaarcontract: 12 maanden, elke maand afgeschreven. Je bespaart ${eur(other - excl)} per maand.`
       : `Maandelijks opzegbaar. Met een jaarcontract betaal je ${eur(yearExcl)} per maand: ${eur(excl - yearExcl)} minder.`;
+    $("promise").textContent = plan === "year"
+      ? "Vaste lage prijs voor 12 maanden. Geen kleine letters."
+      : "Stop wanneer je wilt. Maandelijks opzegbaar. Geen kleine letters.";
+    const later = $("start").value && $("start").value > iso(new Date());
+    $("startHint").textContent = later
+      ? `Je betaalt pas vanaf ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Bij bestellen bevestig je alleen je bankrekening met €0,01 via iDEAL.`
+      : "Start vandaag. Kies een latere datum, dan betaal je pas vanaf die dag.";
     const low = seats() < MIN;
     $("seatHint").textContent = low ? "Minimaal 5 collega's." : "Minimaal 5.";
     $("seatHint").classList.toggle("err", low);
@@ -294,6 +308,7 @@
   $("minus").onclick = () => { $("seats").value = Math.max(MIN, seats() - 1); render(); };
   $("plus").onclick = () => { $("seats").value = Math.max(MIN, seats() + 1); render(); };
   $("seats").addEventListener("input", render);
+  $("start").addEventListener("input", render);
   $("seats").addEventListener("blur", () => { if (seats() < MIN) { $("seats").value = MIN; render(); } });
 
   // Payment is not connected yet (Mollie account pending): show the placeholder note.
