@@ -64,6 +64,10 @@
   .seats { display: flex; align-items: center; gap: 8px; }
   .seats button { width: 46px; height: 46px; flex: none; border-radius: 12px; border: 1px solid var(--edge); background: transparent; color: var(--foam); font-size: 22px; cursor: pointer; }
   .seats input { text-align: center; font-size: 20px; }
+  .staffel { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
+  .staffel th, .staffel td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--edge); }
+  .staffel th { font-weight: 600; opacity: .75; }
+  .staffel tr.on td { font-weight: 700; background: rgba(255,255,255,.1); }
   .hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
   .err { color: #ffd8cc; }
 
@@ -147,6 +151,12 @@
         </div>
         <p class="hint" id="seatHint">Minimaal 5.</p>
 
+        <table class="staffel" aria-label="Staffelkorting">
+          <thead><tr><th>Collega's</th><th>Korting</th><th>Jaarlijks</th><th>Maandelijks</th></tr></thead>
+          <tbody id="staffel"></tbody>
+        </table>
+        <p class="hint">Per persoon per maand, excl. btw. De korting geldt voor alle plekken.</p>
+
         <label for="company">Bedrijfsnaam</label>
         <input id="company" autocomplete="organization" placeholder="Bedrijf B.V.">
 
@@ -192,6 +202,10 @@
 
 <script>
   const PRICE = { year: 2.49, month: 4.49 }, MIN = 5, VAT = 0.21;
+  // Staffelkorting, same as the server (server/supabase/functions/_shared/common.ts in the app repo).
+  const TIERS = [{ from: 5, off: 0 }, { from: 50, off: 0.10 }, { from: 100, off: 0.15 }, { from: 500, off: 0.20 },
+                 { from: 1000, off: 0.25 }, { from: 2000, off: 0.30 }];
+  const off = (n) => [...TIERS].reverse().find((t) => n >= t.from).off;
   const $ = (id) => document.getElementById(id);
   const eur = (n) => n.toLocaleString("nl-NL", { style: "currency", currency: "EUR" });
   let plan = "year";
@@ -204,15 +218,23 @@
   function render() {
     const n = Math.max(seats(), MIN);
     const months = plan === "year" ? 12 : 1;
-    const excl = Math.round(n * PRICE[plan] * months * 100) / 100;
+    const d = off(n);
+    const excl = Math.round(n * PRICE[plan] * months * (1 - d) * 100) / 100;
     const vat = Math.round(excl * VAT * 100) / 100;
     $("big").textContent = eur(excl) + (plan === "year" ? " per jaar" : " per maand");
-    $("lineLabel").textContent = `${n} × ${eur(PRICE[plan])} × ${months} ${months === 12 ? "maanden" : "maand"}`;
+    $("lineLabel").textContent = `${n} × ${eur(PRICE[plan])} × ${months} ${months === 12 ? "maanden" : "maand"}` +
+      (d ? ` − ${Math.round(d * 100)}% staffelkorting` : "");
+    $("staffel").innerHTML = TIERS.map((t, i) => {
+      const to = TIERS[i + 1] ? `–${TIERS[i + 1].from - 1}` : "+";
+      const on = n >= t.from && (!TIERS[i + 1] || n < TIERS[i + 1].from);
+      return `<tr class="${on ? "on" : ""}"><td>${t.from}${to}</td><td>${t.off ? Math.round(t.off * 100) + "%" : "–"}</td>` +
+        `<td>${eur(PRICE.year * (1 - t.off))}</td><td>${eur(PRICE.month * (1 - t.off))}</td></tr>`;
+    }).join("");
     $("lineAmount").textContent = eur(excl);
     $("vat").textContent = eur(vat);
     $("incl").textContent = eur(excl + vat);
     $("periodNote").textContent = plan === "year"
-      ? `Eén factuur per jaar. Dat is ${eur(n * (PRICE.month - PRICE.year) * 12)} minder dan maandelijks.`
+      ? `Eén factuur per jaar. Dat is ${eur(n * (PRICE.month - PRICE.year) * (1 - d) * 12)} minder dan maandelijks.`
       : "Elke maand een factuur, maandelijks opzegbaar.";
     const low = seats() < MIN;
     $("seatHint").textContent = low ? "Minimaal 5 collega's." : "Minimaal 5.";
