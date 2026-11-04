@@ -293,8 +293,8 @@
       : "Stop wanneer je wilt. Maandelijks opzegbaar. Geen kleine letters.";
     const later = $("start").value && $("start").value > iso(new Date());
     $("startHint").textContent = later
-      ? `Je betaalt pas vanaf ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Bij bestellen bevestig je alleen je bankrekening met €0,01 via iDEAL.`
-      : "Start vandaag. Kies een latere datum, dan betaal je pas vanaf die dag.";
+      ? `Je betaalt de eerste maand nu; die gaat in op ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Daarna elke maand automatisch.`
+      : "Start vandaag. Of kies een latere datum: je betaalt nu, Lowtide gaat in op die dag.";
     const low = seats() < MIN;
     $("seatHint").textContent = low ? "Minimaal 5 collega's." : "Minimaal 5.";
     $("seatHint").classList.toggle("err", low);
