@@ -61,10 +61,12 @@
   .order { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; margin-top: 40px; }
   .panel { background: var(--faint); border: 1px solid var(--edge); border-radius: 22px; padding: 24px; }
   .impact { font: 22px var(--serif); margin: 10px 0 6px; color: var(--foam); }
-  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .plan { position: relative; text-align: left; border: 1.5px solid var(--edge); border-radius: 16px; padding: 14px; cursor: pointer; background: transparent; color: var(--foam); font: inherit; }
   .plan[aria-pressed="true"] { border-color: var(--foam); background: rgba(247,250,245,.10); }
-  .plan .t { font-weight: 600; }
+  .plan { padding: 12px; }
+  .plan .t { font-weight: 600; font-size: 15px; white-space: nowrap; }
+  .plan .s { font-size: 12px; }
   .plan .p { font: 26px var(--serif); margin-top: 4px; }
   .plan .s { font-size: 13px; color: var(--soft); }
   .plan .was { font: 16px var(--sans); color: var(--soft); margin-left: 4px; }
@@ -102,7 +104,7 @@
   footer { padding: 40px 16px 52px; text-align: center; font-size: 13px; color: rgba(247,250,245,.6); background: var(--deep); }
 
   @media (max-width: 760px) {
-    .steps, .order, .flows, .gets { grid-template-columns: 1fr; }
+    .steps, .order, .flows, .gets, .plans { grid-template-columns: 1fr; }
     section { padding: 56px 16px; }
   }
 </style>
@@ -194,10 +196,16 @@
             <div class="s">per persoon per maand<br>maandelijks opzegbaar</div>
           </button>
           <button type="button" class="plan" data-plan="year" aria-pressed="false">
-            <span class="tag">Bespaar 45%</span>
+            <span class="tag">Bespaar 22%</span>
             <div class="t">Jaarcontract</div>
-            <div class="p">€2,49 <s class="was">€4,49</s></div>
+            <div class="p">€3,49 <s class="was">€4,49</s></div>
             <div class="s">per persoon per maand<br>12 maanden, per maand betaald</div>
+          </button>
+          <button type="button" class="plan" data-plan="two" aria-pressed="false">
+            <span class="tag">Bespaar 33%</span>
+            <div class="t">2-jaarcontract</div>
+            <div class="p">€2,99 <s class="was">€4,49</s></div>
+            <div class="s">per persoon per maand<br>24 maanden, per maand betaald</div>
           </button>
         </div>
 
@@ -259,7 +267,7 @@
 </footer>
 
 <script>
-  const PRICE = { year: 2.49, month: 4.49 }, MIN = 5, VAT = 0.21;
+  const PRICE = { month: 4.49, year: 3.49, two: 2.99 }, MIN = 5, VAT = 0.21;
   const $ = (id) => document.getElementById(id);
   const eur = (n) => n.toLocaleString("nl-NL", { style: "currency", currency: "EUR" });
   let plan = "month";
@@ -284,13 +292,12 @@
     $("lineAmount").textContent = eur(excl);
     $("vat").textContent = eur(vat);
     $("incl").textContent = eur(excl + vat);
+    const months = { month: 1, year: 12, two: 24 }[plan];
     const yearExcl = Math.round(n * PRICE.year * 100) / 100;
-    $("periodNote").textContent = plan === "year"
-      ? `Jaarcontract: 12 maanden, elke maand afgeschreven. Je bespaart ${eur(other - excl)} per maand.`
+    $("periodNote").textContent = months > 1
+      ? `${months} maanden, elke maand afgeschreven. Je bespaart ${eur(other - excl)} per maand.`
       : `Maandelijks opzegbaar. Met een jaarcontract betaal je ${eur(yearExcl)} per maand: ${eur(excl - yearExcl)} minder.`;
-    $("promise").textContent = plan === "year"
-      ? "12 maanden vast."
-      : "Maandelijks opzegbaar.";
+    $("promise").textContent = months > 1 ? `${months} maanden vast.` : "Maandelijks opzegbaar.";
     const later = $("start").value && $("start").value > iso(new Date());
     $("startHint").textContent = later
       ? `Je betaalt de eerste maand nu; die gaat in op ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Daarna elke maand automatisch.`
