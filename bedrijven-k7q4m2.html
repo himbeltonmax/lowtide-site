@@ -307,11 +307,10 @@
     $("startHint").textContent = later
       ? `Je betaalt de eerste maand nu; die gaat in op ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Daarna elke maand automatisch.`
       : "Start vandaag. Of kies een latere datum: je betaalt nu, Lowtide gaat in op die dag.";
-    const day = n * HOURS_PER_DAY, yearH = day * 365, yrs = yearH / 24 / 365;
+    const day = n * HOURS_PER_DAY, yearH = day * 365;
     const num = (x) => Math.round(x).toLocaleString("nl-NL");
     $("impactBig").textContent = `U redt met deze aankoop ${num(day)} uur per dag.`;
-    $("impactSmall").textContent = `Dat is ${num(yearH)} uur per jaar` +
-      (yrs >= 1 ? `, samen ${yrs < 10 ? yrs.toLocaleString("nl-NL", { maximumFractionDigits: 1 }) : num(yrs)} jaar aan tijd terug.` : ".") +
+    $("impactSmall").textContent = `Dat is ${num(yearH)} uur per jaar.` +
       ` Lowtide zorgt gemiddeld voor 1 uur per dag minder scrollen.`;
     const low = seats() < MIN;
     $("seatHint").textContent = low ? "Minimaal 5 accounts" : "Minimaal 5";
