@@ -203,8 +203,8 @@
 <script>
   const PRICE = { year: 2.49, month: 4.49 }, MIN = 5, VAT = 0.21;
   // Staffelkorting, same as the server (server/supabase/functions/_shared/common.ts in the app repo).
-  const TIERS = [{ from: 5, off: 0 }, { from: 50, off: 0.10 }, { from: 100, off: 0.15 }, { from: 500, off: 0.20 },
-                 { from: 1000, off: 0.25 }, { from: 2000, off: 0.30 }];
+  const TIERS = [{ from: 5, off: 0 }, { from: 50, off: 0.15 }, { from: 100, off: 0.20 }, { from: 500, off: 0.30 },
+                 { from: 1000, off: 0.40 }, { from: 2000, off: 0.50 }];
   const off = (n) => [...TIERS].reverse().find((t) => n >= t.from).off;
   const $ = (id) => document.getElementById(id);
   const eur = (n) => n.toLocaleString("nl-NL", { style: "currency", currency: "EUR" });
