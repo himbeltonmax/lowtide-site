@@ -201,13 +201,13 @@
           </button>
         </div>
 
-        <label for="seats">Aantal collega's</label>
+        <label for="seats">Aantal accounts</label>
         <div class="seats">
           <button type="button" id="minus" aria-label="Eén minder">−</button>
           <input id="seats" type="number" inputmode="numeric" min="5" step="1" value="25">
           <button type="button" id="plus" aria-label="Eén meer">+</button>
         </div>
-        <p class="hint" id="seatHint">Minimaal 5.</p>
+        <p class="hint" id="seatHint">Minimaal 5</p>
         <p class="promise" id="promise">Stop wanneer je wilt. Maandelijks opzegbaar. Geen kleine letters.</p>
 
         <label for="start">Ingangsdatum</label>
@@ -296,7 +296,7 @@
       ? `Je betaalt de eerste maand nu; die gaat in op ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Daarna elke maand automatisch.`
       : "Start vandaag. Of kies een latere datum: je betaalt nu, Lowtide gaat in op die dag.";
     const low = seats() < MIN;
-    $("seatHint").textContent = low ? "Minimaal 5 collega's." : "Minimaal 5.";
+    $("seatHint").textContent = low ? "Minimaal 5 accounts" : "Minimaal 5";
     $("seatHint").classList.toggle("err", low);
   }
 
