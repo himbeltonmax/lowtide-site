@@ -208,7 +208,7 @@
           <button type="button" id="plus" aria-label="Eén meer">+</button>
         </div>
         <p class="hint" id="seatHint">Minimaal 5</p>
-        <p class="promise" id="promise">Stop wanneer je wilt. Maandelijks opzegbaar. Geen kleine letters.</p>
+        <p class="promise" id="promise">Maandelijks opzegbaar.</p>
 
         <label for="start">Ingangsdatum</label>
         <input id="start" type="date">
@@ -289,8 +289,8 @@
       ? `Jaarcontract: 12 maanden, elke maand afgeschreven. Je bespaart ${eur(other - excl)} per maand.`
       : `Maandelijks opzegbaar. Met een jaarcontract betaal je ${eur(yearExcl)} per maand: ${eur(excl - yearExcl)} minder.`;
     $("promise").textContent = plan === "year"
-      ? "Vaste lage prijs voor 12 maanden. Geen kleine letters."
-      : "Stop wanneer je wilt. Maandelijks opzegbaar. Geen kleine letters.";
+      ? "12 maanden vast."
+      : "Maandelijks opzegbaar.";
     const later = $("start").value && $("start").value > iso(new Date());
     $("startHint").textContent = later
       ? `Je betaalt de eerste maand nu; die gaat in op ${new Date($("start").value + "T12:00").toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}. Daarna elke maand automatisch.`
