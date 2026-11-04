@@ -43,6 +43,20 @@
   .steps h3 { font: 400 21px var(--serif); margin-bottom: 6px; }
   .steps p { color: var(--soft); font-size: 15px; max-width: 18em; margin: 0 auto; }
 
+  .flows, .gets { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .flow, .get { background: var(--faint); border: 1px solid var(--edge); border-radius: 22px; padding: 24px; }
+  .flow h3, .get h3 { font: 400 24px var(--serif); margin-bottom: 14px; }
+  .flow ol { list-style: none; counter-reset: s; display: grid; gap: 14px; }
+  .flow li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; }
+  .flow li::before { content: counter(s); grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid rgba(247,250,245,.6); display: grid; place-items: center; font: 17px var(--serif); }
+  .flow li span, .get li span { color: var(--soft); font-size: 15px; }
+  .get ul { list-style: none; display: grid; gap: 12px; }
+  .get li { display: grid; }
+  .card-mock { margin: 32px auto 10px; max-width: 420px; aspect-ratio: 148 / 105; background: var(--foam); color: var(--bottom); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 14px 40px rgba(20,50,40,.25); }
+  .cm-small { font-size: 12px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; opacity: .7; }
+  .cm-big { font: 26px/1.15 var(--serif); margin: 8px 0 14px; }
+  .cm-steps { font-size: 13px; opacity: .8; }
+
   /* ---------- Order ---------- */
   .order { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; margin-top: 40px; }
   .panel { background: var(--faint); border: 1px solid var(--edge); border-radius: 22px; padding: 24px; }
@@ -91,7 +105,7 @@
   footer { padding: 40px 16px 52px; text-align: center; font-size: 13px; color: rgba(247,250,245,.6); background: var(--deep); }
 
   @media (max-width: 760px) {
-    .steps, .order { grid-template-columns: 1fr; }
+    .steps, .order, .flows, .gets { grid-template-columns: 1fr; }
     section { padding: 56px 16px; }
   }
 </style>
@@ -116,12 +130,56 @@
 <section class="deep">
   <div class="wrap">
     <p class="eyebrow">Zo werkt het</p>
-    <h2>Drie stappen, geen codes</h2>
-    <div class="steps">
-      <div><div class="num">1</div><h3>Bestel</h3><p>Kies het aantal collega's, vul jullie bedrijfsdomein in en betaal met iDEAL.</p></div>
-      <div><div class="num">2</div><h3>Stuur door</h3><p>Je krijgt direct een kant-en-klaar bericht voor je team en de factuur.</p></div>
-      <div><div class="num">3</div><h3>Uitpakken</h3><p>Collega's openen Lowtide, vullen hun werkmail in en typen de eenmalige code uit hun mail. Klaar voor gebruik.</p></div>
+    <h2>Twee kanten, geen codes om uit te delen</h2>
+    <div class="flows">
+      <div class="flow">
+        <h3>Jij als werkgever</h3>
+        <ol>
+          <li><b>Bestel</b><span>Kies het aantal collega's en vul jullie bedrijfsdomein in.</span></li>
+          <li><b>Betaal</b><span>Met iDEAL. Daarna elke maand automatisch, met een factuur per keer.</span></li>
+          <li><b>Stuur door</b><span>Je krijgt direct de factuur en een kant-en-klaar bericht voor je team.</span></li>
+        </ol>
+      </div>
+      <div class="flow">
+        <h3>Je collega</h3>
+        <ol>
+          <li><b>Open Lowtide</b><span>Uit de App Store, op de iPhone.</span></li>
+          <li><b>Werkmail</b><span>Vult zijn werkmailadres in en krijgt een eenmalige code per mail.</span></li>
+          <li><b>Klaar voor gebruik</b><span>Typt de code in Lowtide. Geen links, geen wachtwoord, geen account.</span></li>
+        </ol>
+      </div>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Wat krijg je</p>
+    <h2>Alles om het cadeau te geven</h2>
+    <div class="gets">
+      <div class="get">
+        <h3>Digitaal</h3>
+        <ul>
+          <li><b>Teambericht</b><span>Kant-en-klare tekst voor mail, Slack of Teams.</span></li>
+          <li><b>Intranetbeeld</b><span>Een afbeelding met de drie stappen, voor intranet of nieuwsbrief.</span></li>
+          <li><b>Factuur</b><span>Elke maand als pdf, met btw en KvK.</span></li>
+        </ul>
+      </div>
+      <div class="get">
+        <h3>Printbaar</h3>
+        <ul>
+          <li><b>Cadeaukaartje A6</b><span>"Jij krijgt Lowtide cadeau van [jullie bedrijf]", voor bij de kerstattentie.</span></li>
+          <li><b>Poster A4/A3</b><span>Voor de kantine of bij de koffieautomaat, met de drie stappen.</span></li>
+          <li><b>Flyer</b><span>Voor de welkomstmap van nieuwe collega's.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-mock" aria-hidden="true">
+      <p class="cm-small">Cadeau</p>
+      <p class="cm-big">Jij krijgt Lowtide cadeau van Bedrijf B.V.</p>
+      <p class="cm-steps">Open Lowtide &middot; vul je werkmail in &middot; typ de code uit je mail</p>
+    </div>
+    <p class="hint" style="text-align:center">Voorbeeld van het cadeaukaartje. Na betaling staan alle bestanden met jullie bedrijfsnaam klaar in je mail.</p>
   </div>
 </section>
 
