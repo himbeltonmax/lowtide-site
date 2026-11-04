@@ -52,10 +52,12 @@
   .flow li span, .get li span { color: var(--soft); font-size: 15px; }
   .get ul { list-style: none; display: grid; gap: 12px; }
   .get li { display: grid; }
-  .card-mock { margin: 32px auto 10px; max-width: 420px; aspect-ratio: 148 / 105; background: var(--foam); color: var(--bottom); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 14px 40px rgba(20,50,40,.25); }
+  .card-mock { margin: 32px auto 10px; max-width: 420px; min-height: 300px; background: var(--foam); color: var(--bottom); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 14px 40px rgba(20,50,40,.25); }
   .cm-small { font-size: 12px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; opacity: .7; }
-  .cm-big { font: 26px/1.15 var(--serif); margin: 8px 0 14px; }
-  .cm-steps { font-size: 13px; opacity: .8; }
+  .cm-big { font: 26px/1.15 var(--serif); margin: 8px 0 12px; }
+  .cm-steps { font-size: 13px; opacity: .85; padding-left: 18px; margin: 0 0 8px; }
+  .cm-body { font-size: 14px; line-height: 1.4; margin-bottom: 8px; }
+  .cm-tag { font: italic 18px var(--serif); margin-bottom: 8px; }
 
   .saved { margin: 14px 0 4px; padding: 14px 16px; border-radius: 14px; background: rgba(247,250,245,.10); border: 1px solid var(--edge); }
   .saved #impactBig { font: 20px/1.3 var(--serif); }
@@ -178,8 +180,15 @@
     </div>
     <div class="card-mock" aria-hidden="true">
       <p class="cm-small">Cadeau</p>
-      <p class="cm-big">Jij krijgt Lowtide cadeau van Bedrijf B.V.</p>
-      <p class="cm-steps">Open Lowtide &middot; vul je werkmail in &middot; typ de code uit je mail</p>
+      <p class="cm-big">Jij krijgt Lowtide cadeau van JouwBedrijf B.V.</p>
+      <p class="cm-body">Een filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
+      <p class="cm-tag">Scroll less. See more!</p>
+      <ol class="cm-steps">
+        <li>Open Lowtide uit de App Store</li>
+        <li>Vul je werkmail in (@jouwbedrijf.nl)</li>
+        <li>Vul de code in die in je mailbox komt</li>
+      </ol>
+      <p class="cm-body">Veel plezier!</p>
     </div>
     <p class="hint" style="text-align:center">Voorbeeld van het cadeaukaartje. Na betaling staan alle bestanden met jullie bedrijfsnaam klaar in je mail.</p>
   </div>
