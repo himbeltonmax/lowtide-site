@@ -208,13 +208,13 @@
           </button>
         </div>
 
-        <label for="seats">Aantal accounts</label>
+        <label for="seats">Aantal accounts (minimaal 5)</label>
         <div class="seats">
           <button type="button" id="minus" aria-label="Eén minder">−</button>
           <input id="seats" type="number" inputmode="numeric" min="5" step="1" value="50">
           <button type="button" id="plus" aria-label="Eén meer">+</button>
         </div>
-        <p class="hint" id="seatHint">Minimaal 5</p>
+        <p class="hint" id="seatHint" hidden></p>
         <div class="saved" aria-live="polite">
           <p id="impactBig"></p>
           <p class="hint" id="impactSmall"></p>
@@ -311,7 +311,8 @@
     $("impactSmall").textContent = `Dat is ${num(yearH)} uur per jaar.` +
       ` Lowtide zorgt gemiddeld voor 1 uur per dag minder scrollen.`;
     const low = seats() < MIN;
-    $("seatHint").textContent = low ? "Minimaal 5 accounts" : "Minimaal 5";
+    $("seatHint").textContent = low ? "Minimaal 5 accounts" : "";
+    $("seatHint").hidden = !low;
     $("seatHint").classList.toggle("err", low);
   }
 
