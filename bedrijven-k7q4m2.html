@@ -197,13 +197,13 @@
           </button>
           <button type="button" class="plan" data-plan="year" aria-pressed="false">
             <span class="tag">Bespaar 22%</span>
-            <div class="t">Jaarcontract</div>
+            <div class="t">Jaarlijks</div>
             <div class="p">€3,49 <s class="was">€4,49</s></div>
             <div class="s">per persoon per maand<br>12 maanden, per maand betaald</div>
           </button>
           <button type="button" class="plan" data-plan="two" aria-pressed="false">
             <span class="tag">Bespaar 33%</span>
-            <div class="t">2-jaarcontract</div>
+            <div class="t">2 jaar</div>
             <div class="p">€2,99 <s class="was">€4,49</s></div>
             <div class="s">per persoon per maand<br>24 maanden, per maand betaald</div>
           </button>
@@ -296,7 +296,7 @@
     const yearExcl = Math.round(n * PRICE.year * 100) / 100;
     $("periodNote").textContent = months > 1
       ? `${months} maanden, elke maand afgeschreven. Je bespaart ${eur(other - excl)} per maand.`
-      : `Maandelijks opzegbaar. Met een jaarcontract betaal je ${eur(yearExcl)} per maand: ${eur(excl - yearExcl)} minder.`;
+      : `Maandelijks opzegbaar. Met jaarlijks betaal je ${eur(yearExcl)} per maand: ${eur(excl - yearExcl)} minder.`;
     $("promise").textContent = months > 1 ? `${months} maanden vast.` : "Maandelijks opzegbaar.";
     const later = $("start").value && $("start").value > iso(new Date());
     $("startHint").textContent = later
