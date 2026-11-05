@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - run: mkdir _site && cp *.html *.json *.png .nojekyll _site/ && cp -r voorbeelden _site/
+      - run: mkdir _site && cp *.html *.json *.png .nojekyll _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

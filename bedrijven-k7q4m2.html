@@ -57,9 +57,11 @@
   .dl:hover { background: rgba(247,250,245,.12); }
   .mock ol + p { margin-top: 8px; }
   .poster .cm-tag { margin-top: 10px; }
-  .rot { display: inline-block; transition: opacity .35s ease, transform .35s ease; font-weight: 600; }
-  .rot.out { opacity: 0; transform: translateY(4px); }
+  .rot { transition: opacity .35s ease; font-weight: 600; }
+  .rot.out { opacity: 0; }
   @media (prefers-reduced-motion: reduce) { .rot { transition: none; } }
+  .gift-wrap { max-width: 440px; margin: 32px auto 10px; display: flex; }
+  .mock.card.gift-preview { aspect-ratio: auto; flex: 1; min-width: 0; min-height: 300px; }
   .ex-title { font: 400 26px var(--serif); text-align: center; margin: 48px 0 6px; }
   .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .ex { margin: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -196,76 +198,10 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">Wat krijg je</p>
-    <h2>Alles om het cadeau te geven</h2>
-    <div class="gets">
-      <div class="get">
-        <h3>Digitaal</h3>
-        <ul>
-          <li><b>Teambericht</b><span>Kant-en-klare tekst voor mail, Slack of Teams.</span></li>
-          <li><b>Intranetbeeld</b><span>Een afbeelding met de drie stappen, voor intranet of nieuwsbrief.</span></li>
-          <li><b>Factuur</b><span>Elke maand als pdf, met btw en KvK.</span></li>
-        </ul>
-      </div>
-      <div class="get">
-        <h3>Printbaar</h3>
-        <ul>
-          <li><b>Cadeaukaartje A6</b><span>"Jij krijgt Lowtide cadeau van [jullie bedrijf]", voor bij de kerstattentie.</span></li>
-          <li><b>Poster A4/A3</b><span>Voor de kantine of bij de koffieautomaat, met de drie stappen.</span></li>
-          <li><b>Flyer</b><span>Voor de welkomstmap van nieuwe collega's.</span></li>
-        </ul>
-      </div>
-    </div>
-    <h3 class="ex-title">Zo ziet het eruit</h3>
-    <p class="hint" style="text-align:center">Download de voorbeelden. Na betaling staat alles met jullie bedrijfsnaam en domein klaar in je mail. Jij hoeft niets te maken.</p>
-    <div class="examples">
-
-      <figure class="ex">
-        <figcaption>Teambericht <span>mail, Slack of Teams</span></figcaption>
-        <div class="mock mail">
-          <p class="m-head"><b>Onderwerp:</b> Een cadeau voor jou: Lowtide</p>
-          <p>Hoi allemaal,</p>
-          <p>Als dank voor dit jaar krijgen jullie Lowtide cadeau. Instagram zonder Reels, zonder eindeloze feed en zonder AI-posts. Gewoon vrienden en echte berichten, en meer tijd voor thuis.</p>
-          <ol>
-            <li>Open Lowtide uit de App Store</li>
-            <li>Vul je werkmail in (@jouwbedrijf.nl)</li>
-            <li>Vul de code in die in je mailbox komt</li>
-          </ol>
-          <p>Fijne feestdagen!<br>Team JouwBedrijf</p>
-        </div>
-        <div class="dls"><a class="dl" href="voorbeelden/lowtide-teambericht.txt" download>Download tekst (.txt)</a></div>
-      </figure>
-
-      <figure class="ex">
-        <figcaption>Intranetbeeld <span>16:9, voor intranet of nieuwsbrief</span></figcaption>
-        <div class="mock banner">
-          <p class="b-small">Cadeau van JouwBedrijf</p>
-          <p class="b-big">Scroll less.<br>See more.</p>
-          <div class="b-steps">
-            <span><i>1</i>Open Lowtide</span>
-            <span><i>2</i>Werkmail</span>
-            <span><i>3</i>Code uit je mail</span>
-          </div>
-        </div>
-        <div class="dls"><a class="dl" href="voorbeelden/lowtide-intranet-1920x1080.png" download>Download afbeelding (.png)</a></div>
-      </figure>
-
-      <figure class="ex">
-        <figcaption>Factuur <span>elke maand als pdf</span></figcaption>
-        <div class="mock invoice">
-          <div class="i-top"><b>Lowtide</b><span>Factuur 2026-0001</span></div>
-          <p class="i-to">Aan: JouwBedrijf B.V.<br>KvK 12345678<br>finance@jouwbedrijf.nl</p>
-          <div class="i-row"><span>50 accounts × € 2,49<br><small>november 2026</small></span><span>€ 124,50</span></div>
-          <div class="i-row"><span>Btw 21%</span><span>€ 26,15</span></div>
-          <div class="i-row i-total"><span>Totaal</span><span>€ 150,65</span></div>
-          <p class="i-foot">Betaald met iDEAL</p>
-        </div>
-        <div class="dls"><a class="dl" href="voorbeelden/lowtide-factuur-voorbeeld.pdf" download>Download voorbeeld (.pdf)</a></div>
-      </figure>
-
-      <figure class="ex">
-        <figcaption>Cadeaukaartje <span>A6, voor bij de kerstattentie</span></figcaption>
-        <div class="mock card">
+    <p class="eyebrow">Het cadeau</p>
+    <h2>Zo ziet het cadeau eruit</h2>
+    <div class="gift-wrap">
+        <div class="mock card gift-preview">
           <p class="cm-small">Cadeau</p>
           <p class="cm-big">Jij krijgt Lowtide cadeau van <span class="rot" data-rot="name">JouwBedrijf B.V.</span></p>
           <p class="cm-body">Een filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
@@ -277,41 +213,8 @@
           </ol>
           <p class="cm-body">Veel plezier!</p>
         </div>
-        <div class="dls"><a class="dl" href="voorbeelden/lowtide-cadeaukaartje-a6.pdf" download>Download A6 (.pdf)</a></div>
-      </figure>
-
-      <figure class="ex">
-        <figcaption>Poster <span>A4/A3, kantine of koffieautomaat</span></figcaption>
-        <div class="mock poster">
-          <p class="cm-small">Van JouwBedrijf, voor jou</p>
-          <p class="p-big">Minder scrollen.<br>Meer leven.</p>
-          <p class="cm-body">Lowtide: Instagram zonder Reels en zonder eindeloze feed.</p>
-          <ol class="p-steps">
-            <li>Open Lowtide uit de App Store</li>
-            <li>Vul je werkmail in</li>
-            <li>Vul de code uit je mail in</li>
-          </ol>
-          <p class="cm-tag">Scroll less. See more.</p>
-        </div>
-        <div class="dls"><a class="dl" href="voorbeelden/lowtide-poster-a4.pdf" download>Download A4 (.pdf)</a><a class="dl" href="voorbeelden/lowtide-poster-a3.pdf" download>A3 (.pdf)</a></div>
-      </figure>
-
-      <figure class="ex">
-        <figcaption>Flyer <span>welkomstmap nieuwe collega's</span></figcaption>
-        <div class="mock flyer">
-          <p class="cm-big">Welkom bij JouwBedrijf!</p>
-          <p class="cm-body">Bij ons krijg je Lowtide erbij. Zo blijft Instagram rustig: je vrienden en echte berichten, zonder eindeloos scrollen.</p>
-          <ol class="cm-steps">
-            <li>Open Lowtide uit de App Store</li>
-            <li>Vul je werkmail in (@jouwbedrijf.nl)</li>
-            <li>Vul de code in die in je mailbox komt</li>
-          </ol>
-          <p class="cm-body">Je eerste dag is al druk genoeg. Dit regel je in 1 minuut.</p>
-        </div>
-        <div class="dls"><a class="dl" href="voorbeelden/lowtide-flyer-a5.pdf" download>Download A5 (.pdf)</a></div>
-      </figure>
-
     </div>
+    <p class="hint" style="text-align:center">Voorbeeld van het cadeaukaartje. Na betaling staat alles met jullie bedrijfsnaam klaar in je mail.</p>
   </div>
 </section>
 
