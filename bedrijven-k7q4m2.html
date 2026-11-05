@@ -29,7 +29,9 @@
   .cta-row .btn { margin-top: 0; }
   .from { font-size: 14px; color: var(--soft); }
   .facts { list-style: none; margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; border-top: 1px solid var(--edge); padding-top: 22px; }
-  .facts b { display: block; font: 21px/1.2 var(--serif); margin-bottom: 4px; }
+  .facts li { display: flex; align-items: center; gap: 12px; }
+  .facts svg { flex: none; width: 38px; height: 38px; padding: 8px; border-radius: 12px; background: rgba(247,250,245,.14); fill: none; stroke: var(--foam); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .facts b { font: 18px/1.2 var(--serif); }
   .facts span { font-size: 14px; color: var(--soft); }
   .gift { background: var(--foam); color: #24443a; border-radius: 22px; padding: 30px 30px 28px; box-shadow: 0 18px 48px rgba(20,50,40,.28); }
   .g-top { display: flex; justify-content: space-between; align-items: center; }
@@ -77,7 +79,7 @@
     .hero-card { transform: none; max-width: 520px; width: 100%; margin: 0 auto; }
     .card-note { transform: none; }
   }
-  @media (max-width: 520px) { .facts { grid-template-columns: 1fr; gap: 10px; } .facts b { font-size: 19px; } }
+  @media (max-width: 520px) { .facts { grid-template-columns: 1fr 1fr; gap: 14px 12px; } .facts b { font-size: 16px; } }
   .bean { width: 72px; height: 72px; margin: 0 auto 20px; display: block; }
   .name { font-size: 14px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--soft); margin-bottom: 22px; }
   h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 7vw, 64px); line-height: 1.08; max-width: 14em; margin: 0 auto; }
@@ -250,12 +252,12 @@
         <span class="from">Vanaf €2,49 per persoon per maand, excl. btw</span>
       </div>
       <ul class="facts">
-        <li><b>Niets bewaard</b><span>Geen berichten, wachtwoorden of kijkgedrag. Nergens.</span></li>
-        <li><b>Inloggen bij Instagram zelf</b><span>Lowtide ziet het wachtwoord nooit.</span></li>
-        <li><b>Alleen weglaten</b><span>Niets nieuws om te leren. Gewoon Instagram, maar rustig.</span></li>
-        <li><b>Privé blijft privé</b><span>Jullie zien nooit wie wat gebruikt.</span></li>
-        <li><b>1 minuut</b><span>Besteld met alleen jullie werkmail-domein. Geen lijsten, geen codes.</span></li>
-        <li><b>Maandelijks opzegbaar</b><span>Vanaf 5 collega's. Stoppen kan altijd.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b>Niets bewaard</b></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/></svg><b>Inloggen bij Instagram zelf</b></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><b>Alleen weglaten</b></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.5"/><path d="M4 4l16 16"/></svg><b>Privé blijft privé</b></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>1 minuut</b></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M10 14l4 3M14 14l-4 3"/></svg><b>Maandelijks opzegbaar</b></li>
       </ul>
     </div>
     <div class="hero-card">
