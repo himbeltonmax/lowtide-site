@@ -231,6 +231,12 @@
   details p { color: var(--soft); margin-top: 8px; font-size: 15px; }
 
   .kpi-band { padding: 32px 16px; }
+  .sum { max-width: 520px; margin: 0 auto; font: clamp(20px, 2.6vw, 26px)/1.35 var(--serif); }
+  .sum p { display: flex; gap: 10px; align-items: baseline; padding: 4px 0; }
+  .sum b { font-weight: 400; font-size: 1.35em; }
+  .sum .op { width: 22px; flex: none; opacity: .7; }
+  .sum p:not(.tot) { padding-left: 32px; }
+  .sum .tot { border-top: 1px solid var(--edge); margin-top: 8px; padding-top: 12px; }
   .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
   .kpi b { display: block; font: clamp(28px, 3vw, 36px)/1.1 var(--serif); }
   .kpi span { display: block; margin-top: 6px; font-size: 14px; color: var(--soft); }
@@ -327,11 +333,10 @@
 
 <section class="deep kpi-band">
   <div class="wrap">
-    <div class="kpis">
-      <div class="kpi"><b>2+ uur</b><span>per dag op social media¹</span></div>
-      <div class="kpi"><b>730+ uur</b><span>per jaar</span></div>
-      <div class="kpi"><b>50%</b><span>minder ruis in je feed²</span></div>
-      <div class="kpi"><b>1 uur terug*</b><span>per dag, per collega</span></div>
+    <div class="sum">
+      <p><b>2 uur</b> per dag op social media¹</p>
+      <p>met <b>50%</b> minder gebruik en ruis²</p>
+      <p class="tot"><span class="op">=</span> <b>365 uur</b> besparing per jaar*</p>
     </div>
   </div>
 </section>
