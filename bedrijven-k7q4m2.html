@@ -350,7 +350,7 @@
           <p class="hint" id="impactSmall"></p>
         </div>
 
-        <label for="start">Ingangsdatum</label>
+        <label for="start">Ingangsdatum (max. 21 dagen later)</label>
         <input id="start" type="date">
         <p class="hint" id="startHint">Lowtide abonnement gaat in op deze datum.</p>
 
@@ -411,7 +411,7 @@
   }
 
   const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
-  { const t = new Date(), m = new Date(); m.setMonth(m.getMonth() + 2);
+  { const t = new Date(), m = new Date(); m.setDate(m.getDate() + 21);
     $("start").value = $("start").min = iso(t); $("start").max = iso(m); }
 
   function render() {
