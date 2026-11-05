@@ -249,11 +249,13 @@
   .story li:last-child b { color: var(--foam); font-size: 26px; }
   .lead { text-align: center; max-width: 34em; margin: 14px auto 0; color: var(--soft); font-size: 17px; }
   section.why { padding: 48px 16px; }
-  .why-grid { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 32px; align-items: start; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: start; }
   .why-grid .eyebrow { text-align: left; margin-bottom: 8px; }
-  .w-txt { font: 21px/1.4 var(--serif); color: var(--foam); }
-  .why .keepgo { margin: 0; max-width: none; }
-  .why .kg { padding: 14px 16px; }
+  .w-txt { font: 19px/1.4 var(--serif); color: var(--foam); }
+  .w-list { font-size: 16px; line-height: 1.5; color: var(--foam); display: flex; gap: 8px; }
+  .w-list + .w-list { margin-top: 6px; }
+  .w-list.gone { color: var(--soft); }
+  .w-list .ok, .w-list .no { flex: none; width: 16px; }
   @media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; gap: 22px; } }
   .keepgo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px auto 0; max-width: 560px; }
   .kg { background: var(--faint); border: 1px solid var(--edge); border-radius: 18px; padding: 18px 20px; }
@@ -350,14 +352,9 @@
 
 <section class="deep why">
   <div class="wrap why-grid">
-    <div><p class="eyebrow">Waarom</p><p class="w-txt">Social media is gemaakt om je verslaafd te houden. Maar verwijderen is niet de optie die je wilt.</p></div>
-    <div><p class="eyebrow">Hoe</p><p class="w-txt">Social media heeft geen bodem. Maar met Lowtide wel.</p></div>
-    <div><p class="eyebrow">Wat</p>
-      <div class="keepgo">
-        <div class="kg keep"><h3>Blijft</h3><ul><li>Vrienden</li><li>Berichten</li><li>Zoeken en posten</li></ul></div>
-        <div class="kg go"><h3>Gaat weg</h3><ul><li>Reels</li><li>Explore</li><li>Voorgestelde posts</li><li>AI-posts</li><li>Eindeloze feed</li></ul></div>
-      </div>
-    </div>
+    <div><p class="eyebrow">Waarom</p><p class="w-txt">Social media wil je verslaafd houden.<br>Verwijderen wil je niet.</p></div>
+    <div><p class="eyebrow">Hoe</p><p class="w-txt">Een privé-filter op je eigen telefoon.<br>Alleen je vrienden komen erdoor.</p></div>
+    <div><p class="eyebrow">Wat</p><p class="w-list"><span class="ok">✓</span> Vrienden, berichten, posten</p><p class="w-list gone"><span class="no">✕</span> <s>Reels, Explore, AI-posts, eindeloze feed</s></p></div>
   </div>
 </section>
 
