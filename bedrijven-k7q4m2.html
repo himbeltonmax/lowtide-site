@@ -95,6 +95,7 @@
   .row span:first-child { color: var(--soft); }
   .total { border-top: 1px solid var(--edge); padding-top: 12px; margin-top: 4px; font-size: 18px; font-weight: 600; }
   .total span:first-child { color: var(--foam); }
+  .big small { font: 15px var(--sans); color: var(--soft); }
   .big { font: 40px var(--serif); margin: 6px 0 18px; }
   .note { font-size: 13px; color: var(--soft); margin-top: 12px; }
   .pay { width: 100%; margin-top: 18px; }
@@ -255,12 +256,10 @@
         <div class="sum">
           <div class="row"><span id="lineLabel"></span><span id="lineAmount"></span></div>
           <div class="row"><span>Btw 21%</span><span id="vat"></span></div>
-          <div class="row total"><span>Per maand incl. btw</span><span id="incl"></span></div>
+          <div class="row total"><span>Incl. btw</span><span id="incl"></span></div>
         </div>
-        <p class="note" id="periodNote"></p>
         <button type="submit" class="btn pay">Geef Lowtide cadeau</button>
         <p id="soon">Betalen kan over een paar dagen. Wil je nu al bestellen? Mail <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20bedrijven">himbelton@gmail.com</a>, dan regelen we het meteen.</p>
-        <p class="note">Alle prijzen excl. btw. Alleen voor bedrijven met een KvK-nummer.</p>
       </div>
     </form>
 
@@ -274,6 +273,7 @@
 </section>
 
 <footer>
+  <p>* Schatting, nog niet gemeten. We gaan uit van gemiddeld 1 uur per dag minder scrollen per gebruiker. Na de lancering vervangen we dit door echte cijfers.</p>
   <p>Lowtide · Niet verbonden aan Instagram of Meta.</p>
 </footer>
 
@@ -300,21 +300,18 @@
     const excl = Math.round(n * PRICE[plan] * 100) / 100;
     const vat = Math.round(excl * VAT * 100) / 100;
     const other = Math.round(n * PRICE.month * 100) / 100;
-    $("big").textContent = eur(excl) + " per maand";
-    $("lineLabel").textContent = `${n} × ${eur(PRICE[plan])}`;
+    $("big").innerHTML = `${eur(excl)} <small>excl. btw</small>`;
+    $("lineLabel").textContent = `${n} accounts × ${eur(PRICE[plan])} excl. btw`;
     $("lineAmount").textContent = eur(excl);
     $("vat").textContent = eur(vat);
     $("incl").textContent = eur(excl + vat);
     const months = { month: 1, year: 12 }[plan];
     const yearExcl = Math.round(n * PRICE.year * 100) / 100;
-    $("periodNote").textContent = months > 1
-      ? `${months} maanden, elke maand afgeschreven. Je bespaart ${eur(other - excl)} per maand.`
-      : `Maandelijks opzegbaar. Met jaarlijks betaal je ${eur(yearExcl)} per maand: ${eur(excl - yearExcl)} minder.`;
     const day = n * HOURS_PER_DAY, yearH = day * 365;
     const num = (x) => Math.round(x).toLocaleString("nl-NL");
     $("impactBig").textContent = `U redt met deze aankoop ${num(day)} uur per dag.`;
     $("impactSmall").textContent = `Dat is ${num(yearH)} uur per jaar.` +
-      ` Lowtide zorgt gemiddeld voor 1 uur per dag minder scrollen.`;
+      ` Lowtide zorgt gemiddeld voor 1 uur per dag minder scrollen*.`;
     const low = seats() < MIN;
     $("seatHint").textContent = low ? "Minimaal 5 accounts" : "";
     $("seatHint").hidden = !low;
