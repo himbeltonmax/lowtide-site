@@ -48,7 +48,9 @@
   .g-body { margin-top: 12px; font-size: 15px; line-height: 1.5; }
   .g-tag { margin-top: 14px; font: italic 20px var(--serif); }
   .g-steps { margin-top: 14px; padding: 12px 0 0 20px; border-top: 1px solid rgba(36,68,58,.12); font-size: 14px; line-height: 1.5; display: grid; gap: 6px; color: #3c5f53; }
-  .g-dom { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #24443a; }
+  .g-dom { display: inline; color: #24443a; }
+  .g-steps li.g-one { white-space: nowrap; letter-spacing: -.01em; }
+  @media (max-width: 420px) { .g-steps li.g-one { font-size: 12.5px; } }
   .g-end { margin-top: 16px; font-size: 15px; font-weight: 600; }
   .rot { font-weight: inherit; }
   .gift-stage { display: grid; position: relative; }
@@ -297,7 +299,7 @@
         <p class="g-body">Een privé-filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
         <ol class="g-steps">
           <li>Open Lowtide uit de App Store</li>
-          <li>Vul je eigen werkmail in<span class="g-dom">...<span class="rot" data-rot="domain">@jouwbedrijf.nl</span></span></li>
+          <li class="g-one">Vul je eigen werkmail in <span class="g-dom">naam<span class="rot" data-rot="domain">@jouwbedrijf.nl</span></span></li>
           <li>Vul de code in die in je mailbox komt</li>
         </ol>
         <div class="g-foot"><p class="g-end">Veel plezier!</p><button class="turn" type="button" data-turn>Toon achterkant ↻</button></div>
