@@ -19,7 +19,26 @@
   body { font-family: var(--sans); color: var(--foam); background: var(--bottom); line-height: 1.55; -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
 
-  .hero { padding: 72px 16px 88px; text-align: center; background: linear-gradient(var(--top), var(--bottom)); }
+  .hero { padding: 64px 16px 80px; background: linear-gradient(var(--top), var(--bottom)); }
+  .hero-in { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+  .hero .name { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .bean-s { width: 26px; height: 26px; flex: none; }
+  .hero h1 { font-size: clamp(44px, 7.5vw, 80px); line-height: 1.02; max-width: none; margin: 0; text-align: left; }
+  .sub { margin-top: 20px; max-width: 30em; font-size: clamp(17px, 2.1vw, 20px); color: var(--soft); }
+  .cta-row { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+  .cta-row .btn { margin-top: 0; }
+  .from { font-size: 14px; color: var(--soft); }
+  .facts { list-style: none; margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; border-top: 1px solid var(--edge); padding-top: 22px; }
+  .facts b { display: block; font: 22px var(--serif); }
+  .facts span { font-size: 14px; color: var(--soft); }
+  .hero-card { display: flex; flex-direction: column; transform: rotate(2deg); }
+  .card-note { margin-top: 12px; font-size: 13px; color: var(--soft); text-align: center; transform: rotate(-2deg); }
+  @media (max-width: 860px) {
+    .hero-in { grid-template-columns: 1fr; gap: 40px; }
+    .hero-card { transform: none; max-width: 440px; width: 100%; margin: 0 auto; }
+    .card-note { transform: none; }
+  }
+  @media (max-width: 520px) { .facts { grid-template-columns: 1fr; gap: 10px; } .facts li { display: flex; gap: 10px; align-items: baseline; } .facts b { font-size: 19px; } }
   .bean { width: 72px; height: 72px; margin: 0 auto 20px; display: block; }
   .name { font-size: 14px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--soft); margin-bottom: 22px; }
   h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 7vw, 64px); line-height: 1.08; max-width: 14em; margin: 0 auto; }
@@ -156,52 +175,23 @@
 <body>
 
 <header class="hero">
-  <svg class="bean" viewBox="-70 -70 140 140" aria-hidden="true">
-    <g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#f7faf5"/><line y1="-42" y2="42" stroke="#61a680" stroke-width="5.5"/></g>
-  </svg>
-  <p class="name">Lowtide voor bedrijven</p>
-  <h1>500 kerstcadeaus in 1 minuut geregeld? Geen probleem.</h1>
-  <p class="impact">Sociale impact voor jouw bedrijf.</p>
-  <ul class="riff">
-    <li>5000? <b>Ook geen probleem.</b></li>
-    <li>Je team rust op Instagram, zonder Reels en zonder eindeloze feed? <b>Geen probleem.</b></li>
-    <li>Minder doomscrollen, meer tijd voor elkaar en voor thuis? <b>Geen probleem.</b></li>
-  </ul>
-  <a class="btn" href="#bestellen">Geef Lowtide cadeau</a>
-</header>
-
-<section class="deep">
-  <div class="wrap">
-    <p class="eyebrow">Zo werkt het</p>
-    <h2>Twee kanten, geen codes om uit te delen</h2>
-    <div class="flows">
-      <div class="flow">
-        <h3>Jij als werkgever</h3>
-        <ol>
-          <li><b>Bestel</b><span>Kies het aantal collega's en vul jullie bedrijfsdomein in.</span></li>
-          <li><b>Betaal</b><span>Met iDEAL. Daarna elke maand automatisch, met een factuur per keer.</span></li>
-          <li><b>Stuur door</b><span>Je krijgt direct de factuur en een kant-en-klaar bericht voor je team.</span></li>
-        </ol>
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="name"><svg class="bean-s" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#f7faf5"/><line y1="-42" y2="42" stroke="#61a680" stroke-width="5.5"/></g></svg>Lowtide voor bedrijven</p>
+      <h1>Geef je team<br>tijd terug.</h1>
+      <p class="sub">De feed heeft geen bodem. Lowtide wel. Instagram met alleen vrienden en echte berichten, zonder Reels en zonder eindeloze feed. Het kerstcadeau dat elke dag iets oplevert.</p>
+      <div class="cta-row">
+        <a class="btn" href="#bestellen">Geef Lowtide cadeau</a>
+        <span class="from">Vanaf €2,49 per persoon per maand, excl. btw</span>
       </div>
-      <div class="flow">
-        <h3>Je collega</h3>
-        <ol>
-          <li><b>Open Lowtide</b><span>Uit de App Store, op de iPhone.</span></li>
-          <li><b>Werkmail</b><span>Vult zijn werkmailadres in en krijgt een eenmalige code per mail.</span></li>
-          <li><b>Klaar voor gebruik</b><span>Typt de code in Lowtide. Geen links, geen wachtwoord, geen account.</span></li>
-        </ol>
-      </div>
+      <ul class="facts">
+        <li><b>1 minuut</b><span>besteld, ook voor 500 collega's</span></li>
+        <li><b>Werkmail</b><span>is genoeg, geen codes uitdelen</span></li>
+        <li><b>Vanaf 5</b><span>collega's, maandelijks opzegbaar</span></li>
+      </ul>
     </div>
-    <p class="nontech">Ook gemaakt voor 'niet technische' mensen. De digibeten onder ons. De boomers.. ja jij.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <p class="eyebrow">Het cadeau</p>
-    <h2>Zo ziet het cadeau eruit</h2>
-    <div class="gift-wrap">
-        <div class="mock card gift-preview">
+    <div class="hero-card">
+      <div class="mock card gift-preview">
           <p class="cm-small">Cadeau</p>
           <p class="cm-big">Jij krijgt Lowtide cadeau van <span class="rot" data-rot="name">JouwBedrijf B.V.</span></p>
           <p class="cm-body">Een filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
@@ -213,10 +203,10 @@
           </ol>
           <p class="cm-body">Veel plezier!</p>
         </div>
+      <p class="card-note">Zo ziet het cadeau eruit</p>
     </div>
-    <p class="hint" style="text-align:center">Voorbeeld van het cadeaukaartje. Na betaling staat alles met jullie bedrijfsnaam klaar in je mail.</p>
   </div>
-</section>
+</header>
 
 <section id="bestellen">
   <div class="wrap">
