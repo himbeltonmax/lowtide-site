@@ -164,6 +164,32 @@
   summary { cursor: pointer; font-weight: 600; }
   details p { color: var(--soft); margin-top: 8px; font-size: 15px; }
 
+  .kpi-band { padding: 44px 16px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .kpi b { display: block; font: clamp(32px, 4.4vw, 46px)/1.05 var(--serif); }
+  .kpi span { display: block; margin-top: 6px; font-size: 14px; color: var(--soft); }
+  .narrow { max-width: 680px; }
+  .story { list-style: none; counter-reset: s; margin-top: 36px; display: grid; gap: 26px; }
+  .story li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; column-gap: 16px; }
+  .story li::before { content: counter(s); grid-row: span 2; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(247,250,245,.6); display: grid; place-items: center; font: 17px var(--serif); }
+  .story b { font: 22px/1.25 var(--serif); font-weight: 400; }
+  .story span { color: var(--soft); font-size: 16px; margin-top: 4px; }
+  .story li:last-child b { color: var(--foam); font-size: 26px; }
+  .lead { text-align: center; max-width: 34em; margin: 14px auto 0; color: var(--soft); font-size: 17px; }
+  .keepgo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .kg { background: var(--faint); border: 1px solid var(--edge); border-radius: 22px; padding: 24px; }
+  .kg h3 { font: 400 24px var(--serif); margin-bottom: 12px; }
+  .kg ul { list-style: none; display: grid; gap: 8px; font-size: 16px; }
+  .keep li::before { content: "✓"; margin-right: 10px; }
+  .go li { color: var(--soft); text-decoration: line-through; text-decoration-color: rgba(247,250,245,.55); }
+  .trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
+  .trust b { display: block; font-weight: 600; }
+  .trust span { display: block; font-size: 14px; color: var(--soft); margin-top: 4px; }
+  footer .src { max-width: 46em; margin: 0 auto 8px; }
+  @media (max-width: 760px) {
+    .kpis { grid-template-columns: 1fr 1fr; }
+    .keepgo, .trust { grid-template-columns: 1fr; }
+  }
   footer { padding: 40px 16px 52px; text-align: center; font-size: 13px; color: rgba(247,250,245,.6); background: var(--deep); }
 
   @media (max-width: 760px) {
@@ -207,6 +233,48 @@
     </div>
   </div>
 </header>
+
+<section class="deep kpi-band">
+  <div class="wrap">
+    <div class="kpis">
+      <div class="kpi"><b>2+ uur</b><span>per dag zit een gemiddelde volwassene op social media¹</span></div>
+      <div class="kpi"><b>30+ dagen</b><span>per jaar. Dat is een volle maand, elk jaar</span></div>
+      <div class="kpi"><b>~30%</b><span>van de feed komt van accounts die je niet volgt²</span></div>
+      <div class="kpi"><b>1 uur</b><span>per dag terug per collega, onze schatting*</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <p class="eyebrow">Waarom</p>
+    <h2>De feed heeft geen bodem.<br>Lowtide wel.</h2>
+    <ol class="story">
+      <li><b>Herken je dit?</b><span>Je opent Instagram voor één bericht. Je kijkt op, en er zijn 40 minuten weg.</span></li>
+      <li><b>Dat is geen toeval.</b><span>De feed houdt nooit op. De volgende video start vanzelf. En steeds meer komt van mensen die je niet eens volgt. Elk onderdeel is getest om je één minuut langer vast te houden. Zelfs de uitvinder van eindeloos scrollen heeft er spijt van³.</span></li>
+      <li><b>Het kost iets.</b><span>Ruim 2 uur per dag is een maand per jaar. Tijd die bedoeld was voor je kinderen, je slaap, je avond. En overdag gaat er focus mee: wie tussendoor “even” kijkt, is daarna nog niet terug bij zijn werk.</span></li>
+      <li><b>Verwijderen werkt niet.</b><span>Je vrienden, je berichten en je groepsapps zitten erin. Dus de app komt na een week weer terug.</span></li>
+      <li><b>Dus: houd je vrienden. Laat de feed los.</b><span>Dat is Lowtide.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="deep">
+  <div class="wrap">
+    <p class="eyebrow">Wat Lowtide doet</p>
+    <h2>Instagram zoals het bedoeld was</h2>
+    <p class="lead">Lowtide opent Instagram in de app en haalt alleen weg. Er komt niets bij. Je feed houdt op als je bij bent.</p>
+    <div class="keepgo">
+      <div class="kg keep"><h3>Blijft</h3><ul><li>Posts en stories van mensen die je volgt</li><li>Je berichten en groepsgesprekken</li><li>Zoeken, je profiel, posten</li></ul></div>
+      <div class="kg go"><h3>Weg</h3><ul><li>Reels</li><li>Explore</li><li>Voorgestelde posts van onbekenden</li><li>Posts met een AI-label</li><li>De feed zonder einde</li></ul></div>
+    </div>
+    <div class="trust">
+      <div><b>Inloggen op Instagram zelf</b><span>Je logt in op de eigen pagina van Instagram. Lowtide ziet je wachtwoord niet.</span></div>
+      <div><b>Niets verzameld</b><span>De werkgever ziet alleen hoeveel plekken in gebruik zijn. Nooit wie wat doet.</span></div>
+      <div><b>Eén veeg en je bent eruit</b><span>Bij en klaar? Veeg omhoog en je bent terug in je dag.</span></div>
+    </div>
+  </div>
+</section>
 
 <section id="bestellen">
   <div class="wrap">
@@ -286,6 +354,7 @@
 </section>
 
 <footer>
+  <p class="src">¹ DataReportal / GWI, Digital 2025: wereldwijd gemiddeld ruim 2 uur per dag op social media. ² Meta (2022) mikte op zo'n 30% aanbevolen posts in de feed. ³ Aza Raskin, bedenker van infinite scroll, in Masters of Scale.</p>
   <p>* Schatting, nog niet gemeten. We gaan uit van gemiddeld 1 uur per dag minder scrollen per gebruiker. Na de lancering vervangen we dit door echte cijfers.</p>
   <p>Lowtide · Niet verbonden aan Instagram of Meta.</p>
 </footer>
