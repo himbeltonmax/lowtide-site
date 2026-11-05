@@ -34,6 +34,9 @@
   .facts b { font: 18px/1.2 var(--serif); }
   .facts span { font-size: 14px; color: var(--soft); }
   .gift { background: var(--foam); color: #24443a; border-radius: 22px; padding: 30px 30px 28px; box-shadow: 0 18px 48px rgba(20,50,40,.28); }
+  .g-usp { list-style: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(36,68,58,.12); display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; font-size: 13px; line-height: 1.25; color: #3c5f53; }
+  .g-usp li { display: flex; align-items: center; gap: 8px; }
+  .g-usp svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 8px; background: rgba(69,128,107,.12); fill: none; stroke: #45806b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .g-hi { margin-top: 16px; font-size: 15px; color: #5b7a6f; }
   .g-hi + .g-lead { margin-top: 4px; }
   .g-top { display: flex; justify-content: space-between; align-items: center; }
@@ -284,6 +287,14 @@
           <li>Vul je eigen werkmail in<span class="g-dom">...<span class="rot" data-rot="domain">@jouwbedrijf.nl</span></span></li>
           <li>Vul de code in die in je mailbox komt</li>
         </ol>
+        <ul class="g-usp">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Niets bewaard</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/></svg>Inloggen bij Instagram zelf</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>Alleen weglaten</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.5"/><path d="M4 4l16 16"/></svg>Werkgever ziet niets</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Klaar in 1 minuut</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8"/><path d="M6.3 7.5a8 8 0 1 0 11.4 0"/></svg>Stoppen kan altijd</li>
+        </ul>
         <p class="g-end">Veel plezier!</p>
       </div>
       <button class="again" type="button" id="closeGift">Weer inpakken</button>
