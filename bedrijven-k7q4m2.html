@@ -33,20 +33,20 @@
   .facts svg { flex: none; width: 38px; height: 38px; padding: 8px; border-radius: 12px; background: rgba(247,250,245,.14); fill: none; stroke: var(--foam); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .facts b { font: 18px/1.2 var(--serif); }
   .facts span { font-size: 14px; color: var(--soft); }
-  .gift { background: var(--foam); color: #24443a; border-radius: 22px; padding: 30px 30px 28px; box-shadow: 0 18px 48px rgba(20,50,40,.28); }
+  .gift { background: var(--foam); color: #24443a; border-radius: 22px; padding: 22px 26px 18px; box-shadow: 0 18px 48px rgba(20,50,40,.28); }
   .g-usp { list-style: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(36,68,58,.12); display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; font-size: 13px; line-height: 1.25; color: #3c5f53; }
   .g-usp li { display: flex; align-items: center; gap: 8px; }
   .g-usp svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 8px; background: rgba(69,128,107,.12); fill: none; stroke: #45806b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .g-hi { margin-top: 16px; font-size: 15px; color: #5b7a6f; }
+  .g-hi { margin-top: 10px; font-size: 15px; color: #5b7a6f; }
   .g-hi + .g-lead { margin-top: 4px; }
   .g-top { display: flex; justify-content: space-between; align-items: center; }
   .g-label { font-size: 12px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: #5b7a6f; }
   .g-bean { width: 30px; height: 30px; }
   .g-lead { margin-top: 18px; font: 20px/1.25 var(--serif); }
   .g-name { margin-top: 2px; font: 600 clamp(24px, 3vw, 30px)/1.2 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .g-body { margin-top: 16px; font-size: 15px; line-height: 1.5; }
+  .g-body { margin-top: 12px; font-size: 15px; line-height: 1.5; }
   .g-tag { margin-top: 14px; font: italic 20px var(--serif); }
-  .g-steps { margin-top: 16px; padding: 16px 0 0 20px; border-top: 1px solid rgba(36,68,58,.12); font-size: 14px; line-height: 1.5; display: grid; gap: 6px; color: #3c5f53; }
+  .g-steps { margin-top: 14px; padding: 12px 0 0 20px; border-top: 1px solid rgba(36,68,58,.12); font-size: 14px; line-height: 1.5; display: grid; gap: 6px; color: #3c5f53; }
   .g-dom { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #24443a; }
   .g-end { margin-top: 16px; font-size: 15px; font-weight: 600; }
   .rot { font-weight: inherit; }
@@ -57,15 +57,16 @@
   .flip.turned .flip-in { transform: rotateY(180deg); }
   .face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; }
   .face.back { transform: rotateY(180deg); }
-  .g-foot { margin-top: auto; padding-top: 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .g-foot { margin-top: auto; padding-top: 12px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .g-foot .g-end { margin-top: 0; }
   .turn { background: none; border: 0; font: inherit; font-size: 13px; font-weight: 600; color: #45806b; cursor: pointer; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; }
-  .g-usp.big { font-family: var(--sans); grid-template-columns: 1fr; gap: 10px; font-size: 14px; border-top: 1px solid rgba(36,68,58,.12); padding-top: 14px; margin-top: 14px; }
+  .g-usp.big { font-family: var(--sans); grid-template-columns: 1fr 1fr; gap: 10px 14px; font-size: 14px; border-top: 1px solid rgba(36,68,58,.12); padding-top: 12px; margin-top: 12px; }
   .g-intro { margin-top: 6px; font-size: 14px; line-height: 1.45; color: #3c5f53; }
   .g-usp.big li { align-items: flex-start; }
   .g-usp.big b { display: block; font-weight: 600; color: #24443a; font-size: 14px; }
-  .g-usp.big small { display: block; font-size: 13px; line-height: 1.35; color: #5b7a6f; margin-top: 1px; }
-  .g-usp.big svg { width: 30px; height: 30px; padding: 6px; border-radius: 10px; }
+  .g-usp.big small { display: block; font-size: 12px; line-height: 1.3; color: #5b7a6f; margin-top: 1px; }
+  @media (max-width: 520px) { .g-usp.big { gap: 8px 10px; } .g-usp.big svg { display: none; } .g-intro { font-size: 13px; } }
+  .g-usp.big svg { width: 26px; height: 26px; padding: 5px; border-radius: 8px; }
   .gift-stage:not(.open) .flip { opacity: 0; transform: translateY(26px) scale(.94); pointer-events: none; }
   .box { position: relative; z-index: 2; border: 0; cursor: pointer; border-radius: 22px; overflow: hidden; color: var(--foam); font: inherit; text-align: center;
     background: radial-gradient(120% 90% at 30% 15%, #5c9b7f 0%, #3a6d5b 55%, #2c5547 100%); box-shadow: 0 22px 54px rgba(20,50,40,.38), inset 0 1px 0 rgba(255,255,255,.18);
@@ -267,7 +268,7 @@
     <div class="hero-text">
       <p class="name"><svg class="bean-s" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#f7faf5"/><line y1="-42" y2="42" stroke="#61a680" stroke-width="5.5"/></g></svg>Lowtide voor bedrijven</p>
       <h1>Geef je team<br>tijd terug.</h1>
-      <p class="sub">Wist je dat 50% van wat je op Instagram ziet niet komt van mensen die je volgt?²<br>Wist je dat de gemiddelde persoon bijna 2,5 uur per dag op social media zit?¹<br>Wist je dat jij hen daarbij kunt helpen?</p>
+      <p class="sub">Wist je dat..<br>de gemiddelde persoon bijna 2,5 uur per dag op social media zit?¹<br>50% van Instagram niet komt van accounts die je volgt?²<br>En dat jij hen daarbij kunt helpen?</p>
       <div class="cta-row">
         <a class="btn" href="#bestellen">Geef Lowtide cadeau</a>
         <span class="from">Vanaf €2,49 per persoon per maand, excl. btw</span>
@@ -293,10 +294,9 @@
       <div class="gift face front">
         <div class="g-top"><span class="g-label">Cadeau</span><svg class="g-bean" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#45806b"/><line y1="-42" y2="42" stroke="#f7faf5" stroke-width="5.5"/></g></svg></div>
         <p class="g-hi">Beste collega,</p>
-        <p class="g-lead">Je krijgt Lowtide cadeau van ons</p>
+        <p class="g-lead">Je krijgt Lowtide cadeau van</p>
         <p class="g-name"><span class="rot" data-rot="name">JouwBedrijf B.V.</span></p>
-        <p class="g-body">Een filter voor jouw eigen apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
-        <p class="g-tag">Scroll less. See more!</p>
+        <p class="g-body">Een privé-filter voor jouw eigen apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
         <ol class="g-steps">
           <li>Open Lowtide uit de App Store</li>
           <li>Vul je eigen werkmail in<span class="g-dom">...<span class="rot" data-rot="domain">@jouwbedrijf.nl</span></span></li>
