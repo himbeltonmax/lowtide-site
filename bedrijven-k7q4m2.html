@@ -57,6 +57,9 @@
   .dl:hover { background: rgba(247,250,245,.12); }
   .mock ol + p { margin-top: 8px; }
   .poster .cm-tag { margin-top: 10px; }
+  .rot { display: inline-block; transition: opacity .35s ease, transform .35s ease; font-weight: 600; }
+  .rot.out { opacity: 0; transform: translateY(4px); }
+  @media (prefers-reduced-motion: reduce) { .rot { transition: none; } }
   .ex-title { font: 400 26px var(--serif); text-align: center; margin: 48px 0 6px; }
   .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .ex { margin: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -264,12 +267,12 @@
         <figcaption>Cadeaukaartje <span>A6, voor bij de kerstattentie</span></figcaption>
         <div class="mock card">
           <p class="cm-small">Cadeau</p>
-          <p class="cm-big">Jij krijgt Lowtide cadeau van JouwBedrijf B.V.</p>
+          <p class="cm-big">Jij krijgt Lowtide cadeau van <span class="rot" data-rot="name">JouwBedrijf B.V.</span></p>
           <p class="cm-body">Een filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
           <p class="cm-tag">Scroll less. See more!</p>
           <ol class="cm-steps">
             <li>Open Lowtide uit de App Store</li>
-            <li>Vul je werkmail in (@jouwbedrijf.nl)</li>
+            <li>Vul je werkmail in (<span class="rot" data-rot="domain">@jouwbedrijf.nl</span>)</li>
             <li>Vul de code in die in je mailbox komt</li>
           </ol>
           <p class="cm-body">Veel plezier!</p>
@@ -453,6 +456,27 @@
   });
 
   render();
+  // Gift card preview: rotate fictional company names with their work-mail domain.
+  (() => {
+    const list = [
+      ["JouwBedrijf B.V.", "@jouwbedrijf.nl"],
+      ["Bakkerij de Molen", "@bakkerijdemolen.nl"],
+      ["Studio Vlinder", "@studiovlinder.nl"],
+      ["Fietsfabriek Noord", "@fietsfabrieknoord.nl"],
+      ["Groene Haven Zorg", "@groenehavenzorg.nl"],
+    ];
+    const name = document.querySelector('[data-rot="name"]'), dom = document.querySelector('[data-rot="domain"]');
+    if (!name || !dom) return;
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % list.length;
+      name.classList.add("out"); dom.classList.add("out");
+      setTimeout(() => {
+        name.textContent = list[i][0]; dom.textContent = list[i][1];
+        name.classList.remove("out"); dom.classList.remove("out");
+      }, 350);
+    }, 2600);
+  })();
 </script>
 </body>
 </html>
