@@ -52,8 +52,17 @@
   .rot { font-weight: inherit; }
   .gift-stage { display: grid; position: relative; }
   .gift-stage > * { grid-area: 1 / 1; }
-  .gift { transition: opacity .5s ease .25s, transform .7s cubic-bezier(.2,1.4,.4,1) .25s; }
-  .gift-stage:not(.open) .gift { opacity: 0; transform: translateY(26px) scale(.94); pointer-events: none; }
+  .flip { perspective: 1600px; transition: opacity .5s ease .25s, transform .7s cubic-bezier(.2,1.4,.4,1) .25s; }
+  .flip-in { display: grid; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.4,.1,.2,1); }
+  .flip.turned .flip-in { transform: rotateY(180deg); }
+  .face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; }
+  .face.back { transform: rotateY(180deg); }
+  .g-foot { margin-top: auto; padding-top: 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .g-foot .g-end { margin-top: 0; }
+  .turn { background: none; border: 0; font: inherit; font-size: 13px; font-weight: 600; color: #45806b; cursor: pointer; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; }
+  .g-usp.big { font-family: var(--sans); grid-template-columns: 1fr; gap: 12px; font-size: 15px; border-top: 0; padding-top: 6px; margin-top: 18px; }
+  .g-usp.big svg { width: 30px; height: 30px; padding: 6px; border-radius: 10px; }
+  .gift-stage:not(.open) .flip { opacity: 0; transform: translateY(26px) scale(.94); pointer-events: none; }
   .box { position: relative; z-index: 2; border: 0; cursor: pointer; border-radius: 22px; overflow: hidden; color: var(--foam); font: inherit; text-align: center;
     background: radial-gradient(120% 90% at 30% 15%, #5c9b7f 0%, #3a6d5b 55%, #2c5547 100%); box-shadow: 0 22px 54px rgba(20,50,40,.38), inset 0 1px 0 rgba(255,255,255,.18);
     display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 24px 40px; transition: transform .6s cubic-bezier(.5,0,.3,1), opacity .45s ease; }
@@ -74,7 +83,8 @@
   .gift-stage.open .again { opacity: .8; pointer-events: auto; }
   .spark { position: absolute; left: 50%; top: 45%; width: 12px; height: 17px; border-radius: 50%; background: var(--foam); z-index: 3; pointer-events: none; animation: spark .9s ease-out forwards; }
   @keyframes spark { from { transform: translate(-50%,-50%) rotate(var(--r)) scale(.4); opacity: 1; } to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)) scale(1); opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .gift, .box, .again { transition: none; } .box .b-btn { animation: none; } .spark { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .flip, .flip-in, .box, .again { transition: none; } .box .b-btn { animation: none; } .spark { display: none; } }
+  .card-intro small { display: block; margin-top: 4px; font: 14px/1.4 var(--sans); opacity: .8; }
   .card-intro { font: 20px/1.3 var(--serif); margin-bottom: 14px; transform: rotate(-2deg); }
   @media (max-width: 860px) { .card-intro { transform: none; text-align: center; } }
   .hero-card { display: flex; flex-direction: column; transform: rotate(2deg); }
@@ -268,14 +278,15 @@
       </ul>
     </div>
     <div class="hero-card">
-      <p class="card-intro">Dit cadeau sturen naar je medewerkers is makkelijk.</p>
+      <p class="card-intro">Dit cadeau sturen naar je medewerkers is makkelijk.<small>Je kunt dit nu ook al aan ze laten zien, om te checken of ze het willen.</small></p>
       <div class="gift-stage" id="giftStage">
       <button class="box" type="button" id="openGift" aria-controls="giftCard" aria-expanded="false">
         <span class="rib-v"></span><span class="rib-h"></span>
         <svg class="bow" viewBox="0 0 150 80" aria-hidden="true"><path d="M75 62 C40 78 4 64 10 34 C16 8 52 18 75 58 Z" fill="#f7faf5"/><path d="M75 62 C110 78 146 64 140 34 C134 8 98 18 75 58 Z" fill="#eef4ec"/><path d="M75 62 C52 40 34 34 26 40" stroke="#c9d9cd" stroke-width="2" fill="none"/><path d="M75 62 C98 40 116 34 124 40" stroke="#c9d9cd" stroke-width="2" fill="none"/><circle cx="75" cy="60" r="11" fill="#45806b"/><line x1="70" y1="55" x2="80" y2="65" stroke="#f7faf5" stroke-width="2.4"/></svg>
         <span class="b-tag"><span class="b-txt">Een cadeau voor je team</span><span class="b-btn">Open cadeau</span></span>
       </button>
-      <div class="gift" id="giftCard">
+      <div class="flip" id="giftCard"><div class="flip-in">
+      <div class="gift face front">
         <div class="g-top"><span class="g-label">Cadeau</span><svg class="g-bean" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#45806b"/><line y1="-42" y2="42" stroke="#f7faf5" stroke-width="5.5"/></g></svg></div>
         <p class="g-hi">Beste collega,</p>
         <p class="g-lead">Je krijgt Lowtide cadeau van ons</p>
@@ -287,7 +298,12 @@
           <li>Vul je eigen werkmail in<span class="g-dom">...<span class="rot" data-rot="domain">@jouwbedrijf.nl</span></span></li>
           <li>Vul de code in die in je mailbox komt</li>
         </ol>
-        <ul class="g-usp">
+        <div class="g-foot"><p class="g-end">Veel plezier!</p><button class="turn" type="button" data-turn>Toon achterkant ↻</button></div>
+      </div>
+      <div class="gift face back" aria-hidden="true">
+        <div class="g-top"><span class="g-label">Achterkant</span><svg class="g-bean" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#45806b"/><line y1="-42" y2="42" stroke="#f7faf5" stroke-width="5.5"/></g></svg></div>
+        <p class="g-lead">Wat je er ook bij krijgt</p>
+        <ul class="g-usp big">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Niets bewaard</li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/></svg>Inloggen bij Instagram zelf</li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>Alleen weglaten</li>
@@ -295,8 +311,9 @@
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Klaar in 1 minuut</li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8"/><path d="M6.3 7.5a8 8 0 1 0 11.4 0"/></svg>Stoppen kan altijd</li>
         </ul>
-        <p class="g-end">Veel plezier!</p>
+        <div class="g-foot"><span></span><button class="turn" type="button" data-turn>Toon voorkant ↻</button></div>
       </div>
+      </div></div>
       <button class="again" type="button" id="closeGift">Weer inpakken</button>
       </div>
     </div>
@@ -518,7 +535,11 @@
       st.appendChild(s); setTimeout(() => s.remove(), 1000);
     }
   });
-  again.addEventListener('click', () => { st.classList.remove('open'); box.setAttribute('aria-expanded', 'false'); box.focus(); });
+  const fl = document.getElementById('giftCard'), faces = fl.querySelectorAll('.face');
+  fl.querySelectorAll('[data-turn]').forEach(b => b.addEventListener('click', () => {
+    const t = fl.classList.toggle('turned'); faces[0].setAttribute('aria-hidden', t); faces[1].setAttribute('aria-hidden', !t);
+  }));
+  again.addEventListener('click', () => { fl.classList.remove('turned'); faces[0].setAttribute('aria-hidden', 'false'); faces[1].setAttribute('aria-hidden', 'true'); st.classList.remove('open'); box.setAttribute('aria-expanded', 'false'); box.focus(); });
 })();
 </script>
 </body>
