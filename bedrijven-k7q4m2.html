@@ -43,6 +43,31 @@
   .g-dom { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #24443a; }
   .g-end { margin-top: 16px; font-size: 15px; font-weight: 600; }
   .rot { font-weight: inherit; }
+  .gift-stage { display: grid; position: relative; }
+  .gift-stage > * { grid-area: 1 / 1; }
+  .gift { transition: opacity .5s ease .25s, transform .7s cubic-bezier(.2,1.4,.4,1) .25s; }
+  .gift-stage:not(.open) .gift { opacity: 0; transform: translateY(26px) scale(.94); pointer-events: none; }
+  .box { position: relative; z-index: 2; border: 0; cursor: pointer; border-radius: 22px; overflow: hidden; color: var(--foam); font: inherit; text-align: center;
+    background: radial-gradient(120% 90% at 30% 15%, #5c9b7f 0%, #3a6d5b 55%, #2c5547 100%); box-shadow: 0 22px 54px rgba(20,50,40,.38), inset 0 1px 0 rgba(255,255,255,.18);
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 24px 40px; transition: transform .6s cubic-bezier(.5,0,.3,1), opacity .45s ease; }
+  .box:hover { transform: translateY(-4px) rotate(-.6deg); }
+  .box:focus-visible { outline: 3px solid var(--foam); outline-offset: 4px; }
+  .box .rib-v, .box .rib-h { position: absolute; background: linear-gradient(90deg, #e9f1e6, #f7faf5 45%, #dfe9dc); }
+  .box .rib-v { top: 0; bottom: 0; left: 50%; width: 34px; margin-left: -17px; }
+  .box .rib-h { left: 0; right: 0; top: 38%; height: 34px; margin-top: -17px; background: linear-gradient(180deg, #e9f1e6, #f7faf5 45%, #dfe9dc); }
+  .box .bow { position: absolute; left: 50%; top: 38%; width: 150px; height: 80px; margin: -66px 0 0 -75px; }
+  .box .b-tag { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 14px; background: var(--foam); color: #24443a; border-radius: 18px; padding: 20px 26px 22px; box-shadow: 0 14px 34px rgba(10,30,24,.35); transform: rotate(-2deg); }
+  .box .b-txt { font: 22px/1.2 var(--serif); }
+  .box .b-btn { display: inline-flex; align-items: center; gap: 10px; background: #3a6d5b; color: var(--foam); font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px; box-shadow: 0 8px 24px rgba(0,0,0,.22); animation: nudge 2.8s ease-in-out infinite; }
+  .box .b-btn::after { content: "→"; transition: transform .25s; }
+  .box:hover .b-btn::after { transform: translateX(4px); }
+  @keyframes nudge { 0%, 80%, 100% { transform: none; } 85% { transform: rotate(-3deg) scale(1.04); } 90% { transform: rotate(3deg) scale(1.04); } 95% { transform: rotate(-2deg); } }
+  .gift-stage.open .box { opacity: 0; transform: translateY(40px) scale(.9) rotate(-4deg); pointer-events: none; }
+  .again { justify-self: center; align-self: end; margin-bottom: -40px; background: none; border: 0; color: var(--foam); font: inherit; font-size: 14px; opacity: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: opacity .4s ease .9s; pointer-events: none; }
+  .gift-stage.open .again { opacity: .8; pointer-events: auto; }
+  .spark { position: absolute; left: 50%; top: 45%; width: 12px; height: 17px; border-radius: 50%; background: var(--foam); z-index: 3; pointer-events: none; animation: spark .9s ease-out forwards; }
+  @keyframes spark { from { transform: translate(-50%,-50%) rotate(var(--r)) scale(.4); opacity: 1; } to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)) scale(1); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .gift, .box, .again { transition: none; } .box .b-btn { animation: none; } .spark { display: none; } }
   .card-intro { font: 20px/1.3 var(--serif); margin-bottom: 14px; transform: rotate(-2deg); }
   @media (max-width: 860px) { .card-intro { transform: none; text-align: center; } }
   .hero-card { display: flex; flex-direction: column; transform: rotate(2deg); }
@@ -219,7 +244,7 @@
     <div class="hero-text">
       <p class="name"><svg class="bean-s" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#f7faf5"/><line y1="-42" y2="42" stroke="#61a680" stroke-width="5.5"/></g></svg>Lowtide voor bedrijven</p>
       <h1>Het mooiste wat je je team kunt geven, is tijd.</h1>
-      <p class="sub">Gemiddeld gaat er ruim 2 uur per dag naar social media¹. Lowtide maakt Instagram rustig: alleen vrienden en echte berichten, en de feed houdt op als je bij bent. Elke dag merkbaar, voor iedereen met jullie werkmail.</p>
+      <p class="sub">Wist je dat 50% van wat je op Instagram ziet niet komt van mensen die je volgt?²<br>Wist je dat de gemiddelde persoon bijna 2,5 uur per dag op social media zit?¹<br>Wist je dat jij hen daarbij kunt helpen?</p>
       <div class="cta-row">
         <a class="btn" href="#bestellen">Geef Lowtide cadeau</a>
         <span class="from">Vanaf €2,49 per persoon per maand, excl. btw</span>
@@ -235,7 +260,13 @@
     </div>
     <div class="hero-card">
       <p class="card-intro">Dit cadeau sturen naar je medewerkers is makkelijk.</p>
-      <div class="gift">
+      <div class="gift-stage" id="giftStage">
+      <button class="box" type="button" id="openGift" aria-controls="giftCard" aria-expanded="false">
+        <span class="rib-v"></span><span class="rib-h"></span>
+        <svg class="bow" viewBox="0 0 150 80" aria-hidden="true"><path d="M75 62 C40 78 4 64 10 34 C16 8 52 18 75 58 Z" fill="#f7faf5"/><path d="M75 62 C110 78 146 64 140 34 C134 8 98 18 75 58 Z" fill="#eef4ec"/><path d="M75 62 C52 40 34 34 26 40" stroke="#c9d9cd" stroke-width="2" fill="none"/><path d="M75 62 C98 40 116 34 124 40" stroke="#c9d9cd" stroke-width="2" fill="none"/><circle cx="75" cy="60" r="11" fill="#45806b"/><line x1="70" y1="55" x2="80" y2="65" stroke="#f7faf5" stroke-width="2.4"/></svg>
+        <span class="b-tag"><span class="b-txt">Een cadeau voor je team</span><span class="b-btn">Open cadeau</span></span>
+      </button>
+      <div class="gift" id="giftCard">
         <div class="g-top"><span class="g-label">Cadeau</span><svg class="g-bean" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#45806b"/><line y1="-42" y2="42" stroke="#f7faf5" stroke-width="5.5"/></g></svg></div>
         <p class="g-lead">Jij krijgt Lowtide cadeau van</p>
         <p class="g-name"><span class="rot" data-rot="name">JouwBedrijf B.V.</span></p>
@@ -247,6 +278,8 @@
           <li>Vul de code in die in je mailbox komt</li>
         </ol>
         <p class="g-end">Veel plezier!</p>
+      </div>
+      <button class="again" type="button" id="closeGift">Weer inpakken</button>
       </div>
     </div>
   </div>
@@ -457,6 +490,22 @@
       }, 350);
     }, 2600);
   })();
+</script>
+<script>
+(() => {
+  const st = document.getElementById('giftStage'), box = document.getElementById('openGift'), again = document.getElementById('closeGift');
+  box.addEventListener('click', () => {
+    st.classList.add('open'); box.setAttribute('aria-expanded', 'true');
+    for (let i = 0; i < 14; i++) {
+      const s = document.createElement('span'); s.className = 'spark';
+      const a = (i / 14) * Math.PI * 2 + Math.random() * .4, d = 110 + Math.random() * 90;
+      s.style.setProperty('--x', Math.cos(a) * d + 'px'); s.style.setProperty('--y', Math.sin(a) * d + 'px'); s.style.setProperty('--r', (a * 57) + 'deg');
+      s.style.background = i % 3 ? '#f7faf5' : '#7aba94';
+      st.appendChild(s); setTimeout(() => s.remove(), 1000);
+    }
+  });
+  again.addEventListener('click', () => { st.classList.remove('open'); box.setAttribute('aria-expanded', 'false'); box.focus(); });
+})();
 </script>
 </body>
 </html>
