@@ -276,6 +276,12 @@
   .story li:last-child b { color: var(--foam); font-size: 26px; }
   .lead { text-align: center; max-width: 34em; margin: 14px auto 0; color: var(--soft); font-size: 17px; }
   section.why { padding: 48px 16px; }
+  section.proof { padding: 28px 16px; }
+  .proof-row { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; text-align: center; }
+  .pf b { display: block; font: 800 34px/1.1 ui-rounded, "SF Pro Rounded", var(--sans); }
+  .pf span { font-size: 14px; opacity: .8; }
+  @media (max-width: 520px) { .proof-row { gap: 28px; } .pf b { font-size: 28px; } }
+
   .why-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: start; }
   .why-grid .eyebrow { text-align: left; margin-bottom: 8px; }
   .w-txt { font: 19px/1.4 var(--serif); color: var(--foam); }
@@ -381,6 +387,15 @@
   </div>
 </section>
 
+<section class="proof">
+  <div class="wrap proof-row">
+    <div class="pf" id="pfDownloads" hidden><b data-count="0">0</b><span>downloads</span></div>
+    <div class="pf" id="pfHours" hidden><b>0</b><span>uur minder gescrold*</span></div>
+    <div class="pf"><b>51</b><span>mensen staan al klaar</span></div>
+    <div class="pf"><b>NL</b><span>Gemaakt in Nederland</span></div>
+  </div>
+</section>
+
 <section id="bestellen">
   <div class="wrap">
     <p class="eyebrow">Bestellen</p>
@@ -471,6 +486,13 @@
 </footer>
 
 <script>
+  // Downloads: shown only once a real number from App Store Connect / Play is filled in here.
+  const DOWNLOADS = 0;
+  // Saved hours (estimate): active users x days since launch x HOURS_PER_DAY. Shown only with real user numbers.
+  const ACTIVE_USERS = 0, LAUNCH = new Date("2026-11-20");
+  const savedDays = Math.max(0, Math.floor((Date.now() - LAUNCH) / 864e5));
+  if (ACTIVE_USERS > 0 && savedDays > 0) { const h = document.getElementById("pfHours"); h.querySelector("b").textContent = (ACTIVE_USERS * savedDays * 1).toLocaleString("nl-NL"); h.hidden = false; }
+  if (DOWNLOADS > 0) { const d = document.getElementById("pfDownloads"); d.querySelector("b").textContent = DOWNLOADS.toLocaleString("nl-NL"); d.hidden = false; }
   const PRICE = { month: 4.49, year: 2.49 }, MIN = 5, VAT = 0.21;
   // Impact: max's assumption (11-04) until the anonymous impact-review total gives a real number.
   const HOURS_PER_DAY = 1;
