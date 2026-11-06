@@ -69,6 +69,18 @@
   .g-usp.big b { display: block; font-weight: 600; color: #24443a; font-size: 14px; }
   .g-usp.big small { display: block; font-size: 12px; line-height: 1.3; color: #5b7a6f; margin-top: 1px; }
   @media (max-width: 520px) { .g-usp.big { gap: 8px 10px; } .g-usp.big svg { display: none; } .g-intro { font-size: 13px; } }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; font-family: var(--sans); }
+  .vs-col { border-radius: 14px; padding: 12px 14px; }
+  .vs-col.was { background: rgba(36,68,58,.06); }
+  .vs-col.now { background: rgba(69,128,107,.16); }
+  .vs-h { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #5b7a6f; margin-bottom: 6px; }
+  .vs-col ul { list-style: none; display: grid; gap: 4px; font-size: 14px; line-height: 1.3; }
+  .vs-col.was li { color: #7d958c; text-decoration: line-through; text-decoration-color: rgba(125,149,140,.7); }
+  .vs-col.now li { color: #24443a; font-weight: 600; }
+  .vs-col.now li::before { content: "✓ "; color: #45806b; }
+  .g-ok { list-style: none; margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font: 12.5px/1.3 var(--sans); color: #3c5f53; }
+  .g-ok li::before { content: "• "; color: #45806b; }
+  @media (max-width: 520px) { .vs-col { padding: 10px 11px; } .vs-col ul { font-size: 13px; } .g-ok { font-size: 12px; } }
   .g-usp.big svg { width: 26px; height: 26px; padding: 5px; border-radius: 8px; }
   .gift-stage:not(.open) .flip { opacity: 0; transform: translateY(26px) scale(.94); pointer-events: none; }
   .box { position: relative; z-index: 2; border: 0; cursor: pointer; border-radius: 22px; overflow: hidden; color: var(--foam); font: inherit; text-align: center;
@@ -321,14 +333,12 @@
       <div class="gift face back" aria-hidden="true">
         <div class="g-top"><span class="g-label">Goed om te weten</span><img class="g-logo" src="icon.png" alt="Lowtide" width="34" height="34"></div>
         <p class="g-lead">Gewoon jouw Instagram, maar rustig.</p>
-        <p class="g-intro">Zelfde account, zelfde vrienden. Alleen Reels, Explore, AI-posts en de eindeloze feed blijven weg.</p>
-        <ul class="g-usp big">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.5"/><path d="M4 4l16 16"/></svg><span><b>Werkgever ziet niets</b><small>Je werkmail is puur voor een gratis activering.</small></span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/></svg><span><b>Inloggen bij Instagram zelf</b><small>Op de eigen pagina van Instagram. Lowtide ziet je wachtwoord nooit.</small></span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Niets bewaard</b><small>Geen berichten, wachtwoorden of kijkgedrag.</small></span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><span><b>Alleen weglaten</b><small>Je vrienden, berichten en posten blijven gewoon.</small></span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Klaar in 1 minuut</b><small>Werkmail invullen, code invullen, klaar.</small></span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8"/><path d="M6.3 7.5a8 8 0 1 0 11.4 0"/></svg><span><b>Stoppen kan altijd</b><small>Verwijder de app en alles is weg.</small></span></li>
+        <div class="vs">
+          <div class="vs-col was"><p class="vs-h">Instagram</p><ul><li>Reels</li><li>Explore</li><li>Aanbevolen posts</li><li>AI-posts</li><li>Eindeloze feed</li></ul></div>
+          <div class="vs-col now"><p class="vs-h">Met Lowtide</p><ul><li>Wie je volgt</li><li>Berichten</li><li>Zoeken</li><li>Feed stopt als je bij bent</li></ul></div>
+        </div>
+        <ul class="g-ok">
+          <li>Werkgever ziet niets</li><li>Wachtwoord alleen bij Instagram</li><li>Niets bewaard</li><li>Stoppen kan altijd</li>
         </ul>
         <div class="g-foot"><span></span><button class="turn" type="button" data-turn>Toon voorkant ↻</button></div>
       </div>
