@@ -255,10 +255,11 @@
   .panel:has(.pay-kpi) { display: flex; flex-direction: column; }
   #soon + .pay-kpi, .pay + .pay-kpi { margin-top: auto; }
   .panel:has(.pay-kpi) .btn.pay { margin-bottom: 40px; }
-  .k-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px 0 14px; text-align: center; }
+  .k-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 6px; padding: 10px 0 14px; text-align: center; }
   .k-row b { display: block; font: 800 22px/1.1 ui-rounded, "SF Pro Rounded", var(--sans); white-space: nowrap; }
+  .k-eq { font: 800 20px/1 var(--sans); font-style: normal; opacity: .7; align-self: start; padding-top: 2px; }
   .k-row span { font-size: 13px; opacity: .8; white-space: nowrap; }
-  @media (max-width: 520px) { .k-row { gap: 4px; } .k-row b { font-size: 20px; } .k-row span { font-size: 12px; } }
+  @media (max-width: 520px) { .k-row { gap: 3px; } .k-row b { font-size: 17px; } .k-eq { font-size: 16px; } .k-row span { font-size: 12px; } }
   .k-step { padding: 12px 0; }
   .k-step + .k-step { border-top: 1px solid var(--edge); }
   .k-step span { display: block; font-size: 14px; opacity: .8; }
@@ -468,7 +469,9 @@
           <p class="eyebrow" style="text-align:left">Wist je dat..</p>
           <div class="k-row">
             <div><b>2u 39m</b><span>per dag¹</span></div>
+            <i class="k-eq">=</i>
             <div><b>40 dagen</b><span>per jaar</span></div>
+            <i class="k-eq">=</i>
             <div><b>7 jaar</b><span>van je leven</span></div>
           </div>
         </div>
