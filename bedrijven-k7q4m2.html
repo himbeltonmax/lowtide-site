@@ -281,6 +281,7 @@
   .lead { text-align: center; max-width: 34em; margin: 14px auto 0; color: var(--soft); font-size: 17px; }
   section.why { padding: 48px 16px; }
   section.proof { padding: 28px 16px; }
+  section.proof:not(:has(.pf:not([hidden]))) { display: none; }
   .proof-row { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; text-align: center; }
   .pf b { display: block; font: 800 34px/1.1 ui-rounded, "SF Pro Rounded", var(--sans); }
   .pf span { font-size: 14px; opacity: .8; }
@@ -395,8 +396,6 @@
   <div class="wrap proof-row">
     <div class="pf" id="pfDownloads" hidden><b data-count="0">0</b><span>downloads</span></div>
     <div class="pf" id="pfHours" hidden><b>0</b><span>uur minder gescrold*</span></div>
-    <div class="pf"><b>80</b><span>mensen op de wachtlijst</span></div>
-    <div class="pf"><b>🇳🇱</b><span>Ontwikkeld in NL</span></div>
   </div>
 </section>
 
