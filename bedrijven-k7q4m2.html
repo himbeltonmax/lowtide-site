@@ -248,6 +248,11 @@
   .c-row + .c-row { border-top: 1px solid rgba(247,250,245,.18); }
   .c-row b { font: 800 26px/1.1 ui-rounded, "SF Pro Rounded", var(--sans); font-variant-numeric: tabular-nums; }
   .c-row span { font-size: 15px; font-weight: 500; opacity: .8; text-align: right; }
+  .cost.pay-kpi { max-width: none; margin: 0 0 22px; background: var(--faint); border: 1px solid var(--edge); padding: 14px 18px 4px; }
+  .pay-kpi .eyebrow { margin-bottom: 2px; }
+  .pay-kpi .c-row { padding: 10px 0; }
+  .pay-kpi .c-row + .c-row { border-top-color: var(--edge); }
+  .pay-kpi .c-row b { font-size: 22px; }
   .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
   .kpi b { display: block; font: clamp(28px, 3vw, 36px)/1.1 var(--serif); }
   .kpi span { display: block; margin-top: 6px; font-size: 14px; color: var(--soft); }
@@ -349,16 +354,6 @@
   </div>
 </header>
 
-<section class="deep kpi-band">
-  <div class="wrap">
-    <div class="cost">
-      <div class="c-row"><b>2u 39m</b><span>per dag¹</span></div>
-      <div class="c-row"><b>40 volle dagen</b><span>per jaar</span></div>
-      <div class="c-row"><b>7 jaar</b><span>van je leven</span></div>
-    </div>
-  </div>
-</section>
-
 <section class="deep why">
   <div class="wrap why-grid">
     <div><p class="eyebrow">Waarom doen we dit</p><p class="w-txt">Social media steelt elke dag uren van je leven.</p></div>
@@ -423,6 +418,12 @@
       </div>
 
       <div class="panel">
+        <div class="cost pay-kpi">
+          <p class="eyebrow" style="text-align:left">Wist je dat..</p>
+          <div class="c-row"><b>2u 39m</b><span>per dag¹</span></div>
+          <div class="c-row"><b>40 volle dagen</b><span>per jaar</span></div>
+          <div class="c-row"><b>7 jaar</b><span>van je leven</span></div>
+        </div>
         <p class="eyebrow" style="text-align:left">Per maand</p>
         <div class="big" id="big">€0</div>
         <div class="sum">
