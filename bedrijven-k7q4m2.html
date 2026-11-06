@@ -281,6 +281,7 @@
   .lead { text-align: center; max-width: 34em; margin: 14px auto 0; color: var(--soft); font-size: 17px; }
   section.why { padding: 48px 16px; }
   section.proof { padding: 28px 16px; }
+  section.proof:not(:has(.pf:not([hidden]))) { display: none; }
   .proof-row { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; text-align: center; }
   .pf b { display: block; font: 800 34px/1.1 ui-rounded, "SF Pro Rounded", var(--sans); }
   .pf span { font-size: 14px; opacity: .8; }
