@@ -52,6 +52,9 @@
   .g-tag { margin-top: 14px; font: italic 20px var(--serif); }
   .g-steps { margin-top: 14px; padding: 12px 0 0 20px; border-top: 1px solid rgba(36,68,58,.12); font-size: 14px; line-height: 1.5; display: grid; gap: 6px; color: #3c5f53; }
   .g-dom { display: inline; color: #24443a; }
+  .g-cred { display: grid; grid-template-columns: auto auto 1fr; column-gap: 6px; row-gap: 2px; margin-top: 4px; white-space: nowrap; }
+  .g-cred i { font-style: normal; opacity: .6; font-size: .9em; align-self: center; }
+  .g-cred b { color: #24443a; }
   .g-steps li.g-one { white-space: nowrap; letter-spacing: -.01em; }
   @media (max-width: 520px) { .g-steps li.g-one { white-space: normal; } .g-steps li.g-one .g-dom { white-space: nowrap; } }
   .g-end { margin-top: 16px; font-size: 15px; font-weight: 600; }
@@ -347,7 +350,8 @@
         <p class="g-body">Een privé-filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
         <ol class="g-steps">
           <li>Open Lowtide uit de App Store</li>
-          <li class="g-one">Koop of activeer gratis je filter met<br>login: <span class="g-dom"><b class="rot" data-rot="domain">JouwBedrijf B.V.</b></span><br>ww: <b class="g-dom">golf-zee-rust-48</b> (voorbeeld)</li>
+          <li class="g-one">Koop of activeer gratis je filter met
+            <span class="g-cred"><i>(voorbeeld)</i><span>login:</span><b class="rot" data-rot="domain">JouwBedrijf B.V.</b><i>(voorbeeld)</i><span>ww:</span><b>golf-zee-rust-48</b></span></li>
         </ol>
         <div class="g-foot"><p class="g-end">Veel plezier!</p><button class="turn" type="button" data-turn>Toon achterkant ↻</button></div>
       </div>
@@ -378,7 +382,6 @@
       <ul class="facts facts-2">
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="14" rx="1.5"/><path d="M3 12.5h18M12 8v14"/><path d="M12 8C10 3 5.5 3 6 6 6.5 8 12 8 12 8zM12 8c2-5 6.5-5 6-2-.5 2-6 2-6 2z"/></svg><b>Bulk versturen</b></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="17" height="18" rx="2"/><path d="M3.5 9.5h17M8.5 2v4M15.5 2v4M9.5 13.5l5 5M14.5 13.5l-5 5"/></svg><b>Maandelijks opzegbaar</b></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><b>Plekken komen vanzelf vrij</b></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.9.4 5 2.8 5 5.8"/></svg><b>Vanaf 5 accounts</b></li>
       </ul>
   </div>
