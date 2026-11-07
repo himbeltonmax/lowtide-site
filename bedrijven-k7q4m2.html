@@ -520,7 +520,8 @@
   // Stays hidden until max confirms these are real customers who agreed to be shown.
   const SHOW_TRUSTED = false;
   (() => {
-    if (!SHOW_TRUSTED || !LOGOS.length) return;
+    const preview = new URLSearchParams(location.search).has("trusted");
+    if ((!SHOW_TRUSTED && !preview) || !LOGOS.length) return;
     const track = document.getElementById("logoTrack");
     const imgs = LOGOS.map(l => l.src ? `<img src="${l.src}" alt="${l.alt}" loading="lazy">` : `<span class="wordmark">${l.name}</span>`).join("").repeat(LOGOS.length < 6 ? 2 : 1);
     track.innerHTML = imgs + imgs.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"').replace(/<span class="wordmark">/g, '<span class="wordmark" aria-hidden="true">');
