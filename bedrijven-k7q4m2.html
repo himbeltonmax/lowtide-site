@@ -347,7 +347,7 @@
         <p class="g-body">Een privé-filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
         <ol class="g-steps">
           <li>Open Lowtide uit de App Store</li>
-          <li class="g-one">Log in met <span class="g-dom"><b class="rot" data-rot="domain">jouwbedrijf.nl</b></span> en het wachtwoord</li>
+          <li class="g-one">Log in met <span class="g-dom"><b class="rot" data-rot="domain">JouwBedrijf B.V.</b></span> en het wachtwoord</li>
           <li>Klaar</li>
         </ol>
         <div class="g-foot"><p class="g-end">Veel plezier!</p><button class="turn" type="button" data-turn>Toon achterkant ↻</button></div>
@@ -442,13 +442,10 @@
 
         <label for="company">Bedrijfsnaam</label>
         <input id="company" autocomplete="organization" placeholder="Bedrijf B.V.">
+        <p class="hint">Dit is ook de inlognaam. Uw collega's loggen in met de bedrijfsnaam en één gezamenlijk wachtwoord, tot het aantal plekken vol is.</p>
 
         <label for="kvk">KvK-nummer</label>
         <input id="kvk" inputmode="numeric" maxlength="8" placeholder="12345678">
-
-        <label for="domain">Bedrijfsdomein (inlognaam)</label>
-        <input id="domain" autocapitalize="off" spellcheck="false" placeholder="bedrijf.nl">
-        <p class="hint">Uw collega's loggen in met dit domein en één gezamenlijk wachtwoord, tot het aantal plekken vol is.</p>
 
         <label for="email">Factuurmail</label>
         <input id="email" type="email" autocomplete="email" placeholder="finance@bedrijf.nl">
@@ -479,7 +476,7 @@
 
     <div class="faq">
       <details><summary>Wat ziet u als werkgever?</summary><p>Alleen hoeveel plekken in gebruik zijn. Niet wie, niet wat.</p></details>
-      <details><summary>Hoe activeert een collega Lowtide?</summary><p>Inloggen met uw bedrijfsdomein en het gezamenlijke wachtwoord.</p></details>
+      <details><summary>Hoe activeert een collega Lowtide?</summary><p>Inloggen met de bedrijfsnaam en het gezamenlijke wachtwoord. Geen eigen mail nodig.</p></details>
       <details><summary>Wat ziet een collega in de app?</summary><p>Instagram, zonder doomscrolling, aanbevolen content en AI-posts.</p></details>
       <details><summary>Wat als iemand vertrekt?</summary><p>Een plek die 30 dagen niet gebruikt wordt, komt vanzelf vrij.</p></details>
       <details><summary>Wachtwoord gelekt?</summary><p>Mail ons, dan maken we een nieuw wachtwoord. Wie al binnen is, blijft binnen.</p></details>
@@ -561,7 +558,7 @@
   });
 
   render();
-  // Gift card preview: rotate fictional company names with their login domain.
+  // Gift card preview: rotate fictional company names; the login step shows the same name.
   (() => {
     const list = [
       ["JouwBedrijf B.V.", "jouwbedrijf.nl"],
@@ -577,7 +574,7 @@
       i = (i + 1) % list.length;
       name.classList.add("out"); dom.classList.add("out");
       setTimeout(() => {
-        name.textContent = list[i][0]; dom.textContent = list[i][1];
+        name.textContent = list[i][0]; dom.textContent = list[i][0];
         name.classList.remove("out"); dom.classList.remove("out");
       }, 350);
     }, 2600);
