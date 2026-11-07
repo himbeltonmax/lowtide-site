@@ -53,7 +53,7 @@
   .g-steps { margin-top: 14px; padding: 12px 0 0 20px; border-top: 1px solid rgba(36,68,58,.12); font-size: 14px; line-height: 1.5; display: grid; gap: 6px; color: #3c5f53; }
   .g-dom { display: inline; color: #24443a; }
   .g-steps li.g-one { white-space: nowrap; letter-spacing: -.01em; }
-  @media (max-width: 520px) { .g-steps li.g-one { white-space: normal; } .g-steps li.g-one .g-dom { display: block; white-space: nowrap; } }
+  @media (max-width: 520px) { .g-steps li.g-one { white-space: normal; } .g-steps li.g-one .g-dom { white-space: nowrap; } }
   .g-end { margin-top: 16px; font-size: 15px; font-weight: 600; }
   .rot { font-weight: inherit; }
   .gift-stage { display: grid; position: relative; }
@@ -347,8 +347,8 @@
         <p class="g-body">Een privé-filter voor jouw eigen social apps.<br>Weg met ai, ruis, breinrot en doomscrolls.</p>
         <ol class="g-steps">
           <li>Open Lowtide uit de App Store</li>
-          <li class="g-one">Activeer gratis met je <b>eigen</b> werkmail <span class="g-dom">...<span class="rot" data-rot="domain">@jouwbedrijf.nl</span></span></li>
-          <li>Vul de code in die in je mailbox komt</li>
+          <li class="g-one">Log in met <span class="g-dom"><b class="rot" data-rot="domain">jouwbedrijf.nl</b></span> en het wachtwoord</li>
+          <li>Klaar</li>
         </ol>
         <div class="g-foot"><p class="g-end">Veel plezier!</p><button class="turn" type="button" data-turn>Toon achterkant ↻</button></div>
       </div>
@@ -360,7 +360,7 @@
           <div class="vs-col now"><p class="vs-h">Met Lowtide</p><ul><li>Wie je volgt</li><li>Berichten</li><li>Zoeken</li><li>Feed stopt als je bij bent</li></ul></div>
         </div>
         <ul class="g-ok">
-          <li>Werkgever ziet niets</li><li>Wachtwoord alleen bij Instagram</li><li>Niets bewaard</li><li>Stoppen kan altijd</li>
+          <li>Werkgever ziet niets</li><li>Instagram-wachtwoord blijft bij Instagram</li><li>Niets bewaard</li><li>Stoppen kan altijd</li>
         </ul>
         <div class="g-foot"><span></span><button class="turn" type="button" data-turn>Toon voorkant ↻</button></div>
       </div>
@@ -372,14 +372,14 @@
   <div class="facts-row">
       <ul class="facts">
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><b>Privé filter</b></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/><path d="M3 3l18 18"/></svg><b>Geen wachtwoorden</b></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/></svg><b>Eén login voor iedereen</b></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 8v6M9 11.5l3 3 3-3"/></svg><b>Verlaagde schermtijd</b></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b>Niets bewaard</b></li>
       </ul>
       <ul class="facts facts-2">
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="14" rx="1.5"/><path d="M3 12.5h18M12 8v14"/><path d="M12 8C10 3 5.5 3 6 6 6.5 8 12 8 12 8zM12 8c2-5 6.5-5 6-2-.5 2-6 2-6 2z"/></svg><b>Bulk versturen</b></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="17" height="18" rx="2"/><path d="M3.5 9.5h17M8.5 2v4M15.5 2v4M9.5 13.5l5 5M14.5 13.5l-5 5"/></svg><b>Maandelijks opzegbaar</b></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><b>Plekken zelf beheren</b></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><b>Plekken komen vanzelf vrij</b></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.9.4 5 2.8 5 5.8"/></svg><b>Vanaf 5 accounts</b></li>
       </ul>
   </div>
@@ -403,7 +403,7 @@
 <section id="bestellen">
   <div class="wrap">
     <p class="eyebrow">Bestellen</p>
-    <h2>Lowtide voor iedereen met uw bedrijfsmail</h2>
+    <h2>Lowtide voor uw hele team</h2>
 
     <form class="order" id="form" novalidate>
       <div class="panel">
@@ -446,13 +446,12 @@
         <label for="kvk">KvK-nummer</label>
         <input id="kvk" inputmode="numeric" maxlength="8" placeholder="12345678">
 
-        <label for="domain">Bedrijfsdomein</label>
+        <label for="domain">Bedrijfsdomein (inlognaam)</label>
         <input id="domain" autocapitalize="off" spellcheck="false" placeholder="bedrijf.nl">
-        <p class="hint">Iedereen met een werkmail op dit domein kan inloggen, tot het aantal plekken vol is.</p>
+        <p class="hint">Uw collega's loggen in met dit domein en één gezamenlijk wachtwoord, tot het aantal plekken vol is.</p>
 
         <label for="email">Factuurmail</label>
         <input id="email" type="email" autocomplete="email" placeholder="finance@bedrijf.nl">
-        <p class="hint">Moet op uw bedrijfsdomein zitten.</p>
       </div>
 
       <div class="panel">
@@ -480,9 +479,10 @@
 
     <div class="faq">
       <details><summary>Wat ziet u als werkgever?</summary><p>Alleen hoeveel plekken in gebruik zijn. Niet wie, niet wat.</p></details>
-      <details><summary>Hoe activeert een collega Lowtide?</summary><p>Met de eigen werkmail en een code uit de mailbox.</p></details>
+      <details><summary>Hoe activeert een collega Lowtide?</summary><p>Inloggen met uw bedrijfsdomein en het gezamenlijke wachtwoord.</p></details>
       <details><summary>Wat ziet een collega in de app?</summary><p>Instagram, zonder doomscrolling, aanbevolen content en AI-posts.</p></details>
-      <details><summary>Wat als iemand vertrekt?</summary><p>Mail ons de werkmail. De plek komt direct vrij.</p></details>
+      <details><summary>Wat als iemand vertrekt?</summary><p>Een plek die 30 dagen niet gebruikt wordt, komt vanzelf vrij.</p></details>
+      <details><summary>Wachtwoord gelekt?</summary><p>Mail ons, dan maken we een nieuw wachtwoord. Wie al binnen is, blijft binnen.</p></details>
       <details><summary>Op welke telefoons werkt het?</summary><p>iPhone en Android. Eén plek is één telefoon.</p></details>
       <details><summary>Hoe opzeggen?</summary><p>Mail ons, dan zetten wij de incasso bij Mollie stop.</p></details>
     </div>
@@ -561,14 +561,14 @@
   });
 
   render();
-  // Gift card preview: rotate fictional company names with their work-mail domain.
+  // Gift card preview: rotate fictional company names with their login domain.
   (() => {
     const list = [
-      ["JouwBedrijf B.V.", "@jouwbedrijf.nl"],
-      ["Bakkerij de Molen", "@bakkerijdemolen.nl"],
-      ["Studio Vlinder", "@studiovlinder.nl"],
-      ["Fietsfabriek Noord", "@fietsfabrieknoord.nl"],
-      ["Groene Haven Zorg", "@groenehavenzorg.nl"],
+      ["JouwBedrijf B.V.", "jouwbedrijf.nl"],
+      ["Bakkerij de Molen", "bakkerijdemolen.nl"],
+      ["Studio Vlinder", "studiovlinder.nl"],
+      ["Fietsfabriek Noord", "fietsfabrieknoord.nl"],
+      ["Groene Haven Zorg", "groenehavenzorg.nl"],
     ];
     const name = document.querySelector('[data-rot="name"]'), dom = document.querySelector('[data-rot="domain"]');
     if (!name || !dom) return;
