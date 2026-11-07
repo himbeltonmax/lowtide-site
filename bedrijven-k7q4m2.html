@@ -321,14 +321,14 @@
     .steps, .order, .flows, .gets, .plans { grid-template-columns: 1fr; }
     section { padding: 56px 16px; }
   }
-  .trusted { padding: 28px 0 8px; text-align: center; overflow: hidden; }
+  .trusted { padding: 24px 0 4px; text-align: center; overflow: hidden; }
   .trusted[hidden] { display: none; }
-  .trusted .eyebrow { margin-bottom: 18px; opacity: .8; }
+  .trusted .eyebrow { margin-bottom: 12px; font-size: 11px; opacity: .7; }
   .logo-loop { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-  .logo-track { display: flex; gap: 56px; width: max-content; animation: logo-loop 40s linear infinite; }
+  .logo-track { display: flex; gap: 44px; width: max-content; animation: logo-loop 30s linear infinite; }
   .logo-loop:hover .logo-track { animation-play-state: paused; }
-  .logo-track .wordmark { font: 600 22px/32px var(--serif); color: var(--foam); opacity: .7; white-space: nowrap; letter-spacing: .01em; }
-  .logo-track img { height: 32px; width: auto; filter: grayscale(1) brightness(1.6); opacity: .75; }
+  .logo-track .wordmark { font: 600 17px/26px var(--serif); color: var(--foam); opacity: .7; white-space: nowrap; letter-spacing: .01em; }
+  .logo-track img { height: 24px; width: auto; filter: grayscale(1) brightness(1.6); opacity: .75; }
   @keyframes logo-loop { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } }
 </style>
@@ -397,10 +397,6 @@
   </div>
 </header>
 
-<section class="trusted" id="trusted" hidden aria-label="Trusted by">
-  <p class="eyebrow">Trusted by</p>
-  <div class="logo-loop"><div class="logo-track" id="logoTrack"></div></div>
-</section>
 
 <section class="deep why">
   <div class="wrap why-grid">
@@ -415,6 +411,11 @@
     <div class="pf" id="pfDownloads" hidden><b data-count="0">0</b><span>downloads</span></div>
     <div class="pf" id="pfHours" hidden><b>0</b><span>uur minder gescrold*</span></div>
   </div>
+</section>
+
+<section class="trusted" id="trusted" hidden aria-label="Trusted by">
+  <p class="eyebrow">Trusted by</p>
+  <div class="logo-loop"><div class="logo-track" id="logoTrack"></div></div>
 </section>
 
 <section id="bestellen">
