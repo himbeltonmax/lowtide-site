@@ -37,7 +37,7 @@
   .facts b { font: 18px/1.2 var(--serif); }
   .facts b small { display: block; margin-top: 2px; font: 13px/1.2 var(--sans); opacity: .75; }
   .facts span { font-size: 14px; color: var(--soft); }
-  .gift { background: var(--foam); color: #24443a; border-radius: 22px; padding: 22px 26px 18px; box-shadow: 0 18px 48px rgba(20,50,40,.28); }
+  .gift { background: var(--foam); color: #24443a; border-radius: 22px; padding: 32px 36px 26px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
   .g-usp { list-style: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(36,68,58,.12); display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; font-size: 13px; line-height: 1.25; color: #3c5f53; }
   .g-usp li { display: flex; align-items: center; gap: 8px; }
   .g-usp svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 8px; background: rgba(69,128,107,.12); fill: none; stroke: #45806b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -46,18 +46,19 @@
   .g-top { display: flex; justify-content: space-between; align-items: center; }
   .g-label { font-size: 12px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: #5b7a6f; }
   .g-logo { width: 34px; height: 34px; border-radius: 8px; box-shadow: 0 2px 6px rgba(20,50,40,.18); }
-  .g-lead { margin-top: 18px; font: 20px/1.25 var(--serif); }
-  .g-name { margin-top: 2px; font: 600 clamp(24px, 3vw, 30px)/1.2 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .g-body { margin-top: 12px; font-size: 15px; line-height: 1.5; }
+  .g-lead { margin-top: 20px; font: 19px/1.35 var(--serif); color: #3c5f53; }
+  .g-name { margin-top: 4px; font: 500 clamp(22px, 2.6vw, 26px)/1.25 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .g-body { margin-top: 16px; font-size: 15px; line-height: 1.65; color: #4a6b60; }
   .g-tag { margin-top: 14px; font: italic 20px var(--serif); }
-  .g-steps { margin-top: 14px; padding: 12px 0 0 20px; border-top: 1px solid rgba(36,68,58,.12); font-size: 14px; line-height: 1.5; display: grid; gap: 6px; color: #3c5f53; }
+  .g-steps { margin-top: 22px; padding: 18px 0 0 20px; border-top: 1px solid rgba(36,68,58,.08); font-size: 14px; line-height: 1.6; display: grid; gap: 10px; color: #4a6b60; }
   .g-dom { display: inline; color: #24443a; }
-  .g-cred { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; white-space: nowrap; }
+  .g-cred { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; white-space: nowrap; }
   .g-cred i { font-style: normal; opacity: .6; font-size: .9em; align-self: center; }
-  .g-cred b { color: #24443a; }
+  .g-cred b { color: #24443a; font-weight: 500; }
   .g-steps li.g-one { white-space: nowrap; letter-spacing: -.01em; }
   @media (max-width: 520px) { .g-steps li.g-one { white-space: normal; } .g-steps li.g-one .g-dom { white-space: nowrap; } }
-  .g-end { margin-top: 16px; font-size: 15px; font-weight: 600; }
+  @media (max-width: 520px) { .gift { padding: 24px 22px 20px; } }
+  .g-end { margin-top: 16px; font-size: 15px; font-weight: 500; }
   .rot { font-weight: inherit; }
   .gift-stage { display: grid; position: relative; }
   .gift-stage > * { grid-area: 1 / 1; }
@@ -66,7 +67,7 @@
   .flip.turned .flip-in { transform: rotateY(180deg); }
   .face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; }
   .face.back { transform: rotateY(180deg); }
-  .g-foot { margin-top: auto; padding-top: 12px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .g-foot { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .g-foot .g-end { margin-top: 0; }
   .turn { background: none; border: 0; font: inherit; font-size: 13px; font-weight: 600; color: #45806b; cursor: pointer; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; }
   .g-usp.big { font-family: var(--sans); grid-template-columns: 1fr 1fr; gap: 10px 14px; font-size: 14px; border-top: 1px solid rgba(36,68,58,.12); padding-top: 12px; margin-top: 12px; }
@@ -330,7 +331,7 @@
       <h1>Geef uw team<br>tijd terug.</h1>
       <p class="sub">Wist u dat..<br>mensen gemiddeld 2,5 uur per dag op social media zitten?¹<br>50% van wat u ziet niet is van wie u volgt?²<br>En dat u daar vandaag iets aan kunt doen?</p>
       <div class="cta-row">
-        <a class="btn" href="#bestellen">Geef Lowtide cadeau</a>
+        <button class="btn" type="button" data-go="bestellen">Geef Lowtide cadeau</button>
         <span class="from">Vanaf €2,49 per persoon per maand, excl. btw</span>
       </div>
     </div>
@@ -598,6 +599,16 @@
   }));
   again.addEventListener('click', () => { fl.classList.remove('turned'); faces[0].setAttribute('aria-hidden', 'false'); faces[1].setAttribute('aria-hidden', 'true'); st.classList.remove('open'); box.setAttribute('aria-expanded', 'false'); box.focus(); });
 })();
+</script>
+<script>
+  // Scroll to the order form without putting a hash in the shareable URL.
+  (() => {
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+    document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => {
+      const t = document.getElementById(b.dataset.go);
+      if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+    }));
+  })();
 </script>
 </body>
 </html>
