@@ -76,18 +76,18 @@
   .g-usp.big b { display: block; font-weight: 600; color: #24443a; font-size: 14px; }
   .g-usp.big small { display: block; font-size: 12px; line-height: 1.3; color: #5b7a6f; margin-top: 1px; }
   @media (max-width: 520px) { .g-usp.big { gap: 8px 10px; } .g-usp.big svg { display: none; } .g-intro { font-size: 13px; } }
-  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; font-family: var(--sans); }
-  .vs-col { border-radius: 14px; padding: 12px 14px; }
+  .vs { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; font-family: var(--sans); }
+  .vs-col { border-radius: 18px; padding: 20px 18px; }
   .vs-col.was { background: rgba(36,68,58,.06); }
   .vs-col.now { background: rgba(69,128,107,.16); }
-  .vs-h { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #5b7a6f; margin-bottom: 6px; }
-  .vs-col ul { list-style: none; display: grid; gap: 4px; font-size: 14px; line-height: 1.3; }
+  .vs-h { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #5b7a6f; margin-bottom: 14px; }
+  .vs-col ul { list-style: none; display: grid; gap: 12px; font-size: 16px; line-height: 1.3; }
   .vs-col.was li { color: #7d958c; text-decoration: line-through; text-decoration-color: rgba(125,149,140,.7); }
   .vs-col.now li { color: #24443a; font-weight: 600; }
   .vs-col.now li::before { content: "✓ "; color: #45806b; }
   .g-ok { list-style: none; margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font: 12.5px/1.3 var(--sans); color: #3c5f53; }
   .g-ok li::before { content: "• "; color: #45806b; }
-  @media (max-width: 520px) { .vs-col { padding: 10px 11px; } .vs-col ul { font-size: 13px; } .g-ok { font-size: 12px; } }
+  @media (max-width: 520px) { .vs-col { padding: 16px 13px; } .vs-col ul { font-size: 14px; gap: 10px; } .g-ok { font-size: 12px; } }
   .g-usp.big svg { width: 26px; height: 26px; padding: 5px; border-radius: 8px; }
   .gift-stage:not(.open) .flip { opacity: 0; transform: translateY(26px) scale(.94); pointer-events: none; }
   .box { position: relative; z-index: 2; border: 0; cursor: pointer; border-radius: 22px; overflow: hidden; color: var(--foam); font: inherit; text-align: center;
@@ -364,9 +364,6 @@
           <div class="vs-col was"><p class="vs-h">Instagram</p><ul><li>Doomscrolling</li><li>Aanbevolen posts</li><li>AI-posts</li></ul></div>
           <div class="vs-col now"><p class="vs-h">Met Lowtide</p><ul><li>Zie wie je volgt</li><li>Berichten</li><li>Zoeken</li><li>Feed stopt als je bij bent</li></ul></div>
         </div>
-        <ul class="g-ok">
-          <li>Niets bewaard</li><li>Stoppen kan altijd</li>
-        </ul>
         <div class="g-foot"><span></span><button class="turn" type="button" data-turn>Toon voorkant ↻</button></div>
       </div>
       </div></div>
