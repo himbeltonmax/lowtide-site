@@ -321,6 +321,15 @@
     .steps, .order, .flows, .gets, .plans { grid-template-columns: 1fr; }
     section { padding: 56px 16px; }
   }
+  .trusted { padding: 28px 0 8px; text-align: center; overflow: hidden; }
+  .trusted[hidden] { display: none; }
+  .trusted .eyebrow { margin-bottom: 18px; opacity: .8; }
+  .logo-loop { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .logo-track { display: flex; gap: 56px; width: max-content; animation: logo-loop 40s linear infinite; }
+  .logo-loop:hover .logo-track { animation-play-state: paused; }
+  .logo-track img { height: 32px; width: auto; filter: grayscale(1) brightness(1.6); opacity: .75; }
+  @keyframes logo-loop { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } }
 </style>
 </head>
 <body>
@@ -386,6 +395,11 @@
       </ul>
   </div>
 </header>
+
+<section class="trusted" id="trusted" hidden aria-label="Trusted by">
+  <p class="eyebrow">Trusted by</p>
+  <div class="logo-loop"><div class="logo-track" id="logoTrack"></div></div>
+</section>
 
 <section class="deep why">
   <div class="wrap why-grid">
@@ -492,6 +506,18 @@
 
 <script>
   // Downloads: shown only once a real number from App Store Connect / Play is filled in here.
+  // "Trusted by" logo loop: hidden until real customer logos are added here.
+  // Only companies that really use Lowtide and agreed to be shown. Files go in logos/.
+  const LOGOS = [
+    // { src: "logos/voorbeeld.svg", alt: "Bedrijfsnaam" },
+  ];
+  (() => {
+    if (!LOGOS.length) return;
+    const track = document.getElementById("logoTrack");
+    const imgs = LOGOS.map(l => `<img src="${l.src}" alt="${l.alt}" loading="lazy">`).join("");
+    track.innerHTML = imgs + imgs.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"');
+    document.getElementById("trusted").hidden = false;
+  })();
   const DOWNLOADS = 0;
   // Saved hours (estimate): active users x days since launch x HOURS_PER_DAY. Shown only with real user numbers.
   const ACTIVE_USERS = 0, LAUNCH = new Date("2026-11-20");
