@@ -333,6 +333,13 @@
   .logo-track img { height: 24px; width: auto; filter: grayscale(1) brightness(1.6); opacity: .75; }
   @keyframes logo-loop { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } }
+  .reviews { padding: 8px 16px 48px; }
+  .rv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1000px; margin: 20px auto 0; }
+  .rv { background: rgba(247,250,245,.08); border: 1px solid var(--edge); border-radius: 16px; padding: 20px; text-align: left; }
+  .rv q { display: block; font: 18px/1.4 var(--serif); color: var(--foam); quotes: "“" "”"; }
+  .rv .who { margin-top: 12px; font-size: 13px; color: var(--soft); }
+  .rv.demo { opacity: .55; border-style: dashed; }
+  @media (max-width: 860px) { .rv-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -407,6 +414,11 @@
     <div><p class="eyebrow">Wat het doet</p><p class="w-txt">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.</p></div>
   </div>
   <h2 class="why-punch">De controle weer terug in uw eigen handen</h2>
+</section>
+
+<section class="deep reviews" id="reviews" hidden>
+  <p class="eyebrow">Wat gebruikers zeggen</p>
+  <div class="rv-grid" id="rvGrid"></div>
 </section>
 
 <section class="proof">
@@ -529,6 +541,17 @@
     const imgs = LOGOS.map(l => l.src ? `<img src="${l.src}" alt="${l.alt}" loading="lazy">` : `<span class="wordmark">${l.name}</span>`).join("").repeat(LOGOS.length < 6 ? 2 : 1);
     track.innerHTML = imgs + imgs.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"').replace(/<span class="wordmark">/g, '<span class="wordmark" aria-hidden="true">');
     document.getElementById("trusted").hidden = false;
+  })();
+  // Reviews: ONLY real quotes from real users who agreed to be shown. { quote: "...", name: "Voornaam", role: "Functie, Bedrijf" }
+  const REVIEWS = [];
+  const SHOW_REVIEWS = false;
+  (() => {
+    const preview = new URLSearchParams(location.search).has("reviews");
+    const list = REVIEWS.length ? REVIEWS : (preview ? [1,2,3].map(() => ({ quote: "Voorbeeld, echte quote volgt.", name: "Voornaam", role: "Functie, Bedrijf", demo: true })) : []);
+    if ((!SHOW_REVIEWS && !preview) || !list.length) return;
+    const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    document.getElementById("rvGrid").innerHTML = list.map(r => `<figure class="rv${r.demo ? " demo" : ""}"><q>${esc(r.quote)}</q><figcaption class="who">${esc(r.name)} · ${esc(r.role)}</figcaption></figure>`).join("");
+    document.getElementById("reviews").hidden = false;
   })();
   const DOWNLOADS = 0;
   // Saved hours (estimate): active users x days since launch x HOURS_PER_DAY. Shown only with real user numbers.
