@@ -438,7 +438,7 @@
             <div class="t">Jaarlijks</div>
             <div class="p">€2,49</div>
             <div class="s">pp per maand</div>
-            <div class="s">12 maanden</div>
+            <div class="s">1 factuur per jaar</div>
           </button>
         </div>
 
@@ -471,7 +471,7 @@
       </div>
 
       <div class="panel">
-        <p class="eyebrow" style="text-align:left">Per maand</p>
+        <p class="eyebrow" style="text-align:left" id="sumLabel">Per maand</p>
         <div class="big" id="big">€0</div>
         <div class="sum">
           <div class="row"><span id="lineLabel"></span><span id="lineAmount"></span></div>
@@ -552,16 +552,17 @@
 
   function render() {
     const n = Math.max(seats(), MIN);
-    // Both plans are paid per month; the totals show one month.
-    const excl = Math.round(n * PRICE[plan] * 100) / 100;
+    // Monthly plan: one month per invoice. Yearly plan (companies): the whole year on one invoice, paid at once.
+    const months = { month: 1, year: 12 }[plan];
+    const excl = Math.round(n * PRICE[plan] * months * 100) / 100;
+    $("sumLabel").textContent = plan === "year" ? "Per jaar, in één keer" : "Per maand";
     const vat = Math.round(excl * VAT * 100) / 100;
     const other = Math.round(n * PRICE.month * 100) / 100;
     $("big").innerHTML = `${eur(excl)} <small>excl. btw</small>`;
-    $("lineLabel").textContent = `${n} accounts × ${eur(PRICE[plan])} excl. btw`;
+    $("lineLabel").textContent = plan === "year" ? `${n} accounts × ${eur(PRICE.year)} × 12 maanden` : `${n} accounts × ${eur(PRICE[plan])} excl. btw`;
     $("lineAmount").textContent = eur(excl);
     $("vat").textContent = eur(vat);
     $("incl").textContent = eur(excl + vat);
-    const months = { month: 1, year: 12 }[plan];
     const yearExcl = Math.round(n * PRICE.year * 100) / 100;
     const day = n * HOURS_PER_DAY, yearH = day * 365;
     const num = (x) => Math.round(x).toLocaleString("nl-NL");
