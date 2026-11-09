@@ -338,7 +338,10 @@
   .rv { background: rgba(247,250,245,.08); border: 1px solid var(--edge); border-radius: 16px; padding: 20px; text-align: left; }
   .rv q { display: block; font: 18px/1.4 var(--serif); color: var(--foam); quotes: "“" "”"; }
   .rv .who { margin-top: 12px; font-size: 13px; color: var(--soft); }
-  .rv.demo { opacity: .55; border-style: dashed; }
+  .rv { position: relative; }
+  .why-punch.why-top { margin: 8px auto 40px; }
+  .rv.demo::after { content: "Voorbeeld"; position: absolute; top: 10px; right: 12px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); border: 1px solid var(--edge); border-radius: 99px; padding: 2px 8px; }
+  .rv.demo q { padding-right: 70px; }
   @media (max-width: 860px) { .rv-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -408,12 +411,12 @@
 
 
 <section class="deep why">
+  <h2 class="why-punch why-top">Controle weer terug in mijn eigen handen</h2>
   <div class="wrap why-grid">
     <div><p class="eyebrow">Waarom we dit doen</p><p class="w-txt">Social media steelt elke dag uren van uw leven.</p></div>
     <div><p class="eyebrow">Hoe we dit oplossen</p><p class="w-txt">Met een privé-filter op uw eigen telefoon.</p></div>
     <div><p class="eyebrow">Wat het doet</p><p class="w-txt">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.</p></div>
   </div>
-  <h2 class="why-punch">De controle weer terug in uw eigen handen</h2>
 </section>
 
 <section class="deep reviews" id="reviews" hidden>
@@ -547,7 +550,11 @@
   const SHOW_REVIEWS = false;
   (() => {
     const preview = new URLSearchParams(location.search).has("reviews");
-    const list = REVIEWS.length ? REVIEWS : (preview ? [1,2,3].map(() => ({ quote: "Voorbeeld, echte quote volgt.", name: "Voornaam", role: "Functie, Bedrijf", demo: true })) : []);
+    const list = REVIEWS.length ? REVIEWS : (preview ? [
+      { quote: "Ik open Instagram nog steeds, maar na vijf minuten ben ik echt klaar.", name: "Sanne", role: "Projectleider", demo: true },
+      { quote: "Eindelijk zie ik weer gewoon wat mijn vrienden posten.", name: "Joris", role: "Accountmanager", demo: true },
+      { quote: "Mijn avonden voelen rustiger. Ik merk het echt.", name: "Fatima", role: "HR-adviseur", demo: true },
+    ] : []);
     if ((!SHOW_REVIEWS && !preview) || !list.length) return;
     const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     document.getElementById("rvGrid").innerHTML = list.map(r => `<figure class="rv${r.demo ? " demo" : ""}"><q>${esc(r.quote)}</q><figcaption class="who">${esc(r.name)} · ${esc(r.role)}</figcaption></figure>`).join("");
