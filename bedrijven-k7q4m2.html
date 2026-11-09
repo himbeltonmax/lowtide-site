@@ -286,7 +286,7 @@
   .story span { color: var(--soft); font-size: 16px; margin-top: 4px; }
   .story li:last-child b { color: var(--foam); font-size: 26px; }
   .lead { text-align: center; max-width: 34em; margin: 14px auto 0; color: var(--soft); font-size: 17px; }
-  section.why { padding: 48px 16px; }
+  section.why { padding: 48px 16px 72px; }
   section.proof { padding: 28px 16px; }
   section.proof:not(:has(.pf:not([hidden]))) { display: none; }
   .proof-row { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; text-align: center; }
@@ -295,14 +295,15 @@
   @media (max-width: 520px) { .proof-row { gap: 28px; } .pf b { font-size: 28px; } }
 
   .why-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: start; }
-  .why-grid .eyebrow { text-align: left; margin-bottom: 10px; color: var(--foam); font-weight: 800; font-size: 15px; letter-spacing: .14em; }
+  .why-grid .wi { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .why-grid .eyebrow { display: flex; align-items: center; gap: 9px; text-align: left; margin-top: 12px; margin-bottom: 10px; color: var(--foam); font-weight: 800; font-size: 15px; letter-spacing: .14em; }
   .why-punch { margin: 48px auto 8px; max-width: 16em; text-wrap: balance; font-size: clamp(32px, 5.4vw, 52px); }
   .w-txt { font: 19px/1.4 var(--serif); color: var(--foam); }
   .w-list { font-size: 16px; line-height: 1.5; color: var(--foam); display: flex; gap: 8px; }
   .w-list + .w-list { margin-top: 6px; }
   .w-list.gone { color: var(--soft); }
   .w-list .ok, .w-list .no { flex: none; width: 16px; }
-  @media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; gap: 22px; } }
+  @media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; gap: 38px; } }
   .keepgo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px auto 0; max-width: 560px; }
   .kg { background: var(--faint); border: 1px solid var(--edge); border-radius: 18px; padding: 18px 20px; }
   .kg h3 { font: 400 20px var(--serif); margin-bottom: 8px; }
@@ -413,9 +414,9 @@
 <section class="deep why">
   <h2 class="why-punch why-top">“Controle weer terug in mijn eigen handen”</h2>
   <div class="wrap why-grid">
-    <div><p class="eyebrow">Waarom we dit doen</p><p class="w-txt">Social media steelt elke dag uren van uw leven.</p></div>
-    <div><p class="eyebrow">Hoe we dit oplossen</p><p class="w-txt">Met een privé-filter op uw eigen telefoon.</p></div>
-    <div><p class="eyebrow">Wat het doet</p><p class="w-txt">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.<br><br>Je kiest bewuster wie &amp; wat je ziet</p></div>
+    <div><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.8-2.5 2.2-2.5 3.9"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/></svg>Waarom we dit doen</p><p class="w-txt">Social media steelt elke dag uren van uw leven.</p></div>
+    <div><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg>Hoe we dit oplossen</p><p class="w-txt">Met een privé-filter op uw eigen telefoon.</p></div>
+    <div><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Wat het doet</p><p class="w-txt">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.<br><br>Je kiest bewuster wie &amp; wat je ziet</p></div>
   </div>
 </section>
 
