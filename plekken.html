@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Lowtide plekken</title>
+<meta name="theme-color" content="#45806b">
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bottom: #45806b; --foam: #f7faf5; --soft: rgba(247, 250, 245, 0.8); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+         color: var(--foam); background: var(--bottom); min-height: 100vh; display: grid; place-items: center;
+         -webkit-font-smoothing: antialiased; text-align: center; padding: 16px; }
+  main { width: 100%; max-width: 360px; }
+  .home { font-size: 13px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--soft); }
+  h1 { font-family: ui-serif, "New York", Georgia, serif; font-weight: 400; font-size: 34px; margin: 14px 0 22px; }
+  .big { font-family: ui-serif, "New York", Georgia, serif; font-size: 64px; line-height: 1; }
+  p { color: var(--soft); margin-top: 10px; }
+  input { width: 100%; font: inherit; font-size: 17px; padding: 13px 16px; border-radius: 12px; border: 0;
+          margin-top: 10px; background: rgba(247,250,245,.14); color: var(--foam); }
+  input::placeholder { color: rgba(247,250,245,.55); }
+  button { width: 100%; font: inherit; font-size: 17px; font-weight: 600; padding: 13px; border: 0; border-radius: 999px;
+           margin-top: 16px; background: var(--foam); color: var(--bottom); cursor: pointer; }
+  button:disabled { opacity: .6; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="home">Lowtide</div>
+  <form id="login">
+    <h1>Jullie plekken</h1>
+    <input id="u" placeholder="Gebruikersnaam" autocapitalize="none" autocorrect="off" autocomplete="username" required>
+    <input id="p" type="password" placeholder="Wachtwoord" autocomplete="current-password" required>
+    <button id="go">Inloggen</button>
+    <p id="err"></p>
+  </form>
+  <section id="status" hidden>
+    <h1 id="name">&nbsp;</h1>
+    <div class="big" id="count">…</div>
+    <p id="line">plekken in gebruik</p>
+    <p id="free"></p>
+    <p id="until"></p>
+  </section>
+</main>
+<script>
+// Company/school mini website (max, 2026-11-10): log in with the same username + password as in the app, or open the
+// secret ?k= link. Shows only places in use / free and the end date. Fill in the Supabase URL at go-live.
+const API = "SUPABASE_URL/functions/v1/company-status";
+const $ = (id) => document.getElementById(id);
+function show(s) {
+  $("login").hidden = true; $("status").hidden = false;
+  $("name").textContent = s.name;
+  $("count").textContent = `${s.used} van ${s.seats}`;
+  $("free").textContent = `${Math.max(0, s.seats - s.used)} plekken vrij`;
+  $("until").textContent = "Geldig tot " + new Date(s.valid_until).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+}
+const k = new URLSearchParams(location.search).get("k");
+if (k) {
+  fetch(`${API}?k=${encodeURIComponent(k)}`).then(r => r.ok ? r.json() : Promise.reject()).then(show)
+    .catch(() => { $("err").textContent = "Deze link werkt (nog) niet. Log hieronder in."; });
+}
+$("login").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  $("go").disabled = true; $("err").textContent = "";
+  try {
+    const r = await fetch(API, { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ username: $("u").value, password: $("p").value }) });
+    const s = await r.json();
+    if (s.used !== undefined) return show(s);
+    $("err").textContent = s.reason === "wait" ? "Te veel pogingen. Probeer het over een uur opnieuw."
+      : "Die gebruikersnaam of dat wachtwoord klopt niet.";
+  } catch { $("err").textContent = "Geen verbinding. Probeer het later opnieuw."; }
+  $("go").disabled = false;
+});
+</script>
+</body>
+</html>
