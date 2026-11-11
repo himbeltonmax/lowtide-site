@@ -132,6 +132,7 @@
   .center { text-align: center; }
   .intro { max-width: 34em; margin: 0 auto; color: var(--soft); font-size: 17px; }
 
+  .punch.solo { margin-bottom: 0; }
   .punch { font: italic 400 clamp(30px, 5vw, 48px)/1.15 var(--serif); text-align: center; max-width: 18em; margin: 0 auto 64px; }
   .why-grid { max-width: 820px; display: grid; grid-template-columns: 1fr 1fr; gap: 44px 48px; }
   .why-grid.bz { max-width: 820px; gap: 32px 48px; align-items: start; }
@@ -182,6 +183,7 @@
   .k-row span { font-size: 14px; color: var(--soft); }
   .k-eq { font: 30px var(--serif); color: var(--soft); font-style: normal; }
   .how { padding: 56px 16px; }
+  .how .cmp { margin: 8px auto 36px; text-align: left; }
   .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .fl { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 999px; background: rgba(247,250,245,.1); border: 1px solid rgba(247,250,245,.22); font: 500 15px var(--sans); }
   .fl i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 13px var(--sans); font-style: normal; background: rgba(247,250,245,.16); }
@@ -241,14 +243,10 @@
   <div class="hero-in">
     <div>
       <h1><span lang="nl">Scroll minder.<br>Zie meer.</span><span lang="en">Scroll less.<br>See more.</span></h1>
-      <p class="sub" lang="nl">Wist je dat..<br>mensen gemiddeld <b>2,5 uur per dag</b> op social media zitten? Vaak in een feed die nooit ophoudt, vol posts die je zelf niet koos.<br><br><b>Krijg je Instagram terug zoals het in 2012 was:</b><br>alleen de mensen die je volgt. Probeer het vandaag.</p>
-      <p class="sub" lang="en">Did you know..<br>people spend <b>2.5 hours a day</b> on social media on average? Often in a feed that never ends, full of posts you never chose.<br><br><b>Get your Instagram back the way it was in 2012:</b><br>just the people you follow. Try it today.</p>
+      <p class="sub" lang="nl">Wist je dat..<br>mensen gemiddeld <b>2,5 uur per dag</b> op social media zitten? <br>Algoritmes houden je verslaafd.<br>Je ziet niemand meer die je volgt.<br><br><b>Krijg je Instagram terug zoals het in 2012 was:</b><br>alleen de mensen die je volgt. Probeer het gratis.</p>
+      <p class="sub" lang="en">Did you know..<br>people spend <b>2.5 hours a day</b> on social media on average? <br>Algorithms keep you addicted.<br>You see nobody you follow anymore.<br><br><b>Get your Instagram back the way it was in 2012:</b><br>just the people you follow. Try it free.</p>
       <div class="cta-row">
         <a class="btn" href="https://testflight.apple.com/join/Edq4h1nu"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span lang="nl">Probeer de beta op iPhone</span><span lang="en">Try the beta on iPhone</span></a>
-      </div>
-      <div class="chips">
-        <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>iPhone <em lang="nl">· beta</em><em lang="en">· beta</em></span>
-        <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.5l1.8-3.2a.4.4 0 0 0-.7-.4l-1.9 3.3A11 11 0 0 0 12 8.2c-1.7 0-3.3.4-4.8 1L5.3 5.9a.4.4 0 0 0-.7.4l1.8 3.2A10.4 10.4 0 0 0 1 17.8h22a10.4 10.4 0 0 0-5.4-8.3zM7 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>Android <em lang="nl">· binnenkort</em><em lang="en">· soon</em></span>
       </div>
     </div>
 
@@ -295,7 +293,15 @@
 
 <section class="how">
   <div class="wrap center">
-    <h2><span lang="nl">Hoe verminderen we dit?</span><span lang="en">How do we reduce this?</span></h2>
+    <h2><span lang="nl">Hoe werkt het?</span><span lang="en">How does it work?</span></h2>
+    <div class="cmp">
+      <div class="vs one">
+        <div class="now h"><span lang="nl">Lowtide sociaal privé&#8209;filter</span><span lang="en">Lowtide Social Private Filter</span></div>
+        <div class="now"><span lang="nl">Alleen wie je volgt</span><span lang="en">Only people you follow</span></div>
+        <div class="now"><span lang="nl">Klaar als je bij bent</span><span lang="en">Done when you're caught up</span></div>
+        <div class="now last"><span lang="nl">Jij kiest wat je ziet</span><span lang="en">You choose what you see</span></div>
+      </div>
+    </div>
     <div class="flow">
       <div class="fl"><i>1</i><span>Open Lowtide</span></div>
       <b class="fa" aria-hidden="true">→</b>
@@ -307,21 +313,12 @@
 </section>
 
 <section class="deep">
-  <p class="punch"><span lang="nl">“Controle weer terug in mijn eigen handen”</span><span lang="en">“Control back in my own hands”</span></p>
+  <p class="punch solo"><span lang="nl">“Controle weer terug in mijn eigen handen”</span><span lang="en">“Control back in my own hands”</span></p>
   <!-- Waarom/Hoe/Wat: verborgen op verzoek van max (11-11), tekst bewaard -->
   <div class="wrap why-grid bz" hidden style="display:none">
     <div><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.8-2.5 2.2-2.5 3.9"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/></svg><span lang="nl">Waarom we dit doen</span><span lang="en">Why we do this</span></p><p class="w-txt"><span lang="nl">Social media steelt elke dag uren van je leven.</span><span lang="en">Social media steals hours of your life every day.</span></p></div>
     <div><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span lang="nl">Hoe we dit oplossen</span><span lang="en">How we solve it</span></p><p class="w-txt"><span lang="nl">Met een privé-filter op je eigen telefoon.</span><span lang="en">With a private filter on your own phone.</span></p></div>
     <div class="full"><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg><span lang="nl">Wat het doet</span><span lang="en">What it does</span></p><p class="w-txt"><span lang="nl">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.<br><br>Je kiest bewuster wie &amp; wat je ziet</span><span lang="en">It filters out doomscrolling, recommended content and AI posts. The AI algorithm loses its ‘power’.<br><br>You choose more consciously who &amp; what you see</span></p></div>
-  </div>
-  <div class="cmp">
-    <div class="vs one">
-      <div class="now h"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></div>
-      <div class="now"><span lang="nl">Alleen wie je volgt</span><span lang="en">Only people you follow</span></div>
-      <div class="now"><span lang="nl">Klaar als je bij bent</span><span lang="en">Done when you're caught up</span></div>
-      <div class="now"><span lang="nl">Jij kiest wat je ziet</span><span lang="en">You choose what you see</span></div>
-      <div class="now last"><span lang="nl">Je avond terug</span><span lang="en">Your evening back</span></div>
-    </div>
   </div>
 </section>
 
