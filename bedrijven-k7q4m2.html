@@ -234,12 +234,9 @@
   .promise { font-size: 15px; font-weight: 600; margin: 12px 0 4px; }
   .hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
   /* Order agenda (max, 2026-11-11): real dates that move with the start date. */
-  .agenda-box { margin-top: 10px; font-size: 14px; }
-  .agenda-box summary { cursor: pointer; color: var(--soft); }
-  .agenda { list-style: decimal; margin: 10px 0 0; padding: 0 0 0 22px; display: grid; gap: 4px; }
-  .agenda li { position: relative; font-size: 14px; line-height: 1.4; }
+  .agenda { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--soft); }
+  .agenda b { color: var(--foam); }
   .agenda b { font-variant-numeric: tabular-nums; }
-  .agenda span { color: var(--soft); }
   .err { color: #ffd8cc; }
 
   .sum { display: grid; gap: 8px; font-size: 15px; }
@@ -492,10 +489,7 @@
 
         <label for="start">Startdatum (vandaag tot max. 21 dagen later)</label>
         <input id="start" type="date">
-        <details class="agenda-box">
-          <summary>Wat gebeurt wanneer</summary>
-          <ol class="agenda" id="agenda"></ol>
-        </details>
+        <p class="agenda" id="agenda"></p>
 
 
         <label for="company">Bedrijfsnaam</label>
@@ -639,16 +633,13 @@
   function agenda(n, incl, months) {
     const today = new Date(); today.setHours(12, 0, 0, 0);
     const start = $("start").value ? new Date(`${$("start").value}T12:00:00`) : today;
-    // Yearly: with the year (max, 2026-11-11); both plans "altijd opzegbaar" (FAQ: stops after the running period).
-    const yearly = months === 12;
-    const fmt = (d) => d.toLocaleDateString("nl-NL", { day: "numeric", month: "long", ...(yearly ? { year: "numeric" } : {}) });
-    const bill = `factuur ${eur(incl)} (14 dagen)`, dom = start.getDate();
-    const next = new Date(start); next.setFullYear(next.getFullYear() + 1);
-    // Line 2 (max, 2026-11-11): "elke 19e van de maand"; the 29th–31st fall on the last day of a shorter month.
-    const every = yearly ? `${fmt(next)}, daarna elk jaar`
-      : dom > 28 ? `elke ${dom}e van de maand (of de laatste dag)` : `elke ${dom}e van de maand`;
-    const rows = [[fmt(start), `${n} accounts actief, ${bill}`], [every, `${bill}, altijd opzegbaar`]];
-    $("agenda").innerHTML = rows.map(([d, t]) => `<li><b>${d}:</b> <span>${t}</span></li>`).join("");
+    // One sentence (max, 2026-11-11): "Vanaf 18 november 5 accounts actief, factuur € 27,16 elke 18e van de maand
+    // (14 dagen), makkelijk opzegbaar." Yearly with the year. Cancelling stops after the running period (FAQ).
+    // The 29th–31st: last day of a shorter month (trial-check).
+    const yearly = months === 12, dom = start.getDate();
+    const date = start.toLocaleDateString("nl-NL", { day: "numeric", month: "long", ...(yearly ? { year: "numeric" } : {}) });
+    const when = yearly ? `elk jaar op ${start.toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}` : `elke ${dom}e van de maand`;
+    $("agenda").innerHTML = `Vanaf <b>${date}</b> ${n} accounts actief, factuur ${eur(incl)} ${when} (14 dagen), makkelijk opzegbaar.`;
   }
 
   document.querySelectorAll(".plan").forEach((b) => b.addEventListener("click", () => {
