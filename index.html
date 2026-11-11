@@ -67,7 +67,7 @@
   .screen.calm { opacity: 0; }
   .phone.is-calm .screen.calm { opacity: 1; }
   .phone.is-calm .screen.loud { opacity: 0; }
-  .s-head { height: 74px; padding-top: 38px; display: flex; align-items: center; justify-content: center; font: 600 13px var(--sans); color: var(--ink); border-bottom: 1px solid #eef1ee; }
+  .s-head { height: 74px; padding: 38px 16px 0; display: flex; align-items: center; justify-content: space-between; font: 700 16px var(--sans); letter-spacing: -.01em; color: var(--ink); border-bottom: 1px solid #eef1ee; }
   .stories { display: flex; gap: 10px; padding: 10px 12px 4px; overflow: hidden; }
   .stories i { flex: none; width: 42px; height: 42px; border-radius: 50%; border: 2.5px solid var(--line); box-shadow: inset 0 0 0 2px #fff; background: #cfe0d5; }
   .loud .stories i { border-color: #e0746a; background: #eea69d; }
@@ -99,6 +99,7 @@
   .tag { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #e8d7d7; color: #8a4b4b; }
   .calm .feed { will-change: transform; }
   .calm .s-head { position: relative; z-index: 2; background: #fff; }
+  .s-head .tag { font: 600 11px var(--sans); color: #2f6b4a; background: #e7f2ea; border-radius: 999px; padding: 4px 10px; }
   .c-scroll .stories { padding: 0 0 2px; }
   .c-scroll .img { height: 120px; }
   .c-scroll .vid { position: relative; }
@@ -250,7 +251,7 @@
           </div>
         </div>
         <div class="screen calm">
-          <div class="s-head">Lowtide Filter</div>
+          <div class="s-head"><span>Lowtide</span><span class="tag">Filter</span></div>
           <div class="feed c-scroll" id="cScroll"><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Iemand die je volgt</span><span lang="en">Someone you follow</span></em></div><div class="img" style="background:linear-gradient(160deg,#d9e9de,#b9d6c4)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Je vriendin</span><span lang="en">Your friend</span></em></div><div class="img vid" style="background:linear-gradient(160deg,#cfe3d6,#a9ccb6)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Je broer</span><span lang="en">Your brother</span></em></div><div class="img" style="background:linear-gradient(160deg,#dcebe0,#c0dccb)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Je moeder</span><span lang="en">Your mom</span></em></div><div class="img" style="background:linear-gradient(160deg,#d3e6d9,#aed0bb)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Iemand die je volgt</span><span lang="en">Someone you follow</span></em></div><div class="img vid" style="background:linear-gradient(160deg,#d9e9de,#b9d6c4)"></div></div><div class="done"><div class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><b lang="nl">Je bent helemaal bij</b><b lang="en">You're all caught up</b><span lang="nl">Tijd voor iets anders.</span><span lang="en">Time for something else.</span></div>
           </div>
         </div>
