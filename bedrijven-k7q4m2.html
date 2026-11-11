@@ -634,12 +634,12 @@
     const today = new Date(); today.setHours(12, 0, 0, 0);
     const start = $("start").value ? new Date(`${$("start").value}T12:00:00`) : today;
     // One sentence (max, 2026-11-11): "Vanaf 18 november 5 accounts actief, factuur € 27,16 elke 18e van de maand
-    // (14 dagen), altijd opzegbaar." Yearly with the year. Cancelling stops after the running period (FAQ).
+    // (14 dagen), makkelijk opzegbaar." Yearly with the year. Cancelling stops after the running period (FAQ).
     // The 29th–31st: last day of a shorter month (trial-check).
     const yearly = months === 12, dom = start.getDate();
     const date = start.toLocaleDateString("nl-NL", { day: "numeric", month: "long", ...(yearly ? { year: "numeric" } : {}) });
     const when = yearly ? `elk jaar op ${start.toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}` : `elke ${dom}e van de maand`;
-    $("agenda").innerHTML = `Vanaf <b>${date}</b> ${n} accounts actief, factuur ${eur(incl)} ${when} (14 dagen), altijd opzegbaar.`;
+    $("agenda").innerHTML = `Vanaf <b>${date}</b> ${n} accounts actief, factuur ${eur(incl)} ${when} (14 dagen), makkelijk opzegbaar.`;
   }
 
   document.querySelectorAll(".plan").forEach((b) => b.addEventListener("click", () => {
