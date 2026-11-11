@@ -39,7 +39,7 @@
   <p id="more" hidden></p>
 </main>
 <script>
-// After the request on the company page (max, 2026-11-11: 7 days free, then an invoice): the username + password
+// After the order on the company page (max, 2026-11-11: 5 accounts free until the start date, then all + invoice): the username + password
 // right here (and by mail).
 const API = "SUPABASE_URL/functions/v1";
 const t = new URLSearchParams(location.search).get("t") || "";
@@ -51,8 +51,9 @@ async function poll() {
     const d = await (await fetch(`${API}/order-status?t=${encodeURIComponent(t)}`)).json();
     if (d.status === "paid") {
       $("title").textContent = `Welkom, ${d.company}`;
-      $("info").textContent = `${d.seats} plekken. De eerste 7 dagen zijn gratis.` +
-        (new Date(d.valid_from) > new Date() ? ` Inloggen kan vanaf ${day(d.valid_from)}.` : "");
+      $("info").textContent = d.ordered > d.seats
+        ? `Vandaag ${d.seats} accounts actief, gratis. Op ${day(d.start_date)} gaan alle ${d.ordered} accounts aan en volgt de factuur.`
+        : `${d.seats} accounts actief. De factuur volgt per mail.`;
       $("user").textContent = d.username;
       if (d.password) { $("pw").textContent = d.password; }
       else { $("pwLabel").hidden = true; $("pw").hidden = true; }

@@ -33,7 +33,7 @@
   <button id="stop" hidden>Stoppen</button>
 </main>
 <script>
-// Link in the day-5 mail of the free week (max, 2026-11-11). Opening the page changes nothing; only the button stops
+// Link in the welcome mail and the reminder 3 days before the start date (max, 2026-11-11). Opening the page changes nothing; only the button stops
 // (mail scanners open links too). Stopping = access off at once for every phone, no invoice.
 const API = "SUPABASE_URL/functions/v1/trial-stop";
 const k = new URLSearchParams(location.search).get("k") || "";
@@ -42,14 +42,14 @@ const day = (d) => new Date(d).toLocaleDateString("nl-NL", { day: "numeric", mon
 function show(d) {
   if (d.state === "open") {
     $("title").textContent = `Lowtide stoppen voor ${d.company}?`;
-    $("info").textContent = `Jullie gratis week loopt tot ${day(d.until)}. Stoppen kost niets; alle telefoons worden meteen uitgelogd.`;
+    $("info").textContent = `Tot ${day(d.until)} is alles gratis. Stoppen kost niets; alle telefoons worden meteen uitgelogd.`;
     $("stop").hidden = false;
   } else if (d.state === "stopped") {
     $("title").textContent = "Gestopt";
     $("info").textContent = `Lowtide staat uit voor ${d.company}. Er komt geen factuur. Bedankt voor het proberen.`;
     $("stop").hidden = true;
   } else if (d.state === "over") {
-    $("title").textContent = "De gratis week is voorbij";
+    $("title").textContent = "De startdatum is voorbij";
     $("info").innerHTML = `Opzeggen kan nog steeds: mail <a href="mailto:himbelton@gmail.com?subject=Lowtide%20opzeggen">himbelton@gmail.com</a>.`;
   } else fail();
 }
