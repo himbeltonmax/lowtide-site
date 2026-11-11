@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Lowtide goedkeuren</title>
+<meta name="theme-color" content="#45806b">
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bottom: #45806b; --foam: #f7faf5; --soft: rgba(247, 250, 245, 0.8); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+         color: var(--foam); background: var(--bottom); min-height: 100vh; display: grid; place-items: center;
+         -webkit-font-smoothing: antialiased; text-align: center; padding: 16px; line-height: 1.5; }
+  main { width: 100%; max-width: 440px; }
+  .home { font-size: 13px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--soft); }
+  h1 { font-family: ui-serif, "New York", Georgia, serif; font-weight: 400; font-size: 32px; margin: 14px 0 18px; }
+  p { color: var(--soft); margin-top: 10px; }
+  button { margin-top: 22px; font: 600 17px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+           color: var(--bottom); background: var(--foam); border: 0; border-radius: 999px; padding: 14px 28px; cursor: pointer; }
+  button:disabled { opacity: .6; }
+  a { color: inherit; }
+  dl { text-align: left; margin: 18px auto 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; max-width: 360px; }
+  dt { color: var(--soft); } dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="home">Lowtide</div>
+  <h1 id="title">Even geduld…</h1>
+  <dl id="facts" hidden>
+    <dt>Bedrijf</dt><dd id="f-company"></dd>
+    <dt>KvK</dt><dd><a id="f-kvk" target="_blank" rel="noopener"></a></dd>
+    <dt>Factuurmail</dt><dd id="f-email"></dd>
+    <dt>Accounts</dt><dd id="f-seats"></dd>
+    <dt>Startdatum</dt><dd id="f-start"></dd>
+  </dl>
+  <p id="info"></p>
+  <button id="ok" hidden>Goedkeuren</button>
+</main>
+<script>
+// Only max gets this link (mail "Goedkeuren", max 2026-11-11). Opening the page changes nothing; the button approves:
+// then on the start date all ordered accounts go on and max gets the invoice mail. Not approved: the 5 test accounts
+// end on the start date.
+const API = "SUPABASE_URL/functions/v1/order-approve";
+const k = new URLSearchParams(location.search).get("k") || "";
+const $ = (id) => document.getElementById(id);
+const day = (d) => new Date(`${d}T12:00:00`).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+const eur = (c) => (c / 100).toLocaleString("nl-NL", { style: "currency", currency: "EUR" });
+function show(d) {
+  if (!d.company) return fail();
+  $("f-company").textContent = d.company;
+  $("f-kvk").textContent = d.kvk; $("f-kvk").href = `https://www.kvk.nl/zoeken/?source=all&q=${encodeURIComponent(d.kvk)}`;
+  $("f-email").textContent = d.email;
+  $("f-seats").textContent = `${d.seats}, ${d.plan === "yearly" ? "jaarlijks" : "maandelijks"}, ${eur(d.amount_cents)} incl. btw`;
+  $("f-start").textContent = day(d.start_date);
+  $("facts").hidden = false;
+  $("ok").hidden = d.state !== "open";
+  $("title").textContent = { open: "Bestelling goedkeuren?", approved: "Goedgekeurd", stopped: "Gestopt door het bedrijf" }[d.state];
+  $("info").textContent = {
+    open: "Check eerst domein en KvK (klik op het nummer). Na goedkeuren gaan op de startdatum alle accounts aan en krijg je die dag de mail om de factuur te maken.",
+    approved: "Op de startdatum gaan alle accounts aan en krijg je de mail om de factuur te maken.",
+    stopped: "Geen factuur nodig.",
+  }[d.state];
+}
+function fail() { $("title").textContent = "Deze link werkt niet"; $("info").textContent = ""; }
+fetch(`${API}?k=${encodeURIComponent(k)}`).then((r) => r.json()).then(show).catch(fail);
+$("ok").onclick = async () => {
+  $("ok").disabled = true;
+  try { show(await (await fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ k }) })).json()); }
+  catch { fail(); $("ok").hidden = true; }
+};
+</script>
+</body>
+</html>
