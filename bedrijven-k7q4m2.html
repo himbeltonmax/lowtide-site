@@ -508,6 +508,7 @@
           <div class="row total"><span>Incl. btw</span><span id="incl"></span></div>
         </div>
         <button type="submit" class="btn pay">Geef Lowtide cadeau</button>
+        <p class="hint" style="text-align:center">Eerste 7 dagen gratis. Daarna factuur per mail, 14 dagen betaaltermijn.</p>
         <p id="soon">Betalen kan over een paar dagen. Wilt u nu al bestellen? Mail <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20bedrijven">himbelton@gmail.com</a>, dan regelen we het meteen.</p>
         <div class="cost pay-kpi">
           <p class="eyebrow" style="text-align:left">Wist u dat..</p>
@@ -525,7 +526,7 @@
     <div class="faq">
       <details><summary>Wat is een account?</summary><p>Eén account is één telefoon die inlogt met uw bedrijfsnaam en wachtwoord. Plekken vrijmaken? Mail ons, dan loggen we alle telefoons uit en krijgt u een nieuw wachtwoord.</p></details>
       <details><summary>Op welke telefoons werkt het?</summary><p>iPhone en Android. Eén plek is één telefoon.</p></details>
-      <details><summary>Hoe opzeggen?</summary><p>Mail ons, dan zetten wij de incasso bij Mollie stop.</p></details>
+      <details><summary>Hoe opzeggen?</summary><p>In de gratis week: met één klik via de mail die u op dag 5 krijgt. Daarna: mail ons, dan stoppen we na de lopende periode.</p></details>
     </div>
   </div>
 </section>
@@ -632,7 +633,8 @@
   $("start").addEventListener("input", render);
   $("seats").addEventListener("blur", () => { if (seats() < MIN) { $("seats").value = MIN; render(); } });
 
-  // Pay (max, 2026-11-11): order on the server → Mollie checkout → bedankt.html shows the login. Until the Supabase
+  // Request (max, 2026-11-11: one route, 7 days free, then a SnelStart invoice): order on the server → bedankt.html
+  // shows the login. Until the Supabase
   // URL is filled in here, the button shows the "mail us" note.
   const API = "SUPABASE_URL/functions/v1";
   const fail = (msg) => { $("soon").textContent = msg; $("soon").style.display = "block"; };
@@ -650,7 +652,7 @@
         body: JSON.stringify({ plan: plan === "year" ? "yearly" : "monthly", seats: Math.max(seats(), MIN),
           company_name: company, kvk, billing_email: email, start_date: $("start").value }) });
       const d = await r.json();
-      if (d.checkout) { location.href = d.checkout; return; }
+      if (d.t) { location.href = `bedankt.html?t=${d.t}`; return; }
       fail(d.error === "name_taken" ? "Deze bedrijfsnaam is al in gebruik. Mail ons, dan regelen we het."
         : "Er ging iets mis. Controleer de gegevens of mail himbelton@gmail.com.");
     } catch { fail("Geen verbinding. Probeer het zo opnieuw."); }
