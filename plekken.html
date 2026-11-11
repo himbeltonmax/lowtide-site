@@ -56,7 +56,9 @@ function show(s) {
   $("name").textContent = s.name;
   $("count").textContent = `${s.used} van ${s.seats}`;
   $("free").textContent = `${Math.max(0, s.seats - s.used)} plekken vrij`;
-  $("until").textContent = "Geldig tot " + new Date(s.valid_until).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+  // Companies run until stopped (end date 2999, max 2026-11-11): no end date shown then.
+  $("until").textContent = new Date(s.valid_until).getFullYear() >= 2900 ? "" :
+    "Geldig tot " + new Date(s.valid_until).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
 }
 const k = new URLSearchParams(location.search).get("k");
 if (k) {

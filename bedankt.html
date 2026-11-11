@@ -29,7 +29,7 @@
 <body>
 <main>
   <div class="home">Lowtide</div>
-  <h1 id="title">Betaling controleren…</h1>
+  <h1 id="title">Even geduld…</h1>
   <p id="info">Dit duurt een paar seconden.</p>
   <div class="login" id="login" hidden>
     <span>Gebruikersnaam</span><b id="user"></b>
@@ -39,7 +39,8 @@
   <p id="more" hidden></p>
 </main>
 <script>
-// After the Mollie checkout (max, 2026-11-11): the buyer gets the username + password right here (and by mail).
+// After the request on the company page (max, 2026-11-11: 7 days free, then an invoice): the username + password
+// right here (and by mail).
 const API = "SUPABASE_URL/functions/v1";
 const t = new URLSearchParams(location.search).get("t") || "";
 const $ = (id) => document.getElementById(id);
@@ -50,13 +51,13 @@ async function poll() {
     const d = await (await fetch(`${API}/order-status?t=${encodeURIComponent(t)}`)).json();
     if (d.status === "paid") {
       $("title").textContent = `Welkom, ${d.company}`;
-      $("info").textContent = `${d.seats} plekken, geldig tot ${day(d.valid_until)}.` +
+      $("info").textContent = `${d.seats} plekken. De eerste 7 dagen zijn gratis.` +
         (new Date(d.valid_from) > new Date() ? ` Inloggen kan vanaf ${day(d.valid_from)}.` : "");
       $("user").textContent = d.username;
       if (d.password) { $("pw").textContent = d.password; }
       else { $("pwLabel").hidden = true; $("pw").hidden = true; }
       $("login").hidden = false; $("steps").hidden = false;
-      $("more").innerHTML = (d.password ? "Bewaar dit wachtwoord nu: het staat ook in de mail met de factuur. " : "Het wachtwoord staat in de mail met de factuur. ") +
+      $("more").innerHTML = (d.password ? "Bewaar dit wachtwoord nu: het staat ook in de bevestigingsmail. " : "Het wachtwoord staat in de bevestigingsmail. ") +
         `Hoeveel plekken in gebruik zijn, ziet u op <a href="plekken.html">plekken.html</a>.`;
       $("more").hidden = false;
       return;
@@ -68,7 +69,7 @@ async function poll() {
     }
   } catch {}
   if (++tries < 40) setTimeout(poll, 3000);
-  else $("info").textContent = "We wachten nog op de bank. Ververs deze pagina over een minuut.";
+  else $("info").textContent = "Dit duurt langer dan normaal. Ververs deze pagina over een minuut.";
 }
 poll();
 </script>
