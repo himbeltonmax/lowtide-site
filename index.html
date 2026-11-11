@@ -177,6 +177,14 @@
   .k-row b { display: block; font: 400 clamp(34px, 5vw, 48px)/1.1 var(--serif); }
   .k-row span { font-size: 14px; color: var(--soft); }
   .k-eq { font: 30px var(--serif); color: var(--soft); font-style: normal; }
+  .how { padding: 56px 16px; }
+  .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .fl { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 999px; background: rgba(247,250,245,.1); border: 1px solid rgba(247,250,245,.22); font: 500 15px var(--sans); }
+  .fl i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 13px var(--sans); font-style: normal; background: rgba(247,250,245,.16); }
+  .fl.ok { background: #f7faf5; color: #1f4a3a; border-color: #f7faf5; font-weight: 600; }
+  .fl.ok i { background: #2f7a55; color: #fff; }
+  .fa { font: 400 18px var(--sans); opacity: .6; }
+  @media (max-width: 640px) { .flow { flex-direction: column; gap: 6px; } .fa { transform: rotate(90deg); } }
   .k-goal { margin-top: 28px; font: italic 20px/1.4 var(--serif); }
 
   .who { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -290,14 +298,16 @@
   </div>
 </section>
 
-<section>
+<section class="how">
   <div class="wrap center">
-    <h2><span lang="nl">Hoe werkt het?</span><span lang="en">How it works?</span></h2>
-    <div class="steps two">
-      <div class="step"><div class="num">1</div><h3>Open Lowtide</h3></div>
-      <div class="step"><div class="num">2</div><h3 lang="nl">Log in op instagram.com</h3><h3 lang="en">Log in on instagram.com</h3></div>
+    <p class="eyebrow"><span lang="nl">Hoe werkt het?</span><span lang="en">How it works?</span></p>
+    <div class="flow">
+      <div class="fl"><i>1</i><span>Open Lowtide</span></div>
+      <b class="fa" aria-hidden="true">→</b>
+      <div class="fl"><i>2</i><span lang="nl">Log in op instagram.com</span><span lang="en">Log in on instagram.com</span></div>
+      <b class="fa" aria-hidden="true">→</b>
+      <div class="fl ok"><i>✓</i><span lang="nl">Het sociale privé-filter is geactiveerd.</span><span lang="en">The social private filter is activated.</span></div>
     </div>
-    <p class="k-goal on"><span lang="nl">Het sociale privé-filter is geactiveerd.</span><span lang="en">The social private filter is activated.</span></p>
   </div>
 </section>
 
