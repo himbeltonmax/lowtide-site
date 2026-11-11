@@ -1,210 +1,393 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl" data-lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lowtide · Scroll less. See more.</title>
-<meta name="description" content="Instagram, calmer. Just friends and real content.">
+<title>Lowtide · Scroll minder. Zie meer.</title>
+<meta name="description" content="Je eigen Instagram, rustig. Alleen wie je volgt, en de feed stopt als je bij bent.">
+<meta property="og:title" content="Lowtide · Scroll minder. Zie meer.">
+<meta property="og:description" content="Je eigen Instagram, rustig. Alleen wie je volgt, en de feed stopt als je bij bent.">
+<meta property="og:image" content="https://lowtide.eu/icon.png">
+<meta property="og:url" content="https://lowtide.eu/">
 <meta name="theme-color" content="#7aba94">
 <link rel="icon" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <style>
   :root {
-    --top: #7aba94;      /* Tide.top */
-    --bottom: #45806b;   /* Tide.bottom */
-    --deep: #3a6d5b;
-    --foam: #f7faf5;     /* Tide.foam */
-    --line: #61a680;     /* Tide.beanLine */
-    --soft: rgba(247, 250, 245, 0.78);
-    --faint: rgba(247, 250, 245, 0.14);
+    --top: #7aba94; --bottom: #45806b; --deep: #3a6d5b; --foam: #f7faf5; --line: #61a680;
+    --soft: rgba(247, 250, 245, 0.78); --faint: rgba(247, 250, 245, 0.12); --edge: rgba(247, 250, 245, 0.22);
+    --ink: #24443a; --ink2: #4a6b60;
     --serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
     --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--sans);
-    color: var(--foam);
-    background: var(--bottom);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { font-family: var(--sans); color: var(--foam); background: var(--bottom); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; }
+  /* Two languages on one page: only the active one shows. */
+  :root[data-lang="nl"] body [lang="en"], :root[data-lang="en"] body [lang="nl"] { display: none !important; }
+
+  /* ---------- Top bar ---------- */
+  .bar { position: absolute; top: 0; left: 0; right: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 18px 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; text-decoration: none; }
+  .bean-s { width: 26px; height: 26px; flex: none; }
+  .flag { width: 34px; height: 34px; border-radius: 50%; border: 2px solid rgba(247,250,245,.7); overflow: hidden; cursor: pointer; padding: 0; background: none; box-shadow: 0 2px 8px rgba(20,50,40,.2); }
+  .flag svg { width: 100%; height: 100%; display: block; }
 
   /* ---------- Hero ---------- */
-  .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-    padding: 64px 16px 180px;
-    background: linear-gradient(var(--top), var(--bottom));
-    overflow: hidden;
-  }
+  .hero { position: relative; padding: 96px 16px 64px; background: linear-gradient(var(--top), var(--bottom)); overflow: hidden; }
   .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-  .hero > *:not(canvas) { position: relative; }
-  .bean-wrap { position: relative; width: 132px; height: 132px; margin-bottom: 28px; }
-  .bean-wrap::before {
-    content: ""; position: absolute; inset: -70px; border-radius: 50%;
-    background: radial-gradient(rgba(255,255,255,.24), rgba(255,255,255,0) 65%);
-    animation: breathe 8s ease-in-out infinite;
-  }
-  .bean { width: 100%; height: 100%; animation: breathe 8s ease-in-out infinite; }
-  @keyframes breathe { 0%,100% { transform: scale(.94); } 45% { transform: scale(1.04); } }
-  .name {
-    font-size: 15px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase;
-    color: var(--soft); margin-bottom: 18px;
-  }
-  h1 {
-    font-family: var(--serif); font-weight: 400;
-    font-size: clamp(44px, 9vw, 84px); line-height: 1.04; letter-spacing: -0.01em;
-  }
-  .lede { max-width: 30em; margin: 22px auto 0; font-size: clamp(17px, 2.2vw, 20px); color: var(--soft); }
-  .cta { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--foam); color: var(--bottom);
-    font-weight: 600; font-size: 17px; text-decoration: none;
-    padding: 15px 26px; border-radius: 999px;
-    box-shadow: 0 8px 24px rgba(20, 50, 40, .18);
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(20, 50, 40, .24); }
+  .hero-in { position: relative; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(46px, 7.5vw, 84px); line-height: 1.02; letter-spacing: -0.01em; }
+  .sub { margin-top: 22px; max-width: 30em; font-size: clamp(17px, 2.1vw, 20px); color: var(--soft); }
+  .sub b { color: var(--foam); font-weight: 600; }
+  .cta-row { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--foam); color: var(--bottom); font: 600 17px var(--sans); text-decoration: none; padding: 15px 26px; border-radius: 999px; border: 0; cursor: pointer; box-shadow: 0 8px 24px rgba(20,50,40,.18); transition: transform .2s ease, box-shadow .2s ease; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(20,50,40,.24); }
   .btn svg { width: 20px; height: 20px; }
-  .small { font-size: 14px; color: var(--soft); }
+  .link { font-size: 15px; font-weight: 600; text-underline-offset: 4px; }
+  .note { margin-top: 14px; font-size: 14px; color: var(--soft); }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(247,250,245,.35); font-size: 14px; color: var(--foam); }
+  .chip svg { width: 15px; height: 15px; }
+  .chip em { font-style: normal; color: var(--soft); }
+
+  /* Phone: Instagram vs Lowtide, flips by itself */
+  .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .switch { display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(20,50,40,.22); }
+  .switch button { border: 0; background: none; color: var(--foam); font: 600 14px var(--sans); padding: 8px 16px; border-radius: 999px; cursor: pointer; transition: background .3s, color .3s; }
+  .switch button[aria-pressed="true"] { background: var(--foam); color: var(--bottom); }
+  .phone { width: min(300px, 82vw); height: 560px; border-radius: 42px; background: var(--foam); padding: 14px; box-shadow: 0 24px 60px rgba(20,50,40,.3); position: relative; overflow: hidden; }
+  .screen { position: absolute; inset: 14px; border-radius: 30px; overflow: hidden; background: #fff; transition: opacity .6s ease; }
+  .screen.calm { opacity: 0; }
+  .phone.is-calm .screen.calm { opacity: 1; }
+  .phone.is-calm .screen.loud { opacity: 0; }
+  .s-head { height: 44px; display: flex; align-items: center; justify-content: center; font: 600 13px var(--sans); color: var(--ink); border-bottom: 1px solid #eef1ee; }
+  .feed { padding: 10px 12px; display: grid; gap: 10px; }
+  .post { border-radius: 14px; background: #f2f5f2; padding: 10px; }
+  .p-top { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ink2); }
+  .av { width: 22px; height: 22px; border-radius: 50%; background: #cfe0d5; flex: none; }
+  .img { margin-top: 8px; height: 82px; border-radius: 10px; background: #dfe9e2; }
+  .loud .post { background: #f6efef; }
+  .loud .img { background: linear-gradient(135deg, #f3c8c8, #e9d3f0); height: 96px; }
+  .tag { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #e8d7d7; color: #8a4b4b; }
+  .done { margin-top: 6px; text-align: center; padding: 18px 8px; color: var(--ink); }
+  .done .ck { width: 40px; height: 40px; margin: 0 auto 8px; border-radius: 50%; background: var(--bottom); display: grid; place-items: center; }
+  .done .ck svg { width: 20px; height: 20px; stroke: #fff; stroke-width: 2.5; fill: none; }
+  .done b { display: block; font: 17px var(--serif); }
+  .done span { font-size: 12px; color: var(--ink2); }
+
+  /* USP row */
+  .facts-row { position: relative; max-width: 1120px; margin: 48px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 24px; border-top: 1px solid var(--edge); padding-top: 24px; list-style: none; }
+  .facts-row li { display: flex; align-items: center; gap: 12px; }
+  .facts-row svg { flex: none; width: 40px; height: 40px; padding: 8px; border-radius: 12px; background: rgba(247,250,245,.14); fill: none; stroke: var(--foam); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .facts-row b { font: 18px/1.2 var(--serif); font-weight: 400; }
 
   /* ---------- Sections ---------- */
-  section.band { padding: 96px 16px; text-align: center; }
-  .band.deep { background: var(--deep); }
+  section { padding: 96px 16px; }
+  .deep { background: var(--deep); }
   .wrap { max-width: 920px; margin: 0 auto; }
-  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--soft); }
-  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 12px 0 14px; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--soft); }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 12px 0 14px; }
+  .center { text-align: center; }
   .intro { max-width: 34em; margin: 0 auto; color: var(--soft); font-size: 17px; }
 
-  .gone { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-  .card {
-    padding: 30px 22px; border-radius: 22px;
-    background: var(--faint); border: 1px solid rgba(247,250,245,.18);
-  }
-  .card .strike {
-    font-family: var(--serif); font-size: 28px;
-    text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: rgba(247,250,245,.6);
-  }
-  .card p { margin-top: 8px; color: var(--soft); font-size: 15px; }
+  .punch { font: italic 400 clamp(30px, 5vw, 48px)/1.15 var(--serif); text-align: center; max-width: 18em; margin: 0 auto 56px; }
+  .why-grid { max-width: 820px; display: grid; grid-template-columns: 1fr 1fr; gap: 44px 48px; }
+  .why-grid .full { grid-column: 1 / -1; }
+  .why-grid .eyebrow { color: var(--foam); font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+  .wi { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .w-txt { margin-top: 12px; font: 22px/1.45 var(--serif); }
+  .w-txt small { display: block; margin-top: 10px; font: 16px/1.6 var(--sans); color: var(--soft); }
+
+  .vs { max-width: 760px; margin: 44px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .vs-col { border-radius: 22px; padding: 26px 24px; }
+  .vs-col.was { background: var(--faint); border: 1px solid var(--edge); }
+  .vs-col.now { background: var(--foam); color: var(--ink); }
+  .vs-h { font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; opacity: .75; margin-bottom: 14px; }
+  .vs ul { list-style: none; display: grid; gap: 12px; font-size: 17px; }
+  .vs .was li { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: rgba(247,250,245,.55); color: var(--soft); }
+  .vs .now li::before { content: "✓"; color: var(--bottom); font-weight: 700; margin-right: 10px; }
 
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 52px; text-align: center; }
-  .step .num {
-    width: 44px; height: 44px; margin: 0 auto 14px; border-radius: 50%;
-    border: 1.5px solid rgba(247,250,245,.6);
-    display: grid; place-items: center; font-family: var(--serif); font-size: 20px;
-  }
-  .step h3 { font-family: var(--serif); font-weight: 400; font-size: 22px; margin-bottom: 6px; }
+  .num { width: 46px; height: 46px; margin: 0 auto 14px; border-radius: 50%; border: 1.5px solid rgba(247,250,245,.6); display: grid; place-items: center; font: 20px var(--serif); }
+  .step h3 { font: 400 22px var(--serif); margin-bottom: 6px; }
   .step p { color: var(--soft); font-size: 15px; max-width: 18em; margin: 0 auto; }
 
+  .k-row { margin-top: 26px; display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .k-row div { text-align: center; min-width: 120px; }
+  .k-row b { display: block; font: 400 clamp(34px, 5vw, 48px)/1.1 var(--serif); }
+  .k-row span { font-size: 14px; color: var(--soft); }
+  .k-eq { font: 30px var(--serif); color: var(--soft); font-style: normal; }
+  .k-goal { margin-top: 28px; font: italic 20px/1.4 var(--serif); }
 
-  .soon { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 28px; }
-  .chip { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(247,250,245,.35); color: var(--soft); font-size: 15px; }
-  .platforms { display: flex; gap: 10px; justify-content: center; }
-  .platforms .chip { display: inline-flex; align-items: center; gap: 7px; color: var(--foam); }
-  .platforms svg { width: 16px; height: 16px; }
-  .chip.on { background: var(--foam); color: var(--bottom); border-color: var(--foam); font-weight: 600; }
+  .who { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .who div { border-radius: 18px; padding: 20px 20px 18px; background: var(--faint); border: 1px solid var(--edge); }
+  .who b { display: block; font: 20px var(--serif); font-weight: 400; }
+  .who span { font-size: 15px; color: var(--soft); }
 
-  footer { padding: 48px 16px 56px; text-align: center; font-size: 13px; color: rgba(247,250,245,.6); background: var(--deep); }
+  .faq { max-width: 680px; margin: 40px auto 0; display: grid; gap: 10px; }
+  details { border-radius: 16px; background: var(--faint); border: 1px solid var(--edge); padding: 16px 20px; }
+  summary { cursor: pointer; font: 19px var(--serif); list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-family: var(--sans); color: var(--soft); }
+  details[open] summary::after { content: "–"; }
+  details p { margin-top: 10px; color: var(--soft); font-size: 16px; }
+
+  .final { text-align: center; background: linear-gradient(var(--bottom), var(--top)); }
+  .final .cta-row { justify-content: center; }
+
+  footer { padding: 48px 16px 56px; text-align: center; font-size: 13px; color: rgba(247,250,245,.62); background: var(--deep); }
   footer p + p { margin-top: 8px; }
+  footer .src { max-width: 46em; margin: 0 auto 18px; font-size: 12px; }
 
-  /* Wave divider between sections */
-  .divider { display: block; width: 100%; height: 60px; }
-
-  @media (max-width: 720px) {
-    .gone, .steps { grid-template-columns: 1fr; }
-    section.band { padding: 72px 16px; }
-    .hero { padding-bottom: 150px; }
+  @media (max-width: 900px) {
+    .hero-in { grid-template-columns: 1fr; }
+    .facts-row { grid-template-columns: 1fr 1fr; }
+    .who { grid-template-columns: 1fr 1fr; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .bean, .bean-wrap::before { animation: none; }
-    html { scroll-behavior: auto; }
+  @media (max-width: 640px) {
+    section { padding: 72px 16px; }
+    .hero { padding-top: 84px; }
+    .phone { height: 500px; }
+    .why-grid, .vs, .steps, .who { grid-template-columns: 1fr; }
+    .why-grid { gap: 38px; }
+    .facts-row b { font-size: 16px; }
+    .k-eq { display: none; }
   }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .screen { transition: none; } }
 </style>
 </head>
 <body>
 
 <header class="hero">
   <canvas id="sea" aria-hidden="true"></canvas>
-
-  <div class="bean-wrap">
-    <!-- The Lowtide bean: same shape and tilt as the app icon -->
-    <svg class="bean" viewBox="-70 -70 140 140" role="img" aria-label="Lowtide logo">
-      <g transform="rotate(35.5)">
-        <ellipse cx="0" cy="0" rx="46" ry="64" fill="#f7faf5"/>
-        <line x1="0" y1="-42" x2="0" y2="42" stroke="#61a680" stroke-width="5.5"/>
-      </g>
-    </svg>
+  <div class="bar">
+    <a class="brand" href="./"><svg class="bean-s" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#f7faf5"/><line y1="-42" y2="42" stroke="#61a680" stroke-width="5.5"/></g></svg>Lowtide</a>
+    <button class="flag" id="flag" type="button" aria-label="English / Nederlands"></button>
   </div>
 
-  <p class="name">Lowtide</p>
-  <h1>Scroll less.<br>See more.</h1>
-  <p class="lede">Instagram, calmer. Just friends and real content, then put your phone down.</p>
-
-  <div class="cta">
-    <a class="btn" href="https://chat.whatsapp.com/GrE4CihD5c2COl5VjTkFNd">Join the waitlist on WhatsApp</a>
-    <div class="platforms" aria-label="Works on iPhone and Android">
-      <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>iPhone</span>
-      <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.5l1.8-3.2a.4.4 0 0 0-.7-.4l-1.9 3.3A11 11 0 0 0 12 8.2c-1.7 0-3.3.4-4.8 1L5.3 5.9a.4.4 0 0 0-.7.4l1.8 3.2A10.4 10.4 0 0 0 1 17.8h22a10.4 10.4 0 0 0-5.4-8.3zM7 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>Android</span>
+  <div class="hero-in">
+    <div>
+      <h1><span lang="nl">Scroll minder.<br>Zie meer.</span><span lang="en">Scroll less.<br>See more.</span></h1>
+      <p class="sub" lang="nl">Wist je dat.. mensen gemiddeld <b>2,5 uur per dag</b> op social media zitten?¹ En dat <b>meer dan de helft</b> van wat je ziet, niet van wie je volgt komt?²<br><br>Lowtide laat je eigen Instagram rustig zien. Alleen wie je volgt, en als je bij bent, ben je klaar.</p>
+      <p class="sub" lang="en">Did you know.. people spend <b>2.5 hours a day</b> on social media on average?¹ And that <b>more than half</b> of what you see comes from accounts you don't follow?²<br><br>Lowtide shows your own Instagram in a calm view. Just the people you follow, and when you're caught up, you're done.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://testflight.apple.com/join/Edq4h1nu"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span lang="nl">Probeer de beta op iPhone</span><span lang="en">Try the beta on iPhone</span></a>
+        <a class="link" href="https://chat.whatsapp.com/GrE4CihD5c2COl5VjTkFNd"><span lang="nl">Android? Zet je op de wachtlijst</span><span lang="en">Android? Join the waitlist</span></a>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>iPhone <em lang="nl">· beta</em><em lang="en">· beta</em></span>
+        <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.5l1.8-3.2a.4.4 0 0 0-.7-.4l-1.9 3.3A11 11 0 0 0 12 8.2c-1.7 0-3.3.4-4.8 1L5.3 5.9a.4.4 0 0 0-.7.4l1.8 3.2A10.4 10.4 0 0 0 1 17.8h22a10.4 10.4 0 0 0-5.4-8.3zM7 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>Android <em lang="nl">· binnenkort</em><em lang="en">· soon</em></span>
+      </div>
     </div>
-    <span class="small">Works on iPhone and Android · Free</span>
+
+    <div class="phone-wrap">
+      <div class="switch" role="group" aria-label="Instagram / Lowtide">
+        <button type="button" data-view="loud" aria-pressed="false">Instagram</button>
+        <button type="button" data-view="calm" aria-pressed="true"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></button>
+      </div>
+      <div class="phone is-calm" id="phone" aria-hidden="true">
+        <div class="screen loud">
+          <div class="s-head">Instagram</div>
+          <div class="feed">
+            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Voor jou</span><span lang="en">For you</span><span class="tag" lang="nl">Aanbevolen</span><span class="tag" lang="en">Suggested</span></div><div class="img"></div></div>
+            <div class="post"><div class="p-top"><span class="av"></span>Reel<span class="tag">Reel</span></div><div class="img"></div></div>
+            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Onbekend account</span><span class="tag">AI</span><span lang="en">Unknown account</span></div><div class="img"></div></div>
+            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Voor jou</span><span lang="en">For you</span><span class="tag" lang="nl">Aanbevolen</span><span class="tag" lang="en">Suggested</span></div><div class="img"></div></div>
+          </div>
+        </div>
+        <div class="screen calm">
+          <div class="s-head">Lowtide</div>
+          <div class="feed">
+            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Een vriendin</span><span lang="en">A friend</span></div><div class="img"></div></div>
+            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Je broer</span><span lang="en">Your brother</span></div><div class="img"></div></div>
+            <div class="done"><div class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><b lang="nl">Je bent helemaal bij</b><b lang="en">You're all caught up</b><span lang="nl">Tijd voor iets anders.</span><span lang="en">Time for something else.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <ul class="facts-row">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.8c1.6.9 2.6 2.6 3 5.2"/></svg><b lang="nl">Alleen wie je volgt</b><b lang="en">Just who you follow</b></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg><b lang="nl">Stopt als je bij bent</b><b lang="en">Ends when you're caught up</b></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"/></svg><b lang="nl">Berichten blijven</b><b lang="en">Messages stay</b></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b lang="nl">Niets bewaard</b><b lang="en">Nothing stored</b></li>
+  </ul>
 </header>
 
-<section class="band deep" id="what">
-  <div class="wrap">
-    <p class="eyebrow">What you see</p>
-    <h2>Only what matters.</h2>
-    <p class="intro">Your feed, stories, messages and profiles, in a calm view.</p>
-    <div class="gone">
-      <div class="card"><div class="strike">Reels</div><p>Left out.</p></div>
-      <div class="card"><div class="strike">AI posts</div><p>Left out.</p></div>
-      <div class="card"><div class="strike">Explore</div><p>Left out. Search stays.</p></div>
+<section class="deep">
+  <p class="punch"><span lang="nl">“Houd je vrienden. Laat de feed los.”</span><span lang="en">“Keep your friends. Lose the feed.”</span></p>
+  <div class="wrap why-grid">
+    <div>
+      <p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.8-2.5 2.2-2.5 3.9"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/></svg><span lang="nl">Waarom we dit doen</span><span lang="en">Why we do this</span></p>
+      <p class="w-txt" lang="nl">Het ligt niet aan jou. Het ligt aan het ontwerp.<small>De feed heeft geen bodem. Hij is gemaakt om je zo lang mogelijk vast te houden. Eén berichtje checken wordt zo veertig minuten.</small></p>
+      <p class="w-txt" lang="en">It's not you. It's the design.<small>The feed has no bottom. It's built to keep you there as long as possible. Checking one message turns into forty minutes.</small></p>
+    </div>
+    <div>
+      <p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span lang="nl">Hoe we dit oplossen</span><span lang="en">How we solve it</span></p>
+      <p class="w-txt" lang="nl">Lowtide geeft je Instagram een bodem.<small>Je logt in op de pagina van Instagram zelf, binnen Lowtide. Je ziet wie je volgt, en als je bij bent, stopt het.</small></p>
+      <p class="w-txt" lang="en">Lowtide gives your Instagram a bottom.<small>You log in on Instagram's own page, inside Lowtide. You see who you follow, and when you're caught up, it ends.</small></p>
+    </div>
+    <div class="full">
+      <p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg><span lang="nl">Wat het doet</span><span lang="en">What it does</span></p>
+      <p class="w-txt" lang="nl">Je feed, stories, berichten en profielen, in een rustige weergave. Reels, Explore, aanbevolen posts en AI-posts laten we weg. Zoeken blijft.<small>Zo kies jij weer wie en wat je ziet, en niet het algoritme.</small></p>
+      <p class="w-txt" lang="en">Your feed, stories, messages and profiles, in a calm view. Reels, Explore, suggested posts and AI posts are left out. Search stays.<small>So you choose who and what you see again, instead of the algorithm.</small></p>
+    </div>
+  </div>
+  <div class="vs">
+    <div class="vs-col was"><p class="vs-h">Instagram</p>
+      <ul lang="nl"><li>Doomscrolling</li><li>Reels</li><li>Aanbevolen posts</li><li>AI-posts</li><li>Eindeloze feed</li></ul>
+      <ul lang="en"><li>Doomscrolling</li><li>Reels</li><li>Suggested posts</li><li>AI posts</li><li>Endless feed</li></ul>
+    </div>
+    <div class="vs-col now"><p class="vs-h" lang="nl">Met Lowtide</p><p class="vs-h" lang="en">With Lowtide</p>
+      <ul lang="nl"><li>Wie je volgt</li><li>Stories</li><li>Berichten</li><li>Zoeken</li><li>Feed stopt als je bij bent</li></ul>
+      <ul lang="en"><li>Who you follow</li><li>Stories</li><li>Messages</li><li>Search</li><li>Feed ends when you're caught up</li></ul>
     </div>
   </div>
 </section>
 
-<section class="band" id="how" style="background: var(--bottom)">
-  <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>Three steps.</h2>
-    <p class="intro">See your friends, send your messages, follow your dreams.</p>
+<section>
+  <div class="wrap center">
+    <p class="eyebrow"><span lang="nl">Zo werkt het</span><span lang="en">How it works</span></p>
+    <h2><span lang="nl">Klaar in drie stappen.</span><span lang="en">Ready in three steps.</span></h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><h3>Log in as usual</h3><p>On Instagram's own page, inside Lowtide.</p></div>
-      <div class="step"><div class="num">2</div><h3>See your friends</h3><p>A calm feed of the people you follow. It ends when you're all caught up.</p></div>
-      <div class="step"><div class="num">3</div><h3>One swipe, and you're out</h3><p>Check in, catch up, and put your phone down.</p></div>
+      <div class="step"><div class="num">1</div><h3 lang="nl">Open Lowtide</h3><h3 lang="en">Open Lowtide</h3><p lang="nl">Op je iPhone, via de beta.</p><p lang="en">On your iPhone, through the beta.</p></div>
+      <div class="step"><div class="num">2</div><h3 lang="nl">Log in zoals altijd</h3><h3 lang="en">Log in as usual</h3><p lang="nl">Op de pagina van Instagram zelf. Je wachtwoord gaat alleen naar Instagram.</p><p lang="en">On Instagram's own page. Your password only goes to Instagram.</p></div>
+      <div class="step"><div class="num">3</div><h3 lang="nl">Bij en klaar</h3><h3 lang="en">Caught up, done</h3><p lang="nl">Zie je vrienden, stuur je berichten, en leg je telefoon weg.</p><p lang="en">See your friends, send your messages, and put your phone down.</p></div>
     </div>
   </div>
 </section>
 
-<section class="band deep" id="price">
+<section class="deep">
+  <div class="wrap center">
+    <p class="eyebrow"><span lang="nl">Wist je dat..</span><span lang="en">Did you know..</span></p>
+    <div class="k-row">
+      <div><b lang="nl">2,5 uur</b><b lang="en">2.5 hours</b><span lang="nl">per dag¹</span><span lang="en">a day¹</span></div>
+      <i class="k-eq">=</i>
+      <div><b lang="nl">38 dagen</b><b lang="en">38 days</b><span lang="nl">per jaar</span><span lang="en">a year</span></div>
+      <i class="k-eq">=</i>
+      <div><b lang="nl">bijna 7 jaar</b><b lang="en">almost 7 years</b><span lang="nl">van je leven</span><span lang="en">of your life</span></div>
+    </div>
+    <p class="k-goal" lang="nl">Wat zou jij doen met een uur per dag terug?</p>
+    <p class="k-goal" lang="en">What would you do with an hour a day back?</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap center">
+    <p class="eyebrow"><span lang="nl">Voor wie</span><span lang="en">For whom</span></p>
+    <h2><span lang="nl">Voor iedereen die minder wil scrollen.</span><span lang="en">For anyone who wants to scroll less.</span></h2>
+    <div class="who">
+      <div><b lang="nl">Ouders</b><b lang="en">Parents</b><span lang="nl">Grip op je kind, en op jezelf.</span><span lang="en">A grip on your kid's scrolling, and your own.</span></div>
+      <div><b>GenZ</b><span>Back to 2010.</span></div>
+      <div><b lang="nl">Studenten</b><b lang="en">Students</b><span lang="nl">Focus met leren.</span><span lang="en">Focus while studying.</span></div>
+      <div><b lang="nl">Ondernemers</b><b lang="en">Entrepreneurs</b><span lang="nl">Rust en tijd terug.</span><span lang="en">Calm and time back.</span></div>
+      <div><b lang="nl">Senioren</b><b lang="en">Seniors</b><span lang="nl">Instagram versimpeld.</span><span lang="en">Instagram, made simple.</span></div>
+      <div><b lang="nl">Scholen en bedrijven</b><b lang="en">Schools and companies</b><span lang="nl">Rust en focus voor je mensen. <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20teams">Mail ons</a>.</span><span lang="en">Calm and focus for your people. <a href="mailto:himbelton@gmail.com?subject=Lowtide%20for%20teams">Email us</a>.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="deep">
+  <div class="wrap center">
+    <p class="eyebrow"><span lang="nl">Vragen</span><span lang="en">Questions</span></p>
+    <h2><span lang="nl">Goed om te weten.</span><span lang="en">Good to know.</span></h2>
+  </div>
+  <div class="faq">
+    <details lang="nl"><summary>Is dit gewoon mijn eigen Instagram?</summary><p>Ja. Je logt in op de pagina van Instagram zelf, binnen Lowtide. Je wachtwoord gaat alleen naar Instagram.</p></details>
+    <details lang="en"><summary>Is this just my own Instagram?</summary><p>Yes. You log in on Instagram's own page, inside Lowtide. Your password only goes to Instagram.</p></details>
+    <details lang="nl"><summary>Wat bewaart Lowtide?</summary><p>Niets. Er is geen Lowtide-account en we verzamelen geen gegevens. Lees de <a href="privacy.html">privacyverklaring</a>.</p></details>
+    <details lang="en"><summary>What does Lowtide store?</summary><p>Nothing. There's no Lowtide account and no data is collected. Read the <a href="privacy.html">privacy policy</a>.</p></details>
+    <details lang="nl"><summary>Op welke telefoons werkt het?</summary><p>Op iPhone kun je de beta nu al proberen. Android komt binnenkort, zet je op de <a href="https://chat.whatsapp.com/GrE4CihD5c2COl5VjTkFNd">wachtlijst</a>.</p></details>
+    <details lang="en"><summary>Which phones does it work on?</summary><p>On iPhone you can try the beta today. Android is coming soon, join the <a href="https://chat.whatsapp.com/GrE4CihD5c2COl5VjTkFNd">waitlist</a>.</p></details>
+    <details lang="nl"><summary>Wat kost het?</summary><p>De beta is gratis.</p></details>
+    <details lang="en"><summary>What does it cost?</summary><p>The beta is free.</p></details>
+    <details lang="nl"><summary>Hulp nodig?</summary><p>Kijk op de <a href="support.html">supportpagina</a> of mail <a href="mailto:himbelton@gmail.com?subject=Lowtide">himbelton@gmail.com</a>.</p></details>
+    <details lang="en"><summary>Need help?</summary><p>See the <a href="support.html">support page</a> or email <a href="mailto:himbelton@gmail.com?subject=Lowtide">himbelton@gmail.com</a>.</p></details>
+  </div>
+</section>
+
+<section class="final">
   <div class="wrap">
-    <p class="eyebrow">Price</p>
-    <h2>Free.</h2>
-    <p class="intro" style="margin-top:14px">Questions? Email <a href="mailto:himbelton@gmail.com?subject=Lowtide">himbelton@gmail.com</a>.</p>
+    <h2><span lang="nl">Klaar voor een rustiger Instagram?</span><span lang="en">Ready for a calmer Instagram?</span></h2>
+    <div class="cta-row">
+      <a class="btn" href="https://testflight.apple.com/join/Edq4h1nu"><span lang="nl">Probeer de beta op iPhone</span><span lang="en">Try the beta on iPhone</span></a>
+      <a class="link" href="https://chat.whatsapp.com/GrE4CihD5c2COl5VjTkFNd"><span lang="nl">Android? Zet je op de wachtlijst</span><span lang="en">Android? Join the waitlist</span></a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <p>Lowtide · Scroll less. See more.</p>
-  <p>Lowtide is an independent app. It is not made by, affiliated with or endorsed by Instagram or Meta.</p>
-  <p><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a> · <a href="support.html">Support</a></p>
+  <p class="src" lang="nl">¹ DataReportal / GWI, Digital 2026: online volwassenen besteden wereldwijd gemiddeld ruim 2,5 uur per dag aan social- en videoplatforms. 38 dagen = 2,5 uur × 365; bijna 7 jaar = ongeveer 67 jaar lang (13 tot 80). ² Meta, Q1 2024 earnings call (april 2024): meer dan 50% van wat mensen op Instagram zien, wordt door AI aanbevolen.</p>
+  <p class="src" lang="en">¹ DataReportal / GWI, Digital 2026: online adults worldwide spend well over 2.5 hours a day on social and video platforms. 38 days = 2.5 hours × 365; almost 7 years = over about 67 years (age 13 to 80). ² Meta, Q1 2024 earnings call (April 2024): more than 50% of what people see on Instagram is recommended by AI.</p>
+  <p>Lowtide · <span lang="nl">Scroll minder. Zie meer.</span><span lang="en">Scroll less. See more.</span></p>
+  <p lang="nl">Lowtide is een onafhankelijke app. Niet gemaakt door, verbonden aan of goedgekeurd door Instagram of Meta.</p>
+  <p lang="en">Lowtide is an independent app. It is not made by, affiliated with or endorsed by Instagram or Meta.</p>
+  <p><a href="privacy.html">Privacy</a> · <a href="terms.html"><span lang="nl">Voorwaarden</span><span lang="en">Terms</span></a> · <a href="support.html">Support</a></p>
 </footer>
 
 <script>
+  // Language: ?lang= wins, then the saved choice, then the browser (Dutch → nl, everything else → en).
+  (function () {
+    const root = document.documentElement;
+    const FLAGS = {
+      nl: '<svg viewBox="0 0 3 3"><rect width="3" height="1" fill="#ae1c28"/><rect y="1" width="3" height="1" fill="#fff"/><rect y="2" width="3" height="1" fill="#21468b"/></svg>',
+      en: '<svg viewBox="0 0 60 60"><rect width="60" height="60" fill="#012169"/><path d="M0 0L60 60M60 0L0 60" stroke="#fff" stroke-width="12"/><path d="M0 0L60 60M60 0L0 60" stroke="#c8102e" stroke-width="5"/><path d="M30 0v60M0 30h60" stroke="#fff" stroke-width="18"/><path d="M30 0v60M0 30h60" stroke="#c8102e" stroke-width="10"/></svg>'
+    };
+    const META = {
+      nl: ['Lowtide · Scroll minder. Zie meer.', 'Je eigen Instagram, rustig. Alleen wie je volgt, en de feed stopt als je bij bent.'],
+      en: ['Lowtide · Scroll less. See more.', 'Your own Instagram, calm. Just the people you follow, and the feed ends when you\'re caught up.']
+    };
+    let saved = null;
+    try { saved = localStorage.getItem('lt-lang'); } catch (e) {}
+    const q = new URLSearchParams(location.search).get('lang');
+    let lang = q === 'en' || q === 'nl' ? q : saved || ((navigator.language || '').toLowerCase().startsWith('nl') ? 'nl' : 'en');
+    const flag = document.getElementById('flag');
+    function apply(l) {
+      lang = l;
+      root.dataset.lang = l; root.lang = l;
+      document.title = META[l][0];
+      document.querySelector('meta[name="description"]').content = META[l][1];
+      // Show the flag of the OTHER language: tap it to switch.
+      const other = l === 'nl' ? 'en' : 'nl';
+      flag.innerHTML = FLAGS[other];
+      flag.setAttribute('aria-label', other === 'en' ? 'Switch to English' : 'Naar Nederlands');
+    }
+    flag.addEventListener('click', () => {
+      apply(lang === 'nl' ? 'en' : 'nl');
+      try { localStorage.setItem('lt-lang', lang); } catch (e) {}
+    });
+    apply(lang);
+  })();
+
+  // Phone: switches between Instagram and Lowtide by itself until someone taps the switch.
+  (function () {
+    const phone = document.getElementById('phone');
+    const btns = document.querySelectorAll('.switch button');
+    function show(v) {
+      phone.classList.toggle('is-calm', v === 'calm');
+      btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
+    }
+    let timer = null;
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let v = 'loud';
+      show(v);
+      timer = setInterval(() => { v = v === 'calm' ? 'loud' : 'calm'; show(v); }, 3200);
+    }
+    btns.forEach(b => b.addEventListener('click', () => { clearInterval(timer); show(b.dataset.view); }));
+  })();
+
   // Gently drifting sea, same three layers as the app's Tide.water, plus thin white wave lines.
   (function () {
     const canvas = document.getElementById('sea');
     const ctx = canvas.getContext('2d');
     const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const layers = [
-      { level: 0.80, amp: 7, len: 46, speed: 0.55, phase: 0.0, alpha: 0.10 },
-      { level: 0.84, amp: 6, len: 38, speed: -0.45, phase: 1.7, alpha: 0.12 },
-      { level: 0.89, amp: 5, len: 30, speed: 0.38, phase: 3.1, alpha: 0.15 },
+      { level: 0.86, amp: 7, len: 46, speed: 0.55, phase: 0.0, alpha: 0.08 },
+      { level: 0.90, amp: 6, len: 38, speed: -0.45, phase: 1.7, alpha: 0.10 },
+      { level: 0.94, amp: 5, len: 30, speed: 0.38, phase: 3.1, alpha: 0.12 },
     ];
     let w, h, unit, dpr;
     function size() {
@@ -231,15 +414,6 @@
         ctx.fillStyle = `rgba(255,255,255,${l.alpha})`;
         ctx.fill();
       }
-      // Thin foam lines riding above the water.
-      [[0.70, 0.30, 0.22], [0.74, -0.24, 0.16]].forEach(([lev, sp, a], i) => {
-        const l = { level: lev, amp: 4, len: 54 + i * 10, speed: sp, phase: i * 2.2 };
-        ctx.beginPath();
-        for (let x = 0; x <= w + 6; x += 6) x ? ctx.lineTo(x, y(l, x, t)) : ctx.moveTo(x, y(l, x, t));
-        ctx.strokeStyle = `rgba(255,255,255,${a})`;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      });
       if (!still) requestAnimationFrame(draw);
     }
     size();
