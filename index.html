@@ -154,6 +154,8 @@
   }
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 52px; text-align: center; }
   .num { width: 46px; height: 46px; margin: 0 auto 14px; border-radius: 50%; border: 1.5px solid rgba(247,250,245,.6); display: grid; place-items: center; font: 20px var(--serif); }
+  .steps.two { grid-template-columns: repeat(2, 1fr); max-width: 560px; margin-left: auto; margin-right: auto; }
+  .k-goal.on { margin-top: 44px; font-size: clamp(22px, 3vw, 28px); font-style: normal; }
   .step h3 { font: 400 22px var(--serif); margin-bottom: 6px; }
   .step p { color: var(--soft); font-size: 15px; max-width: 18em; margin: 0 auto; }
 
@@ -293,13 +295,12 @@
 
 <section>
   <div class="wrap center">
-    <p class="eyebrow"><span lang="nl">Zo werkt het</span><span lang="en">How it works</span></p>
-    <h2><span lang="nl">Klaar in drie stappen.</span><span lang="en">Ready in three steps.</span></h2>
-    <div class="steps">
-      <div class="step"><div class="num">1</div><h3 lang="nl">Open Lowtide</h3><h3 lang="en">Open Lowtide</h3><p lang="nl">Op je iPhone, via de beta.</p><p lang="en">On your iPhone, through the beta.</p></div>
-      <div class="step"><div class="num">2</div><h3 lang="nl">Log in zoals altijd</h3><h3 lang="en">Log in as usual</h3><p lang="nl">Op de pagina van Instagram zelf. Je wachtwoord gaat alleen naar Instagram.</p><p lang="en">On Instagram's own page. Your password only goes to Instagram.</p></div>
-      <div class="step"><div class="num">3</div><h3 lang="nl">Bij en klaar</h3><h3 lang="en">Caught up, done</h3><p lang="nl">Zie je vrienden, stuur je berichten, en leg je telefoon weg.</p><p lang="en">See your friends, send your messages, and put your phone down.</p></div>
+    <h2><span lang="nl">Hoe werkt het?</span><span lang="en">How it works?</span></h2>
+    <div class="steps two">
+      <div class="step"><div class="num">1</div><h3>Open Lowtide</h3></div>
+      <div class="step"><div class="num">2</div><h3 lang="nl">Log in op instagram.com</h3><h3 lang="en">Log in on instagram.com</h3></div>
     </div>
+    <p class="k-goal on"><span lang="nl">Het sociale privé-filter is geactiveerd.</span><span lang="en">The social private filter is activated.</span></p>
   </div>
 </section>
 
