@@ -56,6 +56,9 @@
   .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
   .switch { display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(20,50,40,.22); }
   .switch button { border: 0; background: none; color: var(--foam); font: 600 14px var(--sans); padding: 8px 16px; border-radius: 999px; cursor: pointer; transition: background .3s, color .3s; }
+  .switch .nudge { animation: nudge 1.8s ease-in-out infinite; }
+  @keyframes nudge { 0%,100% { box-shadow: 0 0 0 0 rgba(247,250,245,.0); } 50% { box-shadow: 0 0 0 4px rgba(247,250,245,.45); } }
+  @media (prefers-reduced-motion: reduce) { .switch .nudge { animation: none; } }
   .switch button[aria-pressed="true"] { background: var(--foam); color: var(--bottom); }
   .phone { width: min(300px, 82vw); height: 560px; border-radius: 46px; background: #121414; padding: 12px; box-shadow: 0 0 0 2px #2b2f2e, 0 24px 60px rgba(10,25,20,.45); position: relative; overflow: visible; }
   .phone::before { content: ""; position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 86px; height: 24px; border-radius: 999px; background: #121414; z-index: 2; }
@@ -217,10 +220,10 @@
 
     <div class="phone-wrap">
       <div class="switch" role="group" aria-label="Instagram / Lowtide">
-        <button type="button" data-view="loud" aria-pressed="false">Instagram</button>
-        <button type="button" data-view="calm" aria-pressed="true"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></button>
+        <button type="button" data-view="loud" aria-pressed="true">Instagram</button>
+        <button type="button" data-view="calm" aria-pressed="false" class="nudge"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></button>
       </div>
-      <div class="phone is-calm" id="phone" aria-hidden="true">
+      <div class="phone" id="phone" aria-hidden="true">
         <div class="screen loud">
           <div class="s-head">Instagram</div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
@@ -397,7 +400,7 @@
     apply(lang);
   })();
 
-  // Phone: switches between Instagram and Lowtide by itself until someone taps the switch.
+  // Phone: starts on Instagram; the visitor taps the switch to see Lowtide.
   (function () {
     const phone = document.getElementById('phone');
     const btns = document.querySelectorAll('.switch button');
@@ -405,13 +408,7 @@
       phone.classList.toggle('is-calm', v === 'calm');
       btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
     }
-    let timer = null;
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      let v = 'loud';
-      show(v);
-      timer = setInterval(() => { v = v === 'calm' ? 'loud' : 'calm'; show(v); }, 3200);
-    }
-    btns.forEach(b => b.addEventListener('click', () => { clearInterval(timer); show(b.dataset.view); }));
+    btns.forEach(b => b.addEventListener('click', () => { document.querySelector('.nudge')?.classList.remove('nudge'); show(b.dataset.view); }));
   })();
 
   // Gently drifting sea, same three layers as the app's Tide.water, plus thin white wave lines.
