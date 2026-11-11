@@ -80,7 +80,9 @@
   .loud .av { background: #eea69d; }
   .loud .img { background: linear-gradient(135deg, #f2a59b, #e0746a); height: 96px; }
   .loud .tag { background: #f3c4be; color: #8a2f27; }
-  .reel .img { position: relative; overflow: hidden; height: 150px; background: #222; }
+  .reel .img { position: relative; overflow: hidden; height: 330px; background: #222; }
+  .r-track i { position: relative; }
+  .r-pill { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); white-space: nowrap; font: 700 11px var(--sans); font-style: normal; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.92); color: #8a2f27; box-shadow: 0 2px 8px rgba(80,20,15,.18); }
   .r-track { position: absolute; inset: 0; display: flex; flex-direction: column; animation: reel 4.8s cubic-bezier(.6,0,.3,1) infinite; }
   .r-track i { flex: none; height: 100%; display: grid; place-items: center; }
   .r-track b { width: 0; height: 0; border-left: 16px solid rgba(255,255,255,.85); border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
@@ -88,7 +90,7 @@
   .r-swipe { position: absolute; right: 10px; bottom: 12px; width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,.28); display: grid; place-items: center; animation: swipe 1.2s ease-in-out infinite; }
   .r-swipe svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
   @keyframes swipe { 0%,100% { transform: translateY(6px); opacity: .5; } 50% { transform: translateY(-10px); opacity: 1; } }
-  .r-more { position: absolute; left: 10px; top: 8px; font: 700 15px var(--sans); color: rgba(255,255,255,.9); }
+  .r-more { position: absolute; left: 10px; bottom: 10px; font: 700 15px var(--sans); color: rgba(255,255,255,.9); }
   @media (prefers-reduced-motion: reduce) { .r-track, .r-swipe { animation: none; } }
   .tag { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #e8d7d7; color: #8a4b4b; }
   .done { margin-top: 6px; text-align: center; padding: 18px 8px; color: var(--ink); }
@@ -180,6 +182,7 @@
     section { padding: 72px 16px; }
     .hero { padding-top: 84px; }
     .phone { height: 500px; }
+    .reel .img { height: 270px; }
     .why-grid, .steps, .who { grid-template-columns: 1fr; }
     .why-grid { gap: 38px; }
     .facts-row b { font-size: 16px; }
@@ -221,10 +224,7 @@
         <div class="screen loud">
           <div class="s-head">Instagram</div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
-            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Aanbevolen post</span><span lang="en">Recommended post</span><span class="tag" lang="nl">Aanbevolen</span><span class="tag" lang="en">Suggested</span></div><div class="img"></div></div>
-            <div class="post reel"><div class="p-top"><span class="av"></span><span lang="nl">Eindeloos doomscrollen</span><span lang="en">Endless doomscrolling</span><span class="tag">Reels</span></div><div class="img"><div class="r-track"><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><b></b></i><i style="background:linear-gradient(160deg,#f6b9a6,#e5867a)"><b></b></i><i style="background:linear-gradient(160deg,#eb9a90,#d35f55)"><b></b></i><i style="background:linear-gradient(160deg,#f4c0b4,#e27b6f)"><b></b></i><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><b></b></i></div><span class="r-swipe"><svg viewBox="0 0 24 24"><path d="M12 20V5M6.5 10.5L12 5l5.5 5.5"/></svg></span><span class="r-more">∞</span></div></div>
-            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Onbekend account</span><span class="tag">AI</span><span lang="en">Unknown account</span></div><div class="img"></div></div>
-            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Aanbevolen post</span><span lang="en">Recommended post</span><span class="tag" lang="nl">Aanbevolen</span><span class="tag" lang="en">Suggested</span></div><div class="img"></div></div>
+            <div class="post reel"><div class="p-top"><span class="av"></span><span lang="nl">Eindeloos doomscrollen</span><span lang="en">Endless doomscrolling</span><span class="tag">Reels</span></div><div class="img"><div class="r-track"><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><em class="r-pill"><span lang="nl">AI-aanbevolen post</span><span lang="en">AI-recommended post</span></em><b></b></i><i style="background:linear-gradient(160deg,#f6b9a6,#e5867a)"><em class="r-pill"><span lang="nl">AI-gegenereerde foto</span><span lang="en">AI-generated photo</span></em><b></b></i><i style="background:linear-gradient(160deg,#eb9a90,#d35f55)"><em class="r-pill"><span lang="nl">Aanbevolen reel</span><span lang="en">Suggested reel</span></em><b></b></i><i style="background:linear-gradient(160deg,#f4c0b4,#e27b6f)"><em class="r-pill"><span lang="nl">Onbekend account</span><span lang="en">Unknown account</span></em><b></b></i><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><em class="r-pill"><span lang="nl">AI-aanbevolen post</span><span lang="en">AI-recommended post</span></em><b></b></i></div><span class="r-swipe"><svg viewBox="0 0 24 24"><path d="M12 20V5M6.5 10.5L12 5l5.5 5.5"/></svg></span><span class="r-more">∞</span></div></div>
           </div>
         </div>
         <div class="screen calm">
