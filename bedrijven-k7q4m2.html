@@ -236,11 +236,9 @@
   /* Order agenda (max, 2026-11-11): real dates that move with the start date. */
   .agenda-box { margin-top: 10px; font-size: 14px; }
   .agenda-box summary { cursor: pointer; color: var(--soft); }
-  .agenda { list-style: none; margin: 12px 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--edge); display: grid; gap: 10px; }
+  .agenda { list-style: decimal; margin: 10px 0 0; padding: 0 0 0 22px; display: grid; gap: 4px; }
   .agenda li { position: relative; font-size: 14px; line-height: 1.4; }
-  .agenda li::before { content: ""; position: absolute; left: -24px; top: 4px; width: 10px; height: 10px; border-radius: 50%;
-    background: currentColor; opacity: .7; }
-  .agenda b { display: block; font-variant-numeric: tabular-nums; }
+  .agenda b { font-variant-numeric: tabular-nums; }
   .agenda span { color: var(--soft); }
   .err { color: #ffd8cc; }
 
@@ -492,7 +490,7 @@
           <p class="hint" id="impactSmall"></p>
         </div>
 
-        <label for="start">Startdatum (morgen tot max. 21 dagen later)</label>
+        <label for="start">Startdatum (vandaag tot max. 21 dagen later)</label>
         <input id="start" type="date">
         <details class="agenda-box">
           <summary>Wat gebeurt wanneer</summary>
@@ -607,8 +605,8 @@
   }
 
   const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
-  // Start date: tomorrow … 21 days ahead (max, 2026-11-11); default one week ahead.
-  { const t = new Date(), m = new Date(), d = new Date(); t.setDate(t.getDate() + 1); m.setDate(m.getDate() + 21); d.setDate(d.getDate() + 7);
+  // Start date: today … 21 days ahead (max, 2026-11-11); default one week ahead.
+  { const t = new Date(), m = new Date(), d = new Date(); m.setDate(m.getDate() + 21); d.setDate(d.getDate() + 7);
     $("start").min = iso(t); $("start").max = iso(m); $("start").value = iso(d); }
 
   function render() {
@@ -641,13 +639,14 @@
   function agenda(n, incl, months) {
     const today = new Date(); today.setHours(12, 0, 0, 0);
     const start = $("start").value ? new Date(`${$("start").value}T12:00:00`) : today;
-    const add = (d, days, m = 0) => { const x = new Date(d); x.setMonth(x.getMonth() + m); x.setDate(x.getDate() + days); return x; };
+    // Same day next month/year; the 31st → the last day of a shorter month (as trial-check does).
+    const add = (d, m) => { const x = new Date(d); x.setDate(1); x.setMonth(x.getMonth() + m);
+      x.setDate(Math.min(d.getDate(), new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate())); return x; };
     const fmt = (d) => d.toLocaleDateString("nl-NL", { day: "numeric", month: "long" });
     const rows = [];
-    rows.push([fmt(start), `${n} accounts actief, factuur ${eur(incl)}`]);
-    rows.push([fmt(add(start, 14)), "Uiterlijk betalen"]);
-    rows.push([fmt(add(start, 0, months)), "Volgende factuur"]);
-    $("agenda").innerHTML = rows.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join("");
+    rows.push([fmt(start), `${n} accounts actief, factuur ${eur(incl)} (14 dagen)`]);
+    rows.push([fmt(add(start, months)), "volgende factuur"]);
+    $("agenda").innerHTML = rows.map(([d, t]) => `<li><b>${d}:</b> <span>${t}</span></li>`).join("");
   }
 
   document.querySelectorAll(".plan").forEach((b) => b.addEventListener("click", () => {
@@ -686,7 +685,7 @@
         free_mail: "Gebruik een factuurmail op het domein van uw bedrijf (geen Gmail, Hotmail en dergelijke).",
         already_ordered: "Voor dit KvK-nummer of maildomein is al besteld. Mail himbelton@gmail.com, dan regelen we het.",
         too_many: "Te veel bestellingen vanaf deze verbinding. Probeer het morgen opnieuw of mail himbelton@gmail.com.",
-        start_date: "Kies een startdatum van morgen tot uiterlijk 21 dagen vooruit.",
+        start_date: "Kies een startdatum van vandaag tot uiterlijk 21 dagen vooruit.",
       }[d.error] || "Er ging iets mis. Controleer de gegevens of mail himbelton@gmail.com.");
     } catch { fail("Geen verbinding. Probeer het zo opnieuw."); }
     btn.disabled = false;

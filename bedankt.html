@@ -51,7 +51,7 @@ async function poll() {
     const d = await (await fetch(`${API}/order-status?t=${encodeURIComponent(t)}`)).json();
     if (d.status === "paid") {
       $("title").textContent = `Bedankt, ${d.company}`;
-      $("info").textContent = `Wij doen een domein- & KvK-check om uw bedrijf te verifiëren. Na akkoord: vanaf ${day(d.start_date)} alle ${d.ordered} accounts actief, en de factuur per mail.`;
+      $("info").textContent = `Vanaf ${day(d.start_date)} zijn alle ${d.ordered} accounts actief. Dan komt ook de factuur per mail, met 14 dagen betaaltermijn.`;
       $("user").textContent = d.username;
       if (d.password) { $("pw").textContent = d.password; }
       else { $("pwLabel").hidden = true; $("pw").hidden = true; }
