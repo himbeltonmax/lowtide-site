@@ -146,7 +146,7 @@
   .w-txt { margin-top: 12px; font: 22px/1.45 var(--serif); }
   .w-txt small { display: block; margin-top: 10px; font: 16px/1.6 var(--sans); color: var(--soft); }
 
-  .cmp { max-width: 600px; margin: 56px auto 0; background: var(--foam); color: var(--ink); border-radius: 28px; padding: 34px 28px 30px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
+  .cmp { max-width: 460px; margin: 56px auto 0; background: var(--foam); color: var(--ink); border-radius: 28px; padding: 22px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
   .cmp-t { font: 400 clamp(24px, 3.4vw, 32px)/1.2 var(--serif); text-align: center; margin-bottom: 26px; }
   .vs { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
   .vs > div { padding: 8px 16px; font-size: 15px; line-height: 1.35; display: flex; align-items: center; gap: 10px; }
@@ -158,6 +158,8 @@
   .vs .now::before { content: "✓"; font-weight: 700; color: #3f8f63; flex: none; }
   .vs .h::before { content: none; }
   .vs .was s { text-decoration-thickness: 2px; text-decoration-color: rgba(192,96,90,.7); }
+  .vs.one { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .vs.one > div { font-size: 17px; padding: 10px 22px; }
   .cmp-end { margin-top: 24px; text-align: center; font: italic 20px/1.4 var(--serif); color: var(--ink2); }
   @media (max-width: 640px) {
     .cmp { padding: 26px 12px 22px; border-radius: 22px; }
@@ -314,13 +316,12 @@
     <div class="full"><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg><span lang="nl">Wat het doet</span><span lang="en">What it does</span></p><p class="w-txt"><span lang="nl">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.<br><br>Je kiest bewuster wie &amp; wat je ziet</span><span lang="en">It filters out doomscrolling, recommended content and AI posts. The AI algorithm loses its ‘power’.<br><br>You choose more consciously who &amp; what you see</span></p></div>
   </div>
   <div class="cmp">
-    <p class="cmp-t"><span lang="nl">Het verschil</span><span lang="en">The difference</span></p>
-    <div class="vs">
-      <div class="was h">Instagram</div><div class="now h"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></div>
-      <div class="was"><span lang="nl">Eindeloos scrollen</span><span lang="en">Endless scrolling</span></div><div class="now"><span lang="nl">Klaar als je bij bent</span><span lang="en">Done when you're caught up</span></div>
-      <div class="was"><span lang="nl">Vooral vreemden en AI-posts</span><span lang="en">Mostly strangers and AI posts</span></div><div class="now"><span lang="nl">Alleen wie je volgt</span><span lang="en">Only people you follow</span></div>
-      <div class="was"><span lang="nl">Elke dag uren kwijt</span><span lang="en">Hours lost every day</span></div><div class="now"><span lang="nl">Je avond terug</span><span lang="en">Your evening back</span></div>
-      <div class="was last"><span lang="nl">Het algoritme kiest</span><span lang="en">The algorithm chooses</span></div><div class="now last"><span lang="nl">Jij kiest</span><span lang="en">You choose</span></div>
+    <div class="vs one">
+      <div class="now h"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></div>
+      <div class="now"><span lang="nl">Alleen wie je volgt</span><span lang="en">Only people you follow</span></div>
+      <div class="now"><span lang="nl">Klaar als je bij bent</span><span lang="en">Done when you're caught up</span></div>
+      <div class="now"><span lang="nl">Jij kiest wat je ziet</span><span lang="en">You choose what you see</span></div>
+      <div class="now last"><span lang="nl">Je avond terug</span><span lang="en">Your evening back</span></div>
     </div>
   </div>
 </section>
