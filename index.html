@@ -65,6 +65,9 @@
   .phone.is-calm .screen.calm { opacity: 1; }
   .phone.is-calm .screen.loud { opacity: 0; }
   .s-head { height: 74px; padding-top: 38px; display: flex; align-items: center; justify-content: center; font: 600 13px var(--sans); color: var(--ink); border-bottom: 1px solid #eef1ee; }
+  .stories { display: flex; gap: 10px; padding: 10px 12px 4px; overflow: hidden; }
+  .stories i { flex: none; width: 42px; height: 42px; border-radius: 50%; border: 2.5px solid var(--line); box-shadow: inset 0 0 0 2px #fff; background: #cfe0d5; }
+  .loud .stories i { border-color: #e0746a; background: #eea69d; }
   .feed { padding: 10px 12px; display: grid; gap: 10px; }
   .post { border-radius: 14px; background: #f2f5f2; padding: 10px; }
   .p-top { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ink2); }
@@ -216,7 +219,7 @@
       </div>
       <div class="phone is-calm" id="phone" aria-hidden="true">
         <div class="screen loud">
-          <div class="s-head">Instagram</div>
+          <div class="s-head">Instagram</div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
             <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Aanbevolen post</span><span lang="en">Recommended post</span><span class="tag" lang="nl">Aanbevolen</span><span class="tag" lang="en">Suggested</span></div><div class="img"></div></div>
             <div class="post reel"><div class="p-top"><span class="av"></span><span lang="nl">Eindeloos doomscrollen</span><span lang="en">Endless doomscrolling</span><span class="tag">Reels</span></div><div class="img"><div class="r-track"><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><b></b></i><i style="background:linear-gradient(160deg,#f6b9a6,#e5867a)"><b></b></i><i style="background:linear-gradient(160deg,#eb9a90,#d35f55)"><b></b></i><i style="background:linear-gradient(160deg,#f4c0b4,#e27b6f)"><b></b></i><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><b></b></i></div><span class="r-swipe"><svg viewBox="0 0 24 24"><path d="M12 20V5M6.5 10.5L12 5l5.5 5.5"/></svg></span><span class="r-more">∞</span></div></div>
@@ -225,7 +228,7 @@
           </div>
         </div>
         <div class="screen calm">
-          <div class="s-head">Lowtide</div>
+          <div class="s-head">Lowtide</div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
             <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Een vriendin</span><span lang="en">A friend</span></div><div class="img"></div></div>
             <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Je broer</span><span lang="en">Your brother</span></div><div class="img"></div></div>
