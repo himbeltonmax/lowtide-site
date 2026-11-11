@@ -619,7 +619,7 @@
     const yearExcl = Math.round(n * PRICE.year * 100) / 100;
     const day = n * HOURS_PER_DAY, yearH = day * 365;
     const num = (x) => Math.round(x).toLocaleString("nl-NL");
-    $("impactBig").innerHTML = `U redt met deze aankoop <b>${num(yearH)} uur</b> per jaar.`;
+    $("impactBig").innerHTML = `U redt <b>${num(yearH)} uur</b> per jaar.`;
     $("impactSmall").textContent = `Lowtide zorgt gemiddeld voor 1 uur per dag minder scrollen*.`;
     const low = seats() < MIN;
     $("seatHint").textContent = low ? "Minimaal 5 accounts" : "";
