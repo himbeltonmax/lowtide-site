@@ -233,6 +233,13 @@
   .seats input { text-align: center; font-size: 20px; }
   .promise { font-size: 15px; font-weight: 600; margin: 12px 0 4px; }
   .hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
+  /* Order agenda (max, 2026-11-11): real dates that move with the start date. */
+  .agenda { list-style: none; margin: 14px 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--edge); display: grid; gap: 10px; }
+  .agenda li { position: relative; font-size: 14px; line-height: 1.4; }
+  .agenda li::before { content: ""; position: absolute; left: -24px; top: 4px; width: 10px; height: 10px; border-radius: 50%;
+    background: currentColor; opacity: .7; }
+  .agenda b { display: block; font-variant-numeric: tabular-nums; }
+  .agenda span { color: var(--soft); }
   .err { color: #ffd8cc; }
 
   .sum { display: grid; gap: 8px; font-size: 15px; }
@@ -483,9 +490,10 @@
           <p class="hint" id="impactSmall"></p>
         </div>
 
-        <label for="start">Ingangsdatum (max. 21 dagen later)</label>
+        <label for="start">Startdatum (max. 21 dagen later)</label>
         <input id="start" type="date">
-        <p class="hint" id="startHint">Lowtide abonnement gaat in op deze datum.</p>
+        <p class="hint" id="startHint">Tot deze datum werken 5 accounts gratis. Op deze datum gaan alle accounts aan.</p>
+        <ol class="agenda" id="agenda" aria-label="Wat gebeurt wanneer"></ol>
 
 
         <label for="company">Bedrijfsnaam</label>
@@ -508,7 +516,7 @@
           <div class="row total"><span>Incl. btw</span><span id="incl"></span></div>
         </div>
         <button type="submit" class="btn pay">Geef Lowtide cadeau</button>
-        <p class="hint" style="text-align:center">Eerste 7 dagen gratis. Daarna factuur per mail, 14 dagen betaaltermijn.</p>
+        <p class="hint" style="text-align:center">Tot de startdatum 5 accounts gratis. Factuur op de startdatum, 14 dagen betaaltermijn.</p>
         <p id="soon">Betalen kan over een paar dagen. Wilt u nu al bestellen? Mail <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20bedrijven">himbelton@gmail.com</a>, dan regelen we het meteen.</p>
         <div class="cost pay-kpi">
           <p class="eyebrow" style="text-align:left">Wist u dat..</p>
@@ -526,7 +534,7 @@
     <div class="faq">
       <details><summary>Wat is een account?</summary><p>Eén account is één telefoon die inlogt met uw bedrijfsnaam en wachtwoord. Plekken vrijmaken? Mail ons, dan loggen we alle telefoons uit en krijgt u een nieuw wachtwoord.</p></details>
       <details><summary>Op welke telefoons werkt het?</summary><p>iPhone en Android. Eén plek is één telefoon.</p></details>
-      <details><summary>Hoe opzeggen?</summary><p>In de gratis week: met één klik via de mail die u op dag 5 krijgt. Daarna: mail ons, dan stoppen we na de lopende periode.</p></details>
+      <details><summary>Hoe opzeggen?</summary><p>Vóór de startdatum: met één klik via de link in de bevestigingsmail, dan kost het niets. Daarna: mail ons, dan stoppen we na de lopende periode.</p></details>
     </div>
   </div>
 </section>
@@ -620,6 +628,24 @@
     $("seatHint").textContent = low ? "Minimaal 5 accounts" : "";
     $("seatHint").hidden = !low;
     $("seatHint").classList.toggle("err", low);
+    agenda(n, excl + vat, months);
+  }
+
+  // What happens when, with real dates (max, 2026-11-11): today 5 accounts free, start date all accounts + invoice,
+  // 14 days to pay, then the next invoice one period later.
+  function agenda(n, incl, months) {
+    const today = new Date(); today.setHours(12, 0, 0, 0);
+    const start = $("start").value ? new Date(`${$("start").value}T12:00:00`) : today;
+    const add = (d, days, m = 0) => { const x = new Date(d); x.setMonth(x.getMonth() + m); x.setDate(x.getDate() + days); return x; };
+    const fmt = (d) => d.toLocaleDateString("nl-NL", { weekday: "short", day: "numeric", month: "long" });
+    const same = iso(start) === iso(today);
+    const free = Math.min(5, n);
+    const rows = [];
+    if (!same) rows.push([`Vandaag, ${fmt(today)}`, `${free} accounts direct actief, gratis. Inloggegevens meteen op het scherm en per mail.`]);
+    rows.push([`${same ? "Vandaag, " : ""}${fmt(start)}`, `${same ? "Alle " + n + " accounts direct actief." : "Startdatum: alle " + n + " accounts actief."} Factuur per mail: ${eur(incl)} incl. btw.`]);
+    rows.push([fmt(add(start, 14)), "Uiterste betaaldatum (14 dagen), ook met iDEAL."]);
+    rows.push([fmt(add(start, 0, months)), `Volgende factuur, daarna elke${months === 12 ? " 12 maanden" : " maand"}.`]);
+    $("agenda").innerHTML = rows.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join("");
   }
 
   document.querySelectorAll(".plan").forEach((b) => b.addEventListener("click", () => {
