@@ -234,7 +234,7 @@
   .promise { font-size: 15px; font-weight: 600; margin: 12px 0 4px; }
   .hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
   /* Order agenda (max, 2026-11-11): real dates that move with the start date. */
-  .agenda { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--soft); }
+  .agenda { margin: 14px 0 0; font-size: 14px; line-height: 1.45; color: var(--soft); }
   .agenda b { color: var(--foam); }
   .agenda b { font-variant-numeric: tabular-nums; }
   .err { color: #ffd8cc; }
@@ -489,7 +489,6 @@
 
         <label for="start">Startdatum (vandaag tot max. 21 dagen later)</label>
         <input id="start" type="date">
-        <p class="agenda" id="agenda"></p>
 
 
         <label for="company">Bedrijfsnaam</label>
@@ -513,6 +512,7 @@
           <div class="row"><span>Btw 21%</span><span id="vat"></span></div>
           <div class="row total"><span>Incl. btw</span><span id="incl"></span></div>
         </div>
+        <p class="agenda" id="agenda"></p>
         <button type="submit" class="btn pay">Geef Lowtide cadeau</button>
         <p id="soon">Betalen kan over een paar dagen. Wilt u nu al bestellen? Mail <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20bedrijven">himbelton@gmail.com</a>, dan regelen we het meteen.</p>
         <div class="cost pay-kpi">
