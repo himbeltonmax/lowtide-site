@@ -619,10 +619,29 @@
   $("start").addEventListener("input", render);
   $("seats").addEventListener("blur", () => { if (seats() < MIN) { $("seats").value = MIN; render(); } });
 
-  // Payment is not connected yet (Mollie account pending): show the placeholder note.
-  $("form").addEventListener("submit", (e) => {
+  // Pay (max, 2026-11-11): order on the server → Mollie checkout → bedankt.html shows the login. Until the Supabase
+  // URL is filled in here, the button shows the "mail us" note.
+  const API = "SUPABASE_URL/functions/v1";
+  const fail = (msg) => { $("soon").textContent = msg; $("soon").style.display = "block"; };
+  $("form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    $("soon").style.display = "block";
+    if (API.startsWith("SUPABASE_URL")) { $("soon").style.display = "block"; return; }
+    const company = $("company").value.trim(), kvk = $("kvk").value.replace(/\D/g, ""), email = $("email").value.trim();
+    if (!company) return fail("Vul de bedrijfsnaam in.");
+    if (kvk.length !== 8) return fail("Vul een KvK-nummer van 8 cijfers in.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail("Vul een geldig mailadres voor de factuur in.");
+    const btn = document.querySelector(".pay");
+    btn.disabled = true; $("soon").style.display = "none";
+    try {
+      const r = await fetch(`${API}/create-order`, { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ plan: plan === "year" ? "yearly" : "monthly", seats: Math.max(seats(), MIN),
+          company_name: company, kvk, billing_email: email, start_date: $("start").value }) });
+      const d = await r.json();
+      if (d.checkout) { location.href = d.checkout; return; }
+      fail(d.error === "name_taken" ? "Deze bedrijfsnaam is al in gebruik. Mail ons, dan regelen we het."
+        : "Er ging iets mis. Controleer de gegevens of mail himbelton@gmail.com.");
+    } catch { fail("Geen verbinding. Probeer het zo opnieuw."); }
+    btn.disabled = false;
   });
 
   render();

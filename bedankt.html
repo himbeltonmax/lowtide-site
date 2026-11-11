@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Lowtide bedankt</title>
+<meta name="theme-color" content="#45806b">
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bottom: #45806b; --foam: #f7faf5; --soft: rgba(247, 250, 245, 0.8); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+         color: var(--foam); background: var(--bottom); min-height: 100vh; display: grid; place-items: center;
+         -webkit-font-smoothing: antialiased; text-align: center; padding: 16px; line-height: 1.5; }
+  main { width: 100%; max-width: 440px; }
+  .home { font-size: 13px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--soft); }
+  h1 { font-family: ui-serif, "New York", Georgia, serif; font-weight: 400; font-size: 32px; margin: 14px 0 18px; }
+  p { color: var(--soft); margin-top: 10px; }
+  .login { background: rgba(247,250,245,.12); border-radius: 16px; padding: 18px; margin-top: 18px; text-align: left; }
+  .login span { display: block; font-size: 13px; color: var(--soft); }
+  .login b { display: block; font: 600 22px ui-monospace, Menlo, monospace; letter-spacing: .03em; user-select: all;
+             margin-bottom: 12px; word-break: break-all; }
+  a { color: inherit; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="home">Lowtide</div>
+  <h1 id="title">Betaling controleren…</h1>
+  <p id="info">Dit duurt een paar seconden.</p>
+  <div class="login" id="login" hidden>
+    <span>Gebruikersnaam</span><b id="user"></b>
+    <span id="pwLabel">Wachtwoord</span><b id="pw"></b>
+  </div>
+  <p id="steps" hidden>Collega's openen Lowtide, gaan naar Instellingen en loggen in met deze gegevens. Elke telefoon is één plek.</p>
+  <p id="more" hidden></p>
+</main>
+<script>
+// After the Mollie checkout (max, 2026-11-11): the buyer gets the username + password right here (and by mail).
+const API = "SUPABASE_URL/functions/v1";
+const t = new URLSearchParams(location.search).get("t") || "";
+const $ = (id) => document.getElementById(id);
+const day = (d) => new Date(d).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+let tries = 0;
+async function poll() {
+  try {
+    const d = await (await fetch(`${API}/order-status?t=${encodeURIComponent(t)}`)).json();
+    if (d.status === "paid") {
+      $("title").textContent = `Welkom, ${d.company}`;
+      $("info").textContent = `${d.seats} plekken, geldig tot ${day(d.valid_until)}.` +
+        (new Date(d.valid_from) > new Date() ? ` Inloggen kan vanaf ${day(d.valid_from)}.` : "");
+      $("user").textContent = d.username;
+      if (d.password) { $("pw").textContent = d.password; }
+      else { $("pwLabel").hidden = true; $("pw").hidden = true; }
+      $("login").hidden = false; $("steps").hidden = false;
+      $("more").innerHTML = (d.password ? "Bewaar dit wachtwoord nu: het staat ook in de mail met de factuur. " : "Het wachtwoord staat in de mail met de factuur. ") +
+        `Hoeveel plekken in gebruik zijn, ziet u op <a href="plekken.html">plekken.html</a>.`;
+      $("more").hidden = false;
+      return;
+    }
+    if (["failed", "canceled", "expired"].includes(d.status)) {
+      $("title").textContent = "De betaling is niet gelukt";
+      $("info").innerHTML = `Er is niets afgeschreven. <a href="bedrijven-k7q4m2.html#bestellen">Probeer het opnieuw</a>.`;
+      return;
+    }
+  } catch {}
+  if (++tries < 40) setTimeout(poll, 3000);
+  else $("info").textContent = "We wachten nog op de bank. Ververs deze pagina over een minuut.";
+}
+poll();
+</script>
+</body>
+</html>
