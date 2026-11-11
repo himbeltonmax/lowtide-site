@@ -187,9 +187,9 @@
   @media (max-width: 640px) { .flow { flex-direction: column; gap: 6px; } .fa { transform: rotate(90deg); } }
   .k-goal { margin-top: 28px; font: italic 20px/1.4 var(--serif); }
 
-  .who { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .who div { border-radius: 18px; padding: 20px 20px 18px; background: var(--faint); border: 1px solid var(--edge); }
-  .who b { display: block; font: 20px var(--serif); font-weight: 400; }
+  .who { margin: 32px auto 0; max-width: 560px; text-align: left; border-top: 1px solid var(--edge); }
+  .who div { display: flex; align-items: baseline; gap: 16px; padding: 13px 4px; border-bottom: 1px solid var(--edge); }
+  .who b { flex: 0 0 180px; font: 600 15px var(--sans); }
   .who span { font-size: 15px; color: var(--soft); }
 
   .faq { max-width: 680px; margin: 40px auto 0; display: grid; gap: 10px; }
@@ -210,14 +210,14 @@
   @media (max-width: 900px) {
     .hero-in { grid-template-columns: 1fr; }
     .facts-row { grid-template-columns: 1fr 1fr; }
-    .who { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 640px) {
     section { padding: 72px 16px; }
     .hero { padding-top: 84px; }
     .phone { height: 500px; }
     .reel .img { height: 318px; }
-    .why-grid, .steps, .who { grid-template-columns: 1fr; }
+    .why-grid, .steps { grid-template-columns: 1fr; }
+    .who div { flex-direction: column; gap: 2px; } .who b { flex: none; }
     .why-grid { gap: 38px; }
     .facts-row b { font-size: 16px; }
     .k-eq { display: none; }
@@ -328,12 +328,12 @@
     <p class="eyebrow"><span lang="nl">Voor wie</span><span lang="en">For whom</span></p>
     <h2><span lang="nl">Voor iedereen die minder wil scrollen.</span><span lang="en">For anyone who wants to scroll less.</span></h2>
     <div class="who">
-      <div><b lang="nl">Ouders</b><b lang="en">Parents</b><span lang="nl">Grip op je kind, en op jezelf.</span><span lang="en">A grip on your kid's scrolling, and your own.</span></div>
-      <div><b>GenZ</b><span>Back to 2010.</span></div>
-      <div><b lang="nl">Studenten</b><b lang="en">Students</b><span lang="nl">Focus met leren.</span><span lang="en">Focus while studying.</span></div>
-      <div><b lang="nl">Ondernemers</b><b lang="en">Entrepreneurs</b><span lang="nl">Rust en tijd terug.</span><span lang="en">Calm and time back.</span></div>
-      <div><b lang="nl">Senioren</b><b lang="en">Seniors</b><span lang="nl">Instagram versimpeld.</span><span lang="en">Instagram, made simple.</span></div>
-      <div><b lang="nl">Scholen en bedrijven</b><b lang="en">Schools and companies</b><span lang="nl">Rust en focus voor je mensen. <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20teams">Mail ons</a>.</span><span lang="en">Calm and focus for your people. <a href="mailto:himbelton@gmail.com?subject=Lowtide%20for%20teams">Email us</a>.</span></div>
+      <div><b lang="nl">Ouders</b><b lang="en">Parents</b><span lang="nl">Grip op je kind, en op jezelf. 🤝</span><span lang="en">A grip on your kid's scrolling, and your own. 🤝</span></div>
+      <div><b>GenZ</b><span>Back to 2010. 📸</span></div>
+      <div><b lang="nl">Studenten</b><b lang="en">Students</b><span lang="nl">Focus met leren. 🎯</span><span lang="en">Focus while studying. 🎯</span></div>
+      <div><b lang="nl">Ondernemers</b><b lang="en">Entrepreneurs</b><span lang="nl">Rust en tijd terug. ⏳</span><span lang="en">Calm and time back. ⏳</span></div>
+      <div><b lang="nl">Senioren</b><b lang="en">Seniors</b><span lang="nl">Instagram versimpeld. ☕</span><span lang="en">Instagram, made simple. ☕</span></div>
+      <div><b lang="nl">Scholen en bedrijven</b><b lang="en">Schools and companies</b><span lang="nl">Rust en focus voor je mensen. 🧘 <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20teams">Mail ons</a>.</span><span lang="en">Calm and focus for your people. 🧘 <a href="mailto:himbelton@gmail.com?subject=Lowtide%20for%20teams">Email us</a>.</span></div>
     </div>
   </div>
 </section>
