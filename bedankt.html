@@ -50,10 +50,8 @@ async function poll() {
   try {
     const d = await (await fetch(`${API}/order-status?t=${encodeURIComponent(t)}`)).json();
     if (d.status === "paid") {
-      $("title").textContent = `Welkom, ${d.company}`;
-      $("info").textContent = d.ordered > d.seats
-        ? `Vandaag ${d.seats} accounts om te testen, gratis. Wij checken domein en KvK; na akkoord gaan op ${day(d.start_date)} alle ${d.ordered} accounts aan en volgt de factuur.`
-        : `${d.seats} accounts actief. De factuur volgt per mail.`;
+      $("title").textContent = `Bedankt, ${d.company}`;
+      $("info").textContent = `Wij doen een domein- & KvK-check om uw bedrijf te verifiëren. Na akkoord: vanaf ${day(d.start_date)} alle ${d.ordered} accounts actief, en de factuur per mail.`;
       $("user").textContent = d.username;
       if (d.password) { $("pw").textContent = d.password; }
       else { $("pwLabel").hidden = true; $("pw").hidden = true; }

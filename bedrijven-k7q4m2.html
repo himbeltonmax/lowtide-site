@@ -234,7 +234,9 @@
   .promise { font-size: 15px; font-weight: 600; margin: 12px 0 4px; }
   .hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
   /* Order agenda (max, 2026-11-11): real dates that move with the start date. */
-  .agenda { list-style: none; margin: 14px 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--edge); display: grid; gap: 10px; }
+  .agenda-box { margin-top: 10px; font-size: 14px; }
+  .agenda-box summary { cursor: pointer; color: var(--soft); }
+  .agenda { list-style: none; margin: 12px 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--edge); display: grid; gap: 10px; }
   .agenda li { position: relative; font-size: 14px; line-height: 1.4; }
   .agenda li::before { content: ""; position: absolute; left: -24px; top: 4px; width: 10px; height: 10px; border-radius: 50%;
     background: currentColor; opacity: .7; }
@@ -492,8 +494,10 @@
 
         <label for="start">Startdatum (morgen tot max. 21 dagen later)</label>
         <input id="start" type="date">
-        <p class="hint" id="startHint">Tot deze datum werken 5 accounts gratis om te testen. Op deze datum gaan alle accounts aan.</p>
-        <ol class="agenda" id="agenda" aria-label="Wat gebeurt wanneer"></ol>
+        <details class="agenda-box">
+          <summary>Wat gebeurt wanneer</summary>
+          <ol class="agenda" id="agenda"></ol>
+        </details>
 
 
         <label for="company">Bedrijfsnaam</label>
@@ -632,19 +636,17 @@
     agenda(n, excl + vat, months);
   }
 
-  // What happens when, with real dates (max, 2026-11-11): today 5 accounts free, start date all accounts + invoice,
+  // What happens when, with real dates (max, 2026-11-11): start date all accounts + invoice, 14 days to pay, next invoice.
   // 14 days to pay, then the next invoice one period later.
   function agenda(n, incl, months) {
     const today = new Date(); today.setHours(12, 0, 0, 0);
     const start = $("start").value ? new Date(`${$("start").value}T12:00:00`) : today;
     const add = (d, days, m = 0) => { const x = new Date(d); x.setMonth(x.getMonth() + m); x.setDate(x.getDate() + days); return x; };
-    const fmt = (d) => d.toLocaleDateString("nl-NL", { weekday: "short", day: "numeric", month: "long" });
-    const free = Math.min(5, n);
+    const fmt = (d) => d.toLocaleDateString("nl-NL", { day: "numeric", month: "long" });
     const rows = [];
-    rows.push([`Vandaag, ${fmt(today)}`, `${free} accounts direct actief om te testen, gratis. Wij checken domein en KvK.`]);
-    rows.push([fmt(start), `Startdatum: na akkoord alle ${n} accounts actief. Factuur per mail: ${eur(incl)} incl. btw.`]);
-    rows.push([fmt(add(start, 14)), "Uiterste betaaldatum (14 dagen), ook met iDEAL."]);
-    rows.push([fmt(add(start, 0, months)), `Volgende factuur, daarna elke${months === 12 ? " 12 maanden" : " maand"}.`]);
+    rows.push([fmt(start), `${n} accounts actief, factuur ${eur(incl)}`]);
+    rows.push([fmt(add(start, 14)), "Uiterlijk betalen"]);
+    rows.push([fmt(add(start, 0, months)), "Volgende factuur"]);
     $("agenda").innerHTML = rows.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join("");
   }
 
