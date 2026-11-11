@@ -61,7 +61,7 @@
   @media (prefers-reduced-motion: reduce) { .switch .nudge { animation: none; } }
   .switch button[aria-pressed="true"] { background: var(--foam); color: var(--bottom); }
   .phone { width: min(300px, 82vw); height: 560px; border-radius: 46px; background: #121414; padding: 12px; box-shadow: 0 0 0 2px #2b2f2e, 0 24px 60px rgba(10,25,20,.45); position: relative; overflow: visible; }
-  .phone::before { content: ""; position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 86px; height: 24px; border-radius: 999px; background: #121414; z-index: 2; }
+  .phone::before { content: ""; position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 86px; height: 24px; border-radius: 999px; background: #121414; z-index: 5; }
   .phone::after { content: ""; position: absolute; right: -4px; top: 120px; width: 4px; height: 64px; border-radius: 0 3px 3px 0; background: #2b2f2e }
   .screen { position: absolute; inset: 12px; border-radius: 36px; overflow: hidden; background: #fff; transition: opacity .6s ease; }
   .screen.calm { opacity: 0; }
@@ -86,16 +86,24 @@
   .reel .img { position: relative; overflow: hidden; height: 330px; background: #222; }
   .r-track i { position: relative; }
   .r-pill { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); white-space: nowrap; font: 700 11px var(--sans); font-style: normal; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.92); color: #8a2f27; box-shadow: 0 2px 8px rgba(80,20,15,.18); }
-  .r-track { position: absolute; inset: 0; display: flex; flex-direction: column; animation: reel 4.8s cubic-bezier(.6,0,.3,1) infinite; }
+  .r-track { position: absolute; inset: 0; display: flex; flex-direction: column; animation: reel 6s cubic-bezier(.6,0,.3,1) infinite; }
   .r-track i { flex: none; height: 100%; display: grid; place-items: center; }
   .r-track b { width: 0; height: 0; border-left: 16px solid rgba(255,255,255,.85); border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
-  @keyframes reel { 0%,16% { transform: translateY(0); } 25%,41% { transform: translateY(-100%); } 50%,66% { transform: translateY(-200%); } 75%,91% { transform: translateY(-300%); } 100% { transform: translateY(-400%); } }
+  @keyframes reel { 0%,13% { transform: translateY(0); } 20%,33% { transform: translateY(-100%); } 40%,53% { transform: translateY(-200%); } 60%,73% { transform: translateY(-300%); } 80%,93% { transform: translateY(-400%); } 100% { transform: translateY(-500%); } }
   .r-swipe { position: absolute; right: 10px; bottom: 12px; width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,.28); display: grid; place-items: center; animation: swipe 1.2s ease-in-out infinite; }
   .r-swipe svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
   @keyframes swipe { 0%,100% { transform: translateY(6px); opacity: .5; } 50% { transform: translateY(-10px); opacity: 1; } }
   .r-more { position: absolute; left: 10px; bottom: 10px; font: 700 15px var(--sans); color: rgba(255,255,255,.9); }
   @media (prefers-reduced-motion: reduce) { .r-track, .r-swipe { animation: none; } }
   .tag { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #e8d7d7; color: #8a4b4b; }
+  .calm .feed { will-change: transform; }
+  .calm .s-head { position: relative; z-index: 2; background: #fff; }
+  .c-scroll .stories { padding: 0 0 2px; }
+  .c-scroll .img { height: 120px; }
+  .f-pill { font: 700 11px var(--sans); font-style: normal; padding: 4px 10px; border-radius: 999px; background: #dcefe3; color: #2f6b4f; }
+  .phone.is-calm .c-scroll { animation: cscroll 7s cubic-bezier(.45,0,.25,1) .4s both; }
+  @keyframes cscroll { from { transform: translateY(0); } to { transform: translateY(calc(-1 * var(--dist, 0px))); } }
+  @media (prefers-reduced-motion: reduce) { .phone.is-calm .c-scroll { animation: none; transform: translateY(calc(-1 * var(--dist, 0px))); } }
   .done { margin-top: 6px; text-align: center; padding: 18px 8px; color: var(--ink); }
   .done .ck { width: 40px; height: 40px; margin: 0 auto 8px; border-radius: 50%; background: var(--bottom); display: grid; place-items: center; }
   .done .ck svg { width: 20px; height: 20px; stroke: #fff; stroke-width: 2.5; fill: none; }
@@ -227,15 +235,12 @@
         <div class="screen loud">
           <div class="s-head">Instagram</div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
-            <div class="post reel"><div class="p-top"><span class="av"></span><span lang="nl">Eindeloos doomscrollen</span><span lang="en">Endless doomscrolling</span><span class="tag">Reels</span></div><div class="img"><div class="r-track"><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><em class="r-pill"><span lang="nl">AI-aanbevolen post</span><span lang="en">AI-recommended post</span></em><b></b></i><i style="background:linear-gradient(160deg,#f6b9a6,#e5867a)"><em class="r-pill"><span lang="nl">AI-gegenereerde foto</span><span lang="en">AI-generated photo</span></em><b></b></i><i style="background:linear-gradient(160deg,#eb9a90,#d35f55)"><em class="r-pill"><span lang="nl">Aanbevolen reel</span><span lang="en">Suggested reel</span></em><b></b></i><i style="background:linear-gradient(160deg,#f4c0b4,#e27b6f)"><em class="r-pill"><span lang="nl">Onbekend account</span><span lang="en">Unknown account</span></em><b></b></i><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><em class="r-pill"><span lang="nl">AI-aanbevolen post</span><span lang="en">AI-recommended post</span></em><b></b></i></div><span class="r-swipe"><svg viewBox="0 0 24 24"><path d="M12 20V5M6.5 10.5L12 5l5.5 5.5"/></svg></span><span class="r-more">∞</span></div></div>
+            <div class="post reel"><div class="p-top"><span class="av"></span><span lang="nl">Eindeloos doomscrollen</span><span lang="en">Endless doomscrolling</span><span class="tag">Reels</span></div><div class="img"><div class="r-track"><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><em class="r-pill"><span lang="nl">AI-aanbevolen post</span><span lang="en">AI-recommended post</span></em><b></b></i><i style="background:linear-gradient(160deg,#f6b9a6,#e5867a)"><em class="r-pill"><span lang="nl">AI-gegenereerde foto</span><span lang="en">AI-generated photo</span></em><b></b></i><i style="background:linear-gradient(160deg,#f6b9a6,#d9665b)"><em class="r-pill"><span lang="nl">Advertentie</span><span lang="en">Advertisement</span></em><b></b></i><i style="background:linear-gradient(160deg,#eb9a90,#d35f55)"><em class="r-pill"><span lang="nl">Aanbevolen reel</span><span lang="en">Suggested reel</span></em><b></b></i><i style="background:linear-gradient(160deg,#f4c0b4,#e27b6f)"><em class="r-pill"><span lang="nl">Onbekend account</span><span lang="en">Unknown account</span></em><b></b></i><i style="background:linear-gradient(160deg,#f2a59b,#e0746a)"><em class="r-pill"><span lang="nl">AI-aanbevolen post</span><span lang="en">AI-recommended post</span></em><b></b></i></div><span class="r-swipe"><svg viewBox="0 0 24 24"><path d="M12 20V5M6.5 10.5L12 5l5.5 5.5"/></svg></span><span class="r-more">∞</span></div></div>
           </div>
         </div>
         <div class="screen calm">
-          <div class="s-head">Lowtide</div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="feed">
-            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Een vriendin</span><span lang="en">A friend</span></div><div class="img"></div></div>
-            <div class="post"><div class="p-top"><span class="av"></span><span lang="nl">Je broer</span><span lang="en">Your brother</span></div><div class="img"></div></div>
-            <div class="done"><div class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><b lang="nl">Je bent helemaal bij</b><b lang="en">You're all caught up</b><span lang="nl">Tijd voor iets anders.</span><span lang="en">Time for something else.</span></div>
+          <div class="s-head">Lowtide</div>
+          <div class="feed c-scroll" id="cScroll"><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Iemand die je volgt</span><span lang="en">Someone you follow</span></em></div><div class="img" style="background:linear-gradient(160deg,#d9e9de,#b9d6c4)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Je vriendin</span><span lang="en">Your friend</span></em></div><div class="img" style="background:linear-gradient(160deg,#cfe3d6,#a9ccb6)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Je broer</span><span lang="en">Your brother</span></em></div><div class="img" style="background:linear-gradient(160deg,#dcebe0,#c0dccb)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Je moeder</span><span lang="en">Your mom</span></em></div><div class="img" style="background:linear-gradient(160deg,#d3e6d9,#aed0bb)"></div></div><div class="post"><div class="p-top"><span class="av"></span><em class="f-pill"><span lang="nl">Iemand die je volgt</span><span lang="en">Someone you follow</span></em></div><div class="img" style="background:linear-gradient(160deg,#d9e9de,#b9d6c4)"></div></div><div class="done"><div class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><b lang="nl">Je bent helemaal bij</b><b lang="en">You're all caught up</b><span lang="nl">Tijd voor iets anders.</span><span lang="en">Time for something else.</span></div>
           </div>
         </div>
       </div>
@@ -404,7 +409,12 @@
   (function () {
     const phone = document.getElementById('phone');
     const btns = document.querySelectorAll('.switch button');
+    const feed = document.getElementById('cScroll');
     function show(v) {
+      // Scroll distance: from the top of the feed down to "Je bent helemaal bij" at the bottom of the screen.
+      const screen = feed.parentElement;
+      feed.style.setProperty('--dist', Math.max(0, feed.offsetTop + feed.scrollHeight - screen.clientHeight + 8) + 'px');
+      phone.classList.remove('is-calm'); void feed.offsetWidth;
       phone.classList.toggle('is-calm', v === 'calm');
       btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
     }
