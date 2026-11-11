@@ -146,7 +146,7 @@
   .w-txt { margin-top: 12px; font: 22px/1.45 var(--serif); }
   .w-txt small { display: block; margin-top: 10px; font: 16px/1.6 var(--sans); color: var(--soft); }
 
-  .cmp { max-width: 600px; margin: 56px auto 0; background: var(--foam); color: var(--ink); border-radius: 28px; padding: 34px 28px 30px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
+  .cmp { max-width: 460px; margin: 56px auto 0; background: var(--foam); color: var(--ink); border-radius: 28px; padding: 22px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
   .cmp-t { font: 400 clamp(24px, 3.4vw, 32px)/1.2 var(--serif); text-align: center; margin-bottom: 26px; }
   .vs { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
   .vs > div { padding: 8px 16px; font-size: 15px; line-height: 1.35; display: flex; align-items: center; gap: 10px; }
@@ -158,6 +158,8 @@
   .vs .now::before { content: "✓"; font-weight: 700; color: #3f8f63; flex: none; }
   .vs .h::before { content: none; }
   .vs .was s { text-decoration-thickness: 2px; text-decoration-color: rgba(192,96,90,.7); }
+  .vs.one { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .vs.one > div { font-size: 17px; padding: 10px 22px; }
   .cmp-end { margin-top: 24px; text-align: center; font: italic 20px/1.4 var(--serif); color: var(--ink2); }
   @media (max-width: 640px) {
     .cmp { padding: 26px 12px 22px; border-radius: 22px; }
@@ -239,11 +241,10 @@
   <div class="hero-in">
     <div>
       <h1><span lang="nl">Scroll minder.<br>Zie meer.</span><span lang="en">Scroll less.<br>See more.</span></h1>
-      <p class="sub" lang="nl">Wist je dat.. mensen gemiddeld <b>2,5 uur per dag</b> op social media zitten?<br><br><b>Krijg je Instagram terug zoals het in 2012 was:</b> alleen de mensen die je volgt. Probeer het vandaag.</p>
-      <p class="sub" lang="en">Did you know.. people spend <b>2.5 hours a day</b> on social media on average?<br><br><b>Get your Instagram back the way it was in 2012:</b> just the people you follow. Try it today.</p>
+      <p class="sub" lang="nl">Wist je dat..<br>mensen gemiddeld <b>2,5 uur per dag</b> op social media zitten?<br><br><b>Krijg je Instagram terug zoals het in 2012 was:</b><br>alleen de mensen die je volgt. Probeer het vandaag.</p>
+      <p class="sub" lang="en">Did you know..<br>people spend <b>2.5 hours a day</b> on social media on average?<br><br><b>Get your Instagram back the way it was in 2012:</b><br>just the people you follow. Try it today.</p>
       <div class="cta-row">
         <a class="btn" href="https://testflight.apple.com/join/Edq4h1nu"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span lang="nl">Probeer de beta op iPhone</span><span lang="en">Try the beta on iPhone</span></a>
-        <a class="link" href="https://chat.whatsapp.com/GrE4CihD5c2COl5VjTkFNd"><span lang="nl">Android? Zet je op de wachtlijst</span><span lang="en">Android? Join the waitlist</span></a>
       </div>
       <div class="chips">
         <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>iPhone <em lang="nl">· beta</em><em lang="en">· beta</em></span>
@@ -314,13 +315,12 @@
     <div class="full"><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg><span lang="nl">Wat het doet</span><span lang="en">What it does</span></p><p class="w-txt"><span lang="nl">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.<br><br>Je kiest bewuster wie &amp; wat je ziet</span><span lang="en">It filters out doomscrolling, recommended content and AI posts. The AI algorithm loses its ‘power’.<br><br>You choose more consciously who &amp; what you see</span></p></div>
   </div>
   <div class="cmp">
-    <p class="cmp-t"><span lang="nl">Het verschil</span><span lang="en">The difference</span></p>
-    <div class="vs">
-      <div class="was h">Instagram</div><div class="now h"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></div>
-      <div class="was"><span lang="nl">Eindeloos scrollen</span><span lang="en">Endless scrolling</span></div><div class="now"><span lang="nl">Klaar als je bij bent</span><span lang="en">Done when you're caught up</span></div>
-      <div class="was"><span lang="nl">Vooral vreemden en AI-posts</span><span lang="en">Mostly strangers and AI posts</span></div><div class="now"><span lang="nl">Alleen wie je volgt</span><span lang="en">Only people you follow</span></div>
-      <div class="was"><span lang="nl">Elke dag uren kwijt</span><span lang="en">Hours lost every day</span></div><div class="now"><span lang="nl">Je avond terug</span><span lang="en">Your evening back</span></div>
-      <div class="was last"><span lang="nl">Het algoritme kiest</span><span lang="en">The algorithm chooses</span></div><div class="now last"><span lang="nl">Jij kiest</span><span lang="en">You choose</span></div>
+    <div class="vs one">
+      <div class="now h"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></div>
+      <div class="now"><span lang="nl">Alleen wie je volgt</span><span lang="en">Only people you follow</span></div>
+      <div class="now"><span lang="nl">Klaar als je bij bent</span><span lang="en">Done when you're caught up</span></div>
+      <div class="now"><span lang="nl">Jij kiest wat je ziet</span><span lang="en">You choose what you see</span></div>
+      <div class="now last"><span lang="nl">Je avond terug</span><span lang="en">Your evening back</span></div>
     </div>
   </div>
 </section>
@@ -364,7 +364,6 @@
     <h2><span lang="nl">Klaar voor een rustiger Instagram?</span><span lang="en">Ready for a calmer Instagram?</span></h2>
     <div class="cta-row">
       <a class="btn" href="https://testflight.apple.com/join/Edq4h1nu"><span lang="nl">Probeer de beta op iPhone</span><span lang="en">Try the beta on iPhone</span></a>
-      <a class="link" href="https://chat.whatsapp.com/GrE4CihD5c2COl5VjTkFNd"><span lang="nl">Android? Zet je op de wachtlijst</span><span lang="en">Android? Join the waitlist</span></a>
     </div>
   </div>
 </section>
