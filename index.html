@@ -100,15 +100,25 @@
   .w-txt { margin-top: 12px; font: 22px/1.45 var(--serif); }
   .w-txt small { display: block; margin-top: 10px; font: 16px/1.6 var(--sans); color: var(--soft); }
 
-  .vs { max-width: 760px; margin: 44px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .vs-col { border-radius: 22px; padding: 26px 24px; }
-  .vs-col.was { background: var(--faint); border: 1px solid var(--edge); }
-  .vs-col.now { background: var(--foam); color: var(--ink); }
-  .vs-h { font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; opacity: .75; margin-bottom: 14px; }
-  .vs ul { list-style: none; display: grid; gap: 12px; font-size: 17px; }
-  .vs .was li { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: rgba(247,250,245,.55); color: var(--soft); }
-  .vs .now li::before { content: "✓"; color: var(--bottom); font-weight: 700; margin-right: 10px; }
-
+  .cmp { max-width: 820px; margin: 56px auto 0; background: var(--foam); color: var(--ink); border-radius: 28px; padding: 34px 28px 30px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
+  .cmp-t { font: 400 clamp(24px, 3.4vw, 32px)/1.2 var(--serif); text-align: center; margin-bottom: 26px; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  .vs > div { padding: 11px 20px; font-size: 17px; line-height: 1.35; display: flex; align-items: center; gap: 10px; }
+  .vs .was { background: #fbeeed; color: #8a4440; }
+  .vs .now { background: #e5f2e8; color: #24563f; font-weight: 600; }
+  .vs .h { padding-top: 22px; padding-bottom: 8px; font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; border-radius: 20px 20px 0 0; }
+  .vs .last { padding-bottom: 22px; border-radius: 0 0 20px 20px; }
+  .vs .was::before { content: "✕"; font-weight: 700; color: #c0605a; flex: none; }
+  .vs .now::before { content: "✓"; font-weight: 700; color: #3f8f63; flex: none; }
+  .vs .h::before { content: none; }
+  .vs .was s { text-decoration-thickness: 2px; text-decoration-color: rgba(192,96,90,.7); }
+  .cmp-end { margin-top: 24px; text-align: center; font: italic 20px/1.4 var(--serif); color: var(--ink2); }
+  @media (max-width: 640px) {
+    .cmp { padding: 26px 12px 22px; border-radius: 22px; }
+    .vs { column-gap: 6px; }
+    .vs > div { padding: 9px 10px; font-size: 14px; gap: 6px; }
+    .vs .h { font-size: 10px; letter-spacing: .14em; padding-top: 16px; }
+  }
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 52px; text-align: center; }
   .num { width: 46px; height: 46px; margin: 0 auto 14px; border-radius: 50%; border: 1.5px solid rgba(247,250,245,.6); display: grid; place-items: center; font: 20px var(--serif); }
   .step h3 { font: 400 22px var(--serif); margin-bottom: 6px; }
@@ -150,7 +160,7 @@
     section { padding: 72px 16px; }
     .hero { padding-top: 84px; }
     .phone { height: 500px; }
-    .why-grid, .vs, .steps, .who { grid-template-columns: 1fr; }
+    .why-grid, .steps, .who { grid-template-columns: 1fr; }
     .why-grid { gap: 38px; }
     .facts-row b { font-size: 16px; }
     .k-eq { display: none; }
@@ -236,15 +246,20 @@
       <p class="w-txt" lang="en">Your feed, stories, messages and profiles, in a calm view. Reels, Explore, suggested posts and AI posts are left out. Search stays.<small>So you choose who and what you see again, instead of the algorithm.</small></p>
     </div>
   </div>
-  <div class="vs">
-    <div class="vs-col was"><p class="vs-h">Instagram</p>
-      <ul lang="nl"><li>Doomscrolling</li><li>Reels</li><li>Aanbevolen posts</li><li>AI-posts</li><li>Eindeloze feed</li></ul>
-      <ul lang="en"><li>Doomscrolling</li><li>Reels</li><li>Suggested posts</li><li>AI posts</li><li>Endless feed</li></ul>
+  <div class="cmp">
+    <p class="cmp-t"><span lang="nl">Gewoon jouw Instagram, maar rustig.</span><span lang="en">Just your Instagram, but calm.</span></p>
+    <div class="vs">
+      <div class="was h">Instagram</div><div class="now h"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></div>
+      <div class="was"><span lang="nl"><s>Doomscrolling</s></span><span lang="en"><s>Doomscrolling</s></span></div><div class="now"><span lang="nl">Even kijken, dan klaar</span><span lang="en">A quick look, then done</span></div>
+      <div class="was"><span lang="nl"><s>Aanbevolen posts</s></span><span lang="en"><s>Suggested posts</s></span></div><div class="now"><span lang="nl">Alleen wie je volgt</span><span lang="en">Just the people you follow</span></div>
+      <div class="was"><span lang="nl"><s>AI-posts</s></span><span lang="en"><s>AI posts</s></span></div><div class="now"><span lang="nl">Wat je vrienden echt delen</span><span lang="en">What your friends actually share</span></div>
+      <div class="was"><span lang="nl">Uren per dag kwijt</span><span lang="en">Hours lost every day</span></div><div class="now"><span lang="nl">Tijd terug voor jezelf</span><span lang="en">Time back for yourself</span></div>
+      <div class="was"><span lang="nl">Gemaakt om te blijven</span><span lang="en">Built to keep you there</span></div><div class="now"><span lang="nl">Gemaakt om weg te leggen</span><span lang="en">Made to put down</span></div>
+      <div class="was"><span lang="nl">Onrustig hoofd</span><span lang="en">A restless mind</span></div><div class="now"><span lang="nl">Rustiger hoofd</span><span lang="en">A calmer mind</span></div>
+      <div class="was"><span lang="nl">Je bent nooit klaar</span><span lang="en">You are never done</span></div><div class="now"><span lang="nl">Feed stopt als je bij bent</span><span lang="en">The feed ends when you're caught up</span></div>
+      <div class="was last"><span lang="nl">Het AI-algoritme kiest voor jou</span><span lang="en">The AI algorithm chooses for you</span></div><div class="now last"><span lang="nl">Jij kiest wat je ziet</span><span lang="en">You choose what you see</span></div>
     </div>
-    <div class="vs-col now"><p class="vs-h" lang="nl">Met Lowtide</p><p class="vs-h" lang="en">With Lowtide</p>
-      <ul lang="nl"><li>Wie je volgt</li><li>Stories</li><li>Berichten</li><li>Zoeken</li><li>Feed stopt als je bij bent</li></ul>
-      <ul lang="en"><li>Who you follow</li><li>Stories</li><li>Messages</li><li>Search</li><li>Feed ends when you're caught up</li></ul>
-    </div>
+    <p class="cmp-end"><span lang="nl">Je vrienden blijven. De ruis gaat.</span><span lang="en">Your friends stay. The noise goes.</span></p>
   </div>
 </section>
 
