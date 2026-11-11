@@ -234,7 +234,7 @@
   .promise { font-size: 15px; font-weight: 600; margin: 12px 0 4px; }
   .hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
   /* Order agenda (max, 2026-11-11): real dates that move with the start date. */
-  .agenda { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--soft); }
+  .agenda { margin: 14px 0 0; font-size: 14px; line-height: 1.45; color: var(--soft); }
   .agenda b { color: var(--foam); }
   .agenda b { font-variant-numeric: tabular-nums; }
   .err { color: #ffd8cc; }
@@ -489,7 +489,6 @@
 
         <label for="start">Startdatum (vandaag tot max. 21 dagen later)</label>
         <input id="start" type="date">
-        <p class="agenda" id="agenda"></p>
 
 
         <label for="company">Bedrijfsnaam</label>
@@ -498,8 +497,11 @@
         <label for="kvk">KvK-nummer</label>
         <input id="kvk" inputmode="numeric" maxlength="8" placeholder="12345678">
 
-        <label for="email">Factuurmail</label>
-        <input id="email" type="email" autocomplete="email" placeholder="finance@bedrijf.nl">
+        <label for="email">Contact mail</label>
+        <input id="email" type="email" autocomplete="email" placeholder="naam@bedrijf.nl">
+
+        <label for="invoice">Factuurmail (optioneel)</label>
+        <input id="invoice" type="email" placeholder="finance@bedrijf.nl">
       </div>
 
       <div class="panel">
@@ -510,8 +512,8 @@
           <div class="row"><span>Btw 21%</span><span id="vat"></span></div>
           <div class="row total"><span>Incl. btw</span><span id="incl"></span></div>
         </div>
+        <p class="agenda" id="agenda"></p>
         <button type="submit" class="btn pay">Geef Lowtide cadeau</button>
-        <p class="hint" style="text-align:center">Wij doen een domein- &amp; KvK-check om uw bedrijf te verifiëren. Na akkoord: alle gekochte accounts vrijgegeven.</p>
         <p id="soon">Betalen kan over een paar dagen. Wilt u nu al bestellen? Mail <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20bedrijven">himbelton@gmail.com</a>, dan regelen we het meteen.</p>
         <div class="cost pay-kpi">
           <p class="eyebrow" style="text-align:left">Wist u dat..</p>
@@ -632,13 +634,13 @@
   function agenda(n, incl, months) {
     const today = new Date(); today.setHours(12, 0, 0, 0);
     const start = $("start").value ? new Date(`${$("start").value}T12:00:00`) : today;
-    // One sentence (max, 2026-11-11): "Vanaf 18 november 5 accounts actief, factuur € 27,16 elke 18e van de maand
+    // One sentence in the price column, no amount (max, 2026-11-11): "Vanaf 18 november 5 accounts actief, factuur elke 18e van de maand
     // (14 dagen), makkelijk opzegbaar." Yearly with the year. Cancelling stops after the running period (FAQ).
     // The 29th–31st: last day of a shorter month (trial-check).
     const yearly = months === 12, dom = start.getDate();
     const date = start.toLocaleDateString("nl-NL", { day: "numeric", month: "long", ...(yearly ? { year: "numeric" } : {}) });
     const when = yearly ? `elk jaar op ${start.toLocaleDateString("nl-NL", { day: "numeric", month: "long" })}` : `elke ${dom}e van de maand`;
-    $("agenda").innerHTML = `Vanaf <b>${date}</b> ${n} accounts actief, factuur ${eur(incl)} ${when} (14 dagen), makkelijk opzegbaar.`;
+    $("agenda").innerHTML = `Vanaf <b>${date}</b> ${n} accounts actief, factuur ${when} (14 dagen), makkelijk opzegbaar.`;
   }
 
   document.querySelectorAll(".plan").forEach((b) => b.addEventListener("click", () => {
@@ -660,21 +662,22 @@
   $("form").addEventListener("submit", async (e) => {
     e.preventDefault();
     if (API.startsWith("SUPABASE_URL")) { $("soon").style.display = "block"; return; }
-    const company = $("company").value.trim(), kvk = $("kvk").value.replace(/\D/g, ""), email = $("email").value.trim();
+    const company = $("company").value.trim(), kvk = $("kvk").value.replace(/\D/g, ""), email = $("email").value.trim(), invoice = $("invoice").value.trim();
     if (!company) return fail("Vul de bedrijfsnaam in.");
     if (kvk.length !== 8) return fail("Vul een KvK-nummer van 8 cijfers in.");
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail("Vul een geldig mailadres voor de factuur in.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail("Vul een geldig contactmailadres in.");
+    if (invoice && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(invoice)) return fail("Vul een geldig factuurmailadres in, of laat het leeg.");
     const btn = document.querySelector(".pay");
     btn.disabled = true; $("soon").style.display = "none";
     try {
       const r = await fetch(`${API}/create-order`, { method: "POST", headers: { "content-type": "application/json" },
         body: JSON.stringify({ plan: plan === "year" ? "yearly" : "monthly", seats: Math.max(seats(), MIN),
-          company_name: company, kvk, billing_email: email, start_date: $("start").value }) });
+          company_name: company, kvk, billing_email: email, invoice_email: invoice, start_date: $("start").value }) });
       const d = await r.json();
       if (d.t) { location.href = `bedankt.html?t=${d.t}`; return; }
       fail({
         name_taken: "Deze bedrijfsnaam is al in gebruik. Mail ons, dan regelen we het.",
-        free_mail: "Gebruik een factuurmail op het domein van uw bedrijf (geen Gmail, Hotmail en dergelijke).",
+        free_mail: "Gebruik een contactmail op het domein van uw bedrijf (geen Gmail, Hotmail en dergelijke).",
         already_ordered: "Voor dit KvK-nummer of maildomein is al besteld. Mail himbelton@gmail.com, dan regelen we het.",
         too_many: "Te veel bestellingen vanaf deze verbinding. Probeer het morgen opnieuw of mail himbelton@gmail.com.",
         start_date: "Kies een startdatum van vandaag tot uiterlijk 21 dagen vooruit.",
