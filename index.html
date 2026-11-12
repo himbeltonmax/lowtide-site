@@ -184,6 +184,14 @@
   .k-row b { display: block; font: 400 clamp(34px, 5vw, 48px)/1.1 var(--serif); }
   .k-row span { font-size: 14px; color: var(--soft); }
   .k-eq { font: 30px var(--serif); color: var(--soft); font-style: normal; }
+  .yn { padding: 56px 16px; background: var(--bottom); }
+  .yn-grid { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .yn ul { list-style: none; margin: 0; padding: 22px 24px; border-radius: 22px; background: rgba(247,250,245,.10); display: grid; gap: 12px; }
+  .yn li { display: flex; gap: 10px; align-items: baseline; font-size: 17px; line-height: 1.35; }
+  .yn li::before { flex: none; font-weight: 700; width: 18px; }
+  .yn .yes li::before { content: "✓"; color: #bfe6cc; }
+  .yn .no li::before { content: "✕"; color: #f2b3ab; }
+  @media (max-width: 620px) { .yn-grid { grid-template-columns: 1fr; } }
   .how { padding: 56px 16px; }
   .how .cmp { margin: 8px auto 36px; text-align: left; }
   .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
@@ -283,6 +291,24 @@
   </div>
   </div>
 </header>
+
+<section class="yn">
+  <div class="yn-grid">
+    <ul class="yes">
+      <li>Yes, you see your friends</li>
+      <li>Yes, you can message</li>
+      <li>Yes, you can like and comment</li>
+      <li>Yes, you can watch stories</li>
+    </ul>
+    <ul class="no">
+      <li>No database</li>
+      <li>No doomscrolling</li>
+      <li>No AI-suggested posts</li>
+      <li>No AI photos (if tagged)</li>
+      <li>No AI videos (if tagged)</li>
+    </ul>
+  </div>
+</section>
 
 <section class="how">
   <div class="wrap center">
