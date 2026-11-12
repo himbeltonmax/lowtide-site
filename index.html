@@ -252,10 +252,10 @@
 
     <div class="phone-wrap">
       <div class="switch" role="group" aria-label="Instagram / Lowtide">
-        <button type="button" data-view="loud" aria-pressed="true"><span lang="nl">Zonder Lowtide</span><span lang="en">Without Lowtide</span></button>
-        <button type="button" data-view="calm" aria-pressed="false" class="nudge"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></button>
+        <button type="button" data-view="loud" aria-pressed="false" class="nudge"><span lang="nl">Zonder Lowtide</span><span lang="en">Without Lowtide</span></button>
+        <button type="button" data-view="calm" aria-pressed="true"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></button>
       </div>
-      <div class="phone" id="phone" aria-hidden="true">
+      <div class="phone is-calm" id="phone" aria-hidden="true">
         <div class="screen loud">
           <div class="s-head"></div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
@@ -354,7 +354,7 @@
     apply(lang);
   })();
 
-  // Phone: starts on Instagram; the visitor taps the switch to see Lowtide.
+  // Phone: starts on Lowtide (max 11-12); the visitor taps the switch to see Instagram without it.
   (function () {
     const phone = document.getElementById('phone');
     const btns = document.querySelectorAll('.switch button');
@@ -368,6 +368,7 @@
       btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
     }
     btns.forEach(b => b.addEventListener('click', () => { document.querySelector('.nudge')?.classList.remove('nudge'); show(b.dataset.view); }));
+    show('calm');
   })();
 
   // Gently drifting sea, same three layers as the app's Tide.water, plus thin white wave lines.
