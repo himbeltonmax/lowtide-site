@@ -63,7 +63,7 @@ async function poll() {
     }
     if (["failed", "canceled", "expired"].includes(d.status)) {
       $("title").textContent = "De betaling is niet gelukt";
-      $("info").innerHTML = `Er is niets afgeschreven. <a href="bedrijven-k7q4m2.html#bestellen">Probeer het opnieuw</a>.`;
+      $("info").innerHTML = `Er is niets afgeschreven. <a href="/bedrijven#bestellen">Probeer het opnieuw</a>.`;
       return;
     }
   } catch {}
