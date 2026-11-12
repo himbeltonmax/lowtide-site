@@ -186,13 +186,13 @@
   .k-eq { font: 30px var(--serif); color: var(--soft); font-style: normal; }
   .yn { padding: 56px 16px; background: var(--bottom); }
   .yn-grid { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .yn ul { list-style: none; margin: 0; padding: 22px 24px; border-radius: 22px; background: rgba(247,250,245,.10); display: grid; gap: 12px; }
+  .yn ul { list-style: none; margin: 0; padding: 22px 24px; border-radius: 22px; background: rgba(247,250,245,.10); display: grid; gap: 12px; align-content: start; }
   .yn li { display: flex; gap: 10px; align-items: baseline; font-size: 17px; line-height: 1.35; }
   .yn li::before { flex: none; font-weight: 700; width: 18px; }
   .yn .yes li::before { content: "✓"; color: #bfe6cc; }
   .yn .no li::before { content: "✕"; color: #f2b3ab; }
   @media (max-width: 620px) { .yn-grid { grid-template-columns: 1fr; } }
-  .how { padding: 56px 16px; }
+  .how { padding: 56px 16px; background: var(--deep); }
   .how .cmp { margin: 8px auto 36px; text-align: left; }
   .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .fl { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 999px; background: rgba(247,250,245,.1); border: 1px solid rgba(247,250,245,.22); font: 500 15px var(--sans); }
@@ -219,7 +219,7 @@
   .final { text-align: center; background: linear-gradient(var(--bottom), var(--top)); }
   .final .cta-row { justify-content: center; }
 
-  footer { padding: 48px 16px 56px; text-align: center; font-size: 13px; color: rgba(247,250,245,.62); background: var(--deep); }
+  footer { padding: 48px 16px 56px; text-align: center; font-size: 13px; color: rgba(247,250,245,.62); background: var(--bottom); }
   footer p + p { margin-top: 8px; }
   footer .src { max-width: 46em; margin: 0 auto 18px; font-size: 12px; }
 
@@ -324,7 +324,7 @@
   </div>
 </section>
 
-<section class="deep">
+<section class="quote">
   <p class="punch solo"><span lang="nl">“Controle weer terug in mijn eigen handen”</span><span lang="en">“Control back in my own hands”</span></p>
   <!-- Waarom/Hoe/Wat: verborgen op verzoek van max (11-11), tekst bewaard -->
   <div class="wrap why-grid bz" hidden style="display:none">
