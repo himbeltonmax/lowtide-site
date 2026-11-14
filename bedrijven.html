@@ -278,6 +278,8 @@
   .big { font: 40px var(--serif); margin: 6px 0 18px; }
   .note { font-size: 13px; color: var(--soft); margin-top: 12px; }
   .pay { width: 100%; margin-top: 18px; }
+  .btn:has(.btn-ico) { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding-left: 12px; }
+  .btn-ico { width: 28px; height: 28px; border-radius: 7px; box-shadow: 0 1px 3px rgba(20,50,40,.2); flex: none; }
   #soon { display: none; margin-top: 12px; font-size: 14px; background: rgba(0,0,0,.14); border-radius: 12px; padding: 12px 14px; }
 
   .faq { margin-top: 36px; display: grid; gap: 12px; }
@@ -414,7 +416,7 @@
       <h1>Geef uw team<br>tijd terug.</h1>
       <p class="sub">Wist u dat.. Mensen gemiddeld <b>2,5 uur per dag</b> op social media zitten? Meer dan <b>50%</b> van wat u ziet, is <b>niet</b> van wie u <b>volgt</b>?<br><br>Met Lowtide Privé Filters beslist u zelf weer wat u ziet, niet het algoritme<br><br>Maak vandaag een positieve impact!</p>
       <div class="cta-row">
-        <button class="btn" type="button" data-go="bestellen">Geef Lowtide cadeau</button>
+        <button class="btn" type="button" data-go="bestellen"><img class="btn-ico" src="icon.png" alt="" width="28" height="28"><span>Geef Lowtide cadeau</span></button>
       </div>
     </div>
     <div class="hero-card">
@@ -567,7 +569,7 @@
           <div class="row total"><span>Incl. btw</span><span id="incl"></span></div>
         </div>
         <p class="agenda" id="agenda"></p>
-        <button type="submit" class="btn pay">Geef Lowtide cadeau</button>
+        <button type="submit" class="btn pay"><img class="btn-ico" src="icon.png" alt="" width="28" height="28"><span>Geef Lowtide cadeau</span></button>
         <p id="soon">Betalen kan over een paar dagen. Wilt u nu al bestellen? Mail <a href="mailto:himbelton@gmail.com?subject=Lowtide%20voor%20bedrijven">himbelton@gmail.com</a>, dan regelen we het meteen.</p>
         <div class="cost pay-kpi">
           <p class="eyebrow" style="text-align:left">Wist u dat..</p>
@@ -593,7 +595,7 @@
 
 <section class="deep why end-quote">
   <h2 class="why-punch why-top">“Controle weer terug in mijn eigen handen”</h2>
-  <div class="end-cta"><button class="btn" type="button" data-go="bestellen">Geef Lowtide cadeau</button></div>
+  <div class="end-cta"><button class="btn" type="button" data-go="bestellen"><img class="btn-ico" src="icon.png" alt="" width="28" height="28"><span>Geef Lowtide cadeau</span></button></div>
 </section>
 
 <footer>
