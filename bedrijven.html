@@ -346,6 +346,16 @@
   .rv .who { margin-top: 12px; font-size: 13px; color: var(--soft); }
   .rv { position: relative; }
   .why-punch.why-top { margin: 8px auto 40px; font-style: italic; }
+  /* "Hoe werkt het?" (same as homepage) */
+  .how-b { text-align: center; }
+  .how-b h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 4vw, 36px); }
+  .hflow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .fl { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 999px; background: rgba(247,250,245,.1); border: 1px solid rgba(247,250,245,.22); font: 500 15px var(--sans); }
+  .fl i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 13px var(--sans); font-style: normal; background: rgba(247,250,245,.16); }
+  .fl.ok { background: #f7faf5; color: #1f4a3a; border-color: #f7faf5; font-weight: 600; }
+  .fl.ok i { background: #2f7a55; color: #fff; }
+  .fa { font: 400 18px var(--sans); opacity: .6; }
+  @media (max-width: 640px) { .hflow { flex-direction: column; gap: 6px; } .fa { transform: rotate(90deg); } }
   .rv.demo::after { content: "Voorbeeld"; position: absolute; top: 10px; right: 12px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); border: 1px solid var(--edge); border-radius: 99px; padding: 2px 8px; }
   .rv.demo q { padding-right: 70px; }
   @media (max-width: 860px) { .rv-grid { grid-template-columns: 1fr; } }
@@ -422,7 +432,18 @@
 
 <section class="deep why">
   <h2 class="why-punch why-top">“Controle weer terug in mijn eigen handen”</h2>
-  <div class="wrap why-grid">
+  <div class="wrap how-b">
+    <h2>Hoe werkt het?</h2>
+    <div class="hflow">
+      <div class="fl"><i>1</i><span>Open Lowtide</span></div>
+      <b class="fa" aria-hidden="true">→</b>
+      <div class="fl"><i>2</i><span>Log in op instagram.com</span></div>
+      <b class="fa" aria-hidden="true">→</b>
+      <div class="fl ok"><i>✓</i><span>Het sociale privé-filter is geactiveerd.</span></div>
+    </div>
+  </div>
+  <!-- Kept on max's request (11-14): Waarom / Hoe / Wat het doet blocks, hidden. Remove style+hidden to show again. -->
+  <div class="wrap why-grid" hidden style="display:none">
     <div><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.8-2.5 2.2-2.5 3.9"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/></svg>Waarom we dit doen</p><p class="w-txt">Social media steelt elke dag uren van uw leven.</p></div>
     <div><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg>Hoe we dit oplossen</p><p class="w-txt">Met een privé-filter op uw eigen telefoon.</p></div>
     <div class="w-full"><p class="eyebrow"><svg class="wi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Wat het doet</p><p class="w-txt">Het filtert weg doomscrolling, aanbevolen content en AI-posts. Het AI-algoritme verliest hiermee zijn ‘macht’.<br><br>Je kiest bewuster wie &amp; wat je ziet</p>
