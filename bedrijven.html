@@ -385,6 +385,9 @@
   .how-card { max-width: 360px; margin: 36px auto 0; text-align: left; background: var(--foam); color: #24443a; border-radius: 22px; padding: 26px 26px 24px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
   .how-card .g-lead { margin-top: 0; }
   .how-card .vs { margin-top: 0; }
+  .how-card { position: relative; }
+  .hc-logo { position: absolute; top: -22px; right: -18px; width: 56px; height: 56px; border-radius: 12.5px; box-shadow: 0 6px 16px rgba(20,50,40,.3); transform: rotate(6deg); }
+  @media (max-width: 520px) { .hc-logo { right: -6px; } }
   .hflow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .fl { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 999px; background: rgba(247,250,245,.1); border: 1px solid rgba(247,250,245,.22); font: 500 15px var(--sans); }
   .fl i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 13px var(--sans); font-style: normal; background: rgba(247,250,245,.16); }
@@ -461,6 +464,7 @@
       <div class="fl ok"><i>✓</i><span>Het sociale privé-filter is geactiveerd.</span></div>
     </div>
     <div class="how-card">
+      <img class="hc-logo" src="icon.png" alt="Lowtide" width="56" height="56">
       <div class="vs">
         <div class="vs-col now"><ul><li class="off">Doomscrolling</li><li class="off">Aanbevolen posts</li><li class="off">AI-posts</li><li>Kiezen wie &amp; wat je ziet</li></ul></div>
       </div>
