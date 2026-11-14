@@ -356,6 +356,8 @@
   /* "Hoe werkt het?" (same as homepage) */
   .how-b { text-align: center; }
   .how-b h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 4vw, 36px); }
+  .how-card { max-width: 360px; margin: 36px auto 0; text-align: left; background: var(--foam); color: #24443a; border-radius: 22px; padding: 26px 26px 24px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
+  .how-card .g-lead { margin-top: 0; }
   .hflow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .fl { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 999px; background: rgba(247,250,245,.1); border: 1px solid rgba(247,250,245,.22); font: 500 15px var(--sans); }
   .fl i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 13px var(--sans); font-style: normal; background: rgba(247,250,245,.16); }
@@ -394,14 +396,6 @@
       </button>
       <div class="flip" id="giftCard"><div class="flip-in">
       <div class="gift face front">
-        <div class="g-top"><span class="g-label">Goed om te weten</span><img class="g-logo" src="icon.png" alt="Lowtide" width="34" height="34"></div>
-        <p class="g-lead">Gewoon jouw Instagram, maar rustig.</p>
-        <div class="vs">
-          <div class="vs-col now"><p class="vs-h">Met Lowtide</p><ul><li class="off">Doomscrolling</li><li class="off">Aanbevolen posts</li><li class="off">AI-posts</li><li>Kiezen wie &amp; wat je ziet</li></ul></div>
-        </div>
-        <div class="g-foot"><span></span><button class="turn" type="button" data-turn>Toon achterkant ↻</button></div>
-      </div>
-      <div class="gift face back" aria-hidden="true">
         <div class="g-top"><span></span><img class="g-logo" src="icon.png" alt="Lowtide" width="34" height="34"></div>
         <p class="g-hi">Beste collega,</p>
         <p class="g-lead">U krijgt Lowtide cadeau van</p>
@@ -412,7 +406,7 @@
           <li class="g-one">Activeer gratis het privé&nbsp;filter
             <span class="g-cred"><b class="rot" data-rot="domain">JouwBedrijf B.V.</b><span><b>xxxxxxxx</b></span></span></li>
         </ol>
-        <div class="g-foot"><p class="g-end">Veel plezier!</p><button class="turn" type="button" data-turn>Toon voorkant ↻</button></div>
+        <div class="g-foot"><p class="g-end">Veel plezier!</p></div>
       </div>
       </div></div>
       <button class="again" type="button" id="closeGift">Weer inpakken</button>
@@ -440,6 +434,12 @@
       <div class="fl"><i>2</i><span>Log in op instagram.com</span></div>
       <b class="fa" aria-hidden="true">→</b>
       <div class="fl ok"><i>✓</i><span>Het sociale privé-filter is geactiveerd.</span></div>
+    </div>
+    <div class="how-card">
+      <p class="g-lead">Gewoon jouw Instagram, maar rustig.</p>
+      <div class="vs">
+        <div class="vs-col now"><p class="vs-h">Met Lowtide</p><ul><li class="off">Doomscrolling</li><li class="off">Aanbevolen posts</li><li class="off">AI-posts</li><li>Kiezen wie &amp; wat je ziet</li></ul></div>
+      </div>
     </div>
   </div>
   <!-- Kept on max's request (11-14): Waarom / Hoe / Wat het doet blocks, hidden. Remove style+hidden to show again. -->
@@ -756,9 +756,9 @@
   });
   const fl = document.getElementById('giftCard'), faces = fl.querySelectorAll('.face');
   fl.querySelectorAll('[data-turn]').forEach(b => b.addEventListener('click', () => {
-    const t = fl.classList.toggle('turned'); faces[0].setAttribute('aria-hidden', t); faces[1].setAttribute('aria-hidden', !t);
+    const t = fl.classList.toggle('turned'); faces[0].setAttribute('aria-hidden', t); faces[1]?.setAttribute('aria-hidden', !t);
   }));
-  again.addEventListener('click', () => { fl.classList.remove('turned'); faces[0].setAttribute('aria-hidden', 'false'); faces[1].setAttribute('aria-hidden', 'true'); st.classList.remove('open'); box.setAttribute('aria-expanded', 'false'); box.focus(); });
+  again.addEventListener('click', () => { fl.classList.remove('turned'); faces[0].setAttribute('aria-hidden', 'false'); faces[1]?.setAttribute('aria-hidden', 'true'); st.classList.remove('open'); box.setAttribute('aria-expanded', 'false'); box.focus(); });
 })();
 </script>
 <script>
