@@ -87,6 +87,9 @@
   .vs-col.was li.plain { text-decoration: none; color: #4a6b60; }
   .vs-col.now li { color: #24443a; font-weight: 600; }
   .vs-col.now li::before { content: "✓ "; color: #45806b; }
+  .vs { grid-template-columns: 1fr; }
+  .vs-col.now li.off { color: #7d958c; font-weight: 400; text-decoration: line-through; text-decoration-color: rgba(125,149,140,.7); }
+  .vs-col.now li.off::before { content: none; }
   .g-ok { list-style: none; margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font: 12.5px/1.3 var(--sans); color: #3c5f53; }
   .g-ok li::before { content: "• "; color: #45806b; }
   @media (max-width: 520px) { .vs-col { padding: 16px 13px; } .vs-col ul { font-size: 14px; gap: 10px; } .g-ok { font-size: 12px; } }
@@ -407,8 +410,7 @@
         <div class="g-top"><span class="g-label">Goed om te weten</span><img class="g-logo" src="icon.png" alt="Lowtide" width="34" height="34"></div>
         <p class="g-lead">Gewoon jouw Instagram, maar rustig.</p>
         <div class="vs">
-          <div class="vs-col was"><p class="vs-h">Instagram</p><ul><li>Doomscrolling</li><li>Aanbevolen posts</li><li>AI-posts</li><li class="plain">Uren per dag kwijt</li><li class="plain">Gemaakt om te blijven</li><li class="plain">Onrustig hoofd</li></ul></div>
-          <div class="vs-col now"><p class="vs-h">Met Lowtide</p><ul><li>Zie wie je volgt</li><li>Berichten</li><li>Zoeken</li><li>Sneller klaar</li><li>Rustiger hoofd</li><li>Tijd voor jezelf</li></ul></div>
+          <div class="vs-col now"><p class="vs-h">Met Lowtide</p><ul><li class="off">Doomscrolling</li><li class="off">Aanbevolen posts</li><li class="off">AI-posts</li><li>Kiezen wie &amp; wat je ziet</li></ul></div>
         </div>
         <div class="g-foot"><span></span><button class="turn" type="button" data-turn>Toon voorkant ↻</button></div>
       </div>
