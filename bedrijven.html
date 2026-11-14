@@ -73,6 +73,24 @@
   .face.back { transform: rotateY(180deg); }
   .g-foot { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .g-foot .g-end { margin-top: 0; }
+  /* Gift card in credit-card proportions (max 11-14) */
+  .gift-stage .flip { width: 100%; max-width: 540px; min-width: 0; justify-self: center; align-self: center; }
+  .gift.face.front { aspect-ratio: 1.586; position: relative; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); grid-template-rows: auto auto auto 1fr auto; column-gap: 28px; padding: 30px 30px 22px; border-radius: 18px; }
+  .gift.face.front .g-top { position: absolute; top: 18px; right: 20px; }
+  .gift.face.front .g-logo { width: 30px; height: 30px; }
+  .gift.face.front .g-hi { grid-column: 1; margin-top: 0; font-size: 13px; }
+  .gift.face.front .g-lead { grid-column: 1; font-size: 17px; }
+  .gift.face.front .g-name { grid-column: 1; font-size: clamp(19px, 2vw, 22px); }
+  .gift.face.front .g-body { grid-column: 1; margin-top: 12px; font-size: 14px; line-height: 1.55; }
+  .gift.face.front .g-steps { grid-column: 2; grid-row: 2 / 5; margin-top: 38px; padding: 0 0 0 18px; border-top: 0; font-size: 14px; gap: 8px; align-self: start; }
+  .gift.face.front .g-steps li, .gift.face.front .g-steps li.g-one { white-space: normal; }
+  .gift.face.front .g-cred { margin: 8px 0 0; min-width: 0; padding: 8px 12px; font-size: 13px; }
+  .gift.face.front .g-foot { grid-column: 1 / -1; padding-top: 10px; }
+  .gift.face.front .g-end { font-size: 14px; }
+  @media (max-width: 520px) {
+    .gift.face.front { aspect-ratio: auto; grid-template-columns: 1fr; padding: 20px 20px 16px; }
+    .gift.face.front .g-steps { grid-column: 1; grid-row: auto; margin-top: 14px; }
+  }
   .turn { background: none; border: 0; font: inherit; font-size: 13px; font-weight: 600; color: #45806b; cursor: pointer; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; }
   .g-usp.big { font-family: var(--sans); grid-template-columns: 1fr 1fr; gap: 10px 14px; font-size: 14px; border-top: 1px solid rgba(36,68,58,.12); padding-top: 12px; margin-top: 12px; }
   .g-intro { margin-top: 6px; font-size: 14px; line-height: 1.45; color: #3c5f53; }
