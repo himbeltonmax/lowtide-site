@@ -69,7 +69,7 @@
   .card p { margin-top: 6px; font-size: 15px; color: var(--ink2); }
   .card .x { text-decoration: line-through; text-decoration-color: rgba(184,72,62,.6); color: #7d958c; font-weight: 400; }
 
-  .grid.flts { gap: 10px; margin-top: 32px; }
+  .grid.flts { gap: 10px; margin-top: 32px; align-items: start; }
   .flt { padding: 12px 14px; border-radius: 16px; }
   .flt .ftop { display: flex; align-items: center; gap: 12px; }
   .flt .ftop .ic { margin: 0; width: 36px; height: 36px; border-radius: 10px; flex: none; }
@@ -84,7 +84,9 @@
   .tg i { position: absolute; top: 3px; left: 21px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: left .25s; }
   .tg[aria-checked="false"] { background: #c4d3cb; }
   .tg[aria-checked="false"] i { left: 3px; }
-  .flt.off h3, .flt.off p { opacity: .5; }
+  .flt p { display: none; }
+  .flt.off p { display: block; color: var(--ink); animation: fin .3s ease; }
+  @keyframes fin { from { opacity: 0; transform: translateY(-4px); } }
 
   /* Own words demo */
   .words { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 32px; align-items: center; margin-top: 40px; }
