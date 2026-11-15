@@ -196,7 +196,7 @@
   @media (max-width: 620px) { .yn-grid { grid-template-columns: 1fr; } }
 
   /* Plug & play (from filter.html) */
-  .pp { margin-top: 64px; }
+  .pp { margin: 64px auto 0; max-width: 400px; }
   .pp h2 { margin-top: 10px; }
   .pp .grid { display: grid; gap: 16px; margin-top: 40px; }
   .pp .g4 { grid-template-columns: repeat(4, 1fr); }
@@ -243,8 +243,7 @@
   .pp .mp > div { min-width: 0; overflow-wrap: anywhere; }
   .pp .mp .rm { margin-left: auto; flex: none; font: 700 11px var(--sans); color: #fff; background: #b8483e; padding: 4px 9px; border-radius: 999px; max-width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .pp .mp .rm span { font-size: 11px; }
-  @media (max-width: 860px) { .pp .g4 { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .pp .g4 { grid-template-columns: 1fr; } }
+  .pp .g4 { grid-template-columns: 1fr; }
   .phone-logo { position: absolute; top: -20px; left: -20px; z-index: 4; width: 56px; height: 56px; border-radius: 12.5px; box-shadow: 0 6px 16px rgba(20,50,40,.35); transform: rotate(-6deg); }
   .h1-row { display: flex; align-items: center; gap: 22px; }
   .h1-logo { width: 72px; height: 72px; flex: none; border-radius: 16px; box-shadow: 0 6px 16px rgba(20,50,40,.3); transform: rotate(6deg); }
