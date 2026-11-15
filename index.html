@@ -53,6 +53,9 @@
   .facts li { position: relative; padding-left: 18px; }
   .facts li::before { content: "•"; position: absolute; left: 2px; color: var(--foam); }
   .fact-world { margin-top: 12px; }
+  div.sub { max-width: 36em; }
+  @media (min-width: 700px) { .facts { font-size: .94em; } .facts li { white-space: nowrap; } }
+  @media (max-width: 520px) { .facts { font-size: 15px; } .facts .src { font-size: 11px; } }
   .fact-q { margin-top: 18px; }
   .src { font-size: 12px; color: var(--soft); opacity: .8; white-space: nowrap; text-underline-offset: 3px; }
   .cta-row { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
