@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lowtide · The private filter</title>
+<meta name="description" content="Everything the Lowtide private filter does: a calmer, safer Instagram on your own phone. Choose who &amp; what you see.">
+<meta property="og:title" content="Lowtide · The private filter">
+<meta property="og:description" content="A calmer, safer Instagram on your own phone. Choose who &amp; what you see.">
+<meta property="og:image" content="https://lowtide.eu/icon.png">
+<meta property="og:url" content="https://lowtide.eu/filter">
+<meta name="theme-color" content="#7aba94">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  :root {
+    --top: #7aba94; --bottom: #45806b; --deep: #3a6d5b; --foam: #f7faf5; --line: #61a680;
+    --soft: rgba(247, 250, 245, 0.78); --edge: rgba(247, 250, 245, 0.22);
+    --ink: #24443a; --ink2: #4a6b60; --red: #b8483e;
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); color: var(--foam); background: var(--bottom); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; }
+
+  .bar { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 18px 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; text-decoration: none; }
+  .bean-s { width: 26px; height: 26px; flex: none; }
+  .nav { display: flex; gap: 18px; font-size: 14px; font-weight: 600; }
+  .nav a { text-decoration: none; opacity: .85; }
+  .nav a:hover { opacity: 1; }
+
+  .hero { background: linear-gradient(var(--top), var(--bottom)); padding: 0 0 72px; }
+  .hero-in { max-width: 860px; margin: 0 auto; padding: 56px 16px 0; text-align: center; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--soft); }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(42px, 7vw, 76px); line-height: 1.04; margin-top: 14px; }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 12px 0 14px; }
+  .sub { margin: 22px auto 0; max-width: 32em; font-size: clamp(17px, 2.1vw, 20px); color: var(--soft); }
+  .sub b { color: var(--foam); font-weight: 600; }
+  .cta-row { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--foam); color: var(--bottom); font: 600 17px var(--sans); text-decoration: none; padding: 15px 26px; border-radius: 999px; box-shadow: 0 8px 24px rgba(20,50,40,.18); transition: transform .2s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn svg { width: 20px; height: 20px; }
+  .jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 36px; }
+  .jump a { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(247,250,245,.35); font-size: 14px; font-weight: 600; text-decoration: none; }
+  .jump a:hover { background: rgba(247,250,245,.12); }
+
+  section { padding: 88px 16px; }
+  section.alt { background: var(--deep); }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  .center { text-align: center; }
+  .lead { max-width: 34em; color: var(--soft); font-size: 18px; }
+  .center .lead { margin: 0 auto; }
+
+  .badge { display: inline-block; font: 700 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; vertical-align: middle; }
+  .badge.now { background: var(--foam); color: #2f7a55; }
+  .badge.soon { background: rgba(247,250,245,.14); color: var(--foam); border: 1px solid var(--edge); }
+
+  /* Cards */
+  .grid { display: grid; gap: 16px; margin-top: 40px; }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--foam); color: var(--ink); border-radius: 22px; padding: 24px 22px; box-shadow: 0 14px 40px rgba(20,50,40,.16); text-align: left; }
+  .card .ic { width: 44px; height: 44px; border-radius: 12px; background: rgba(69,128,107,.16); display: grid; place-items: center; margin-bottom: 14px; }
+  .card .ic svg { width: 22px; height: 22px; fill: none; stroke: #2f7a55; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .card h3 { font: 600 18px/1.3 var(--sans); }
+  .card p { margin-top: 6px; font-size: 15px; color: var(--ink2); }
+  .card .x { text-decoration: line-through; text-decoration-color: rgba(184,72,62,.6); color: #7d958c; font-weight: 400; }
+
+  /* Own words demo */
+  .words { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 32px; align-items: center; margin-top: 40px; }
+  .wbox { background: var(--foam); color: var(--ink); border-radius: 22px; padding: 22px; box-shadow: 0 14px 40px rgba(20,50,40,.16); }
+  .wbox label { font: 600 14px var(--sans); color: var(--ink2); }
+  .wform { display: flex; gap: 8px; margin-top: 10px; }
+  .wform input { flex: 1; min-width: 0; font: 16px var(--sans); padding: 11px 14px; border-radius: 12px; border: 1.5px solid #cfe0d5; color: var(--ink); background: #fff; }
+  .wform input:focus { outline: none; border-color: var(--line); }
+  .wform button { font: 600 15px var(--sans); padding: 0 16px; border-radius: 12px; border: 0; background: var(--bottom); color: var(--foam); cursor: pointer; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; min-height: 34px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px 6px 12px; border-radius: 999px; background: rgba(69,128,107,.16); font: 600 14px var(--sans); color: var(--ink); }
+  .chip button { border: 0; background: none; color: var(--ink2); font-size: 16px; line-height: 1; cursor: pointer; padding: 0 4px; }
+  .feedm { display: grid; gap: 10px; }
+  .fp { background: var(--foam); color: var(--ink); border-radius: 16px; padding: 12px 14px; display: flex; gap: 12px; align-items: center; transition: opacity .45s ease, transform .45s ease, max-height .45s ease, padding .45s ease, margin .45s ease; max-height: 90px; overflow: hidden; }
+  .fp .av { width: 34px; height: 34px; border-radius: 50%; background: #cfe0d5; flex: none; }
+  .fp b { display: block; font-size: 13px; color: var(--ink2); font-weight: 600; }
+  .fp span { font-size: 15px; }
+  .feedm { overflow: hidden; }
+  .fp.gone { opacity: 0; transform: translateX(24px); max-height: 0; padding-top: 0; padding-bottom: 0; margin-top: -10px; }
+  .fnote { font-size: 13px; color: var(--soft); text-align: center; margin-top: 4px; }
+
+  /* Modes */
+  .mode { position: relative; }
+  .mode .tagl { font: 700 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: #2f7a55; }
+  .mode h3 { margin-top: 4px; font: 400 28px/1.15 var(--serif); }
+  .mode ul { list-style: none; margin-top: 14px; display: grid; gap: 8px; font-size: 15px; }
+  .mode li::before { content: "✓ "; color: #2f7a55; font-weight: 700; }
+  .mode li.off { color: #7d958c; text-decoration: line-through; }
+  .mode li.off::before { content: none; }
+
+  /* Safety */
+  .safe { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+  .row { display: flex; gap: 14px; align-items: flex-start; background: rgba(247,250,245,.08); border: 1px solid var(--edge); border-radius: 18px; padding: 18px; }
+  .row .ic { flex: none; width: 40px; height: 40px; border-radius: 12px; background: rgba(247,250,245,.14); display: grid; place-items: center; }
+  .row .ic svg { width: 20px; height: 20px; fill: none; stroke: var(--foam); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .row { text-align: left; }
+  .row h3 { font: 600 17px/1.3 var(--sans); }
+  .row p { font-size: 15px; color: var(--soft); margin-top: 4px; }
+  .row .badge { margin-left: 6px; }
+
+  /* Audiences */
+  .aud { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 40px; }
+  .aud .card h3 { font: 400 24px/1.2 var(--serif); }
+  .aud .card .line { margin-top: 2px; font: 600 15px var(--sans); color: #2f7a55; }
+  .aud .card p { margin-top: 10px; }
+
+  .closing { text-align: center; }
+  .punch { font: italic 400 clamp(30px, 5vw, 46px)/1.15 var(--serif); max-width: 18em; margin: 0 auto; }
+
+  footer { padding: 48px 16px 56px; text-align: center; font-size: 13px; color: rgba(247,250,245,.62); background: var(--bottom); }
+  footer p + p { margin-top: 8px; }
+
+  @media (max-width: 860px) {
+    .g4 { grid-template-columns: 1fr 1fr; }
+    .g3, .words, .safe { grid-template-columns: minmax(0, 1fr); }
+    section { padding: 72px 16px; }
+  }
+  @media (max-width: 480px) {
+    .g4 { grid-template-columns: 1fr; }
+    .nav a.hide-s { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .fp { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bar">
+    <a class="brand" href="./"><svg class="bean-s" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#f7faf5"/><line y1="-42" y2="42" stroke="#61a680" stroke-width="5.5"/></g></svg>Lowtide</a>
+    <nav class="nav"><a href="./" class="hide-s">Home</a><a href="https://testflight.apple.com/join/Edq4h1nu">Try it</a></nav>
+  </div>
+  <div class="hero-in">
+    <p class="eyebrow">The Lowtide private filter</p>
+    <h1>Choose who &amp; what you see.</h1>
+    <p class="sub">One filter, on your own phone. It takes the noise out of Instagram, keeps you <b>safer</b>, and leaves you with the people you chose to follow.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://testflight.apple.com/join/Edq4h1nu"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>Try the Lowtide private filter</a>
+    </div>
+    <div class="jump">
+      <a href="#today">What it filters</a>
+      <a href="#safety">Safety</a>
+      <a href="#words">Your own words</a>
+      <a href="#modes">Modes</a>
+      <a href="#who">For who</a>
+    </div>
+  </div>
+</header>
+
+<!-- 1. What it filters today: only what the Instagram filter really does now. -->
+<section id="today" class="alt">
+  <div class="wrap center">
+    <span class="badge now">Available now</span>
+    <h2>What the filter takes out</h2>
+    <p class="lead">Open Lowtide, log in on instagram.com, and the filter is on. Nothing to set up.</p>
+    <div class="grid g4">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div><h3 class="x">Doomscrolling</h3><p>The feed stops when you're all caught up.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-3.5 3.8-5.5 7-5.5s6 2 7 5.5"/></svg></div><h3 class="x">Suggested posts</h3><p>Only the people you follow. Not what the algorithm picks for you.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div><h3 class="x">AI posts</h3><p>Posts marked as AI-made and AI-generated profiles leave your feed.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Your friends stay</h3><p>Stories, posts and messages from the people you chose.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Safety -->
+<section id="safety">
+  <div class="wrap center">
+    <p class="eyebrow">Safety</p>
+    <h2>Calmer is also safer</h2>
+    <p class="lead">Most of what tricks people online comes from accounts they never chose to see. The filter keeps those out of your feed.</p>
+    <div class="safe">
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.8-3 3.2-4.8 6-4.8s5.2 1.8 6 4.8"/><path d="M16 8l5 5M21 8l-5 5"/></svg></div><div><h3>Fewer strangers <span class="badge now">Now</span></h3><p>Suggested posts from accounts you don't follow are out of your feed.</p></div></div>
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/></svg></div><div><h3>Fewer fakes <span class="badge now">Now</span></h3><p>Posts marked as AI-made leave your feed, so less of what you see is made up.</p></div></div>
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/><path d="M4 4l16 16"/></svg></div><div><h3>Scam links out <span class="badge soon">Coming soon</span></h3><p>Fake giveaways, “investment” offers and phishing links filtered before you tap them.</p></div></div>
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div><div><h3>Private by design <span class="badge now">Now</span></h3><p>The filter runs on your own phone. What you see stays with you.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Own words -->
+<section id="words" class="alt">
+  <div class="wrap">
+    <div class="center">
+      <span class="badge soon">Coming soon</span>
+      <h2>Filter with your own words</h2>
+      <p class="lead">Done with crypto talk? Tired of AI hype? Add a word and posts about it leave your feed. Your words, your feed.</p>
+    </div>
+    <div class="words">
+      <div class="wbox">
+        <label for="w">Try it: add a word</label>
+        <form class="wform" id="wform" autocomplete="off">
+          <input id="w" maxlength="24" placeholder="e.g. Diet">
+          <button type="submit">Add</button>
+        </form>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div>
+        <div class="feedm" id="feedm">
+          <div class="fp" data-k="crypto bitcoin"><i class="av"></i><div><b>Unknown account</b><span>This crypto coin will 100× by Friday</span></div></div>
+          <div class="fp" data-k=""><i class="av"></i><div><b>Your sister</b><span>Sunday at the beach with the kids</span></div></div>
+          <div class="fp" data-k="ai"><i class="av"></i><div><b>Tech page</b><span>10 AI tools you need right now</span></div></div>
+          <div class="fp" data-k="diet"><i class="av"></i><div><b>Fitness page</b><span>The diet that changes everything</span></div></div>
+          <div class="fp" data-k=""><i class="av"></i><div><b>Your friend</b><span>Finally finished the kitchen!</span></div></div>
+          <div class="fp" data-k="politics election"><i class="av"></i><div><b>News page</b><span>Election: what you need to know</span></div></div>
+        </div>
+        <p class="fnote">An example feed. Tap × on a word to bring posts back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Modes -->
+<section id="modes">
+  <div class="wrap center">
+    <span class="badge soon">Coming soon</span>
+    <h2>One tap, the right mode</h2>
+    <p class="lead">Different moments need a different Instagram. Pick a mode and the filter changes with you.</p>
+    <div class="grid g3">
+      <div class="card mode"><p class="tagl">Calm</p><h3>Just your people</h3><ul><li>People you follow</li><li>Feed stops when you're caught up</li><li class="off">Suggested posts</li></ul></div>
+      <div class="card mode"><p class="tagl">Focus</p><h3>Messages only</h3><ul><li>Messages from friends</li><li>Feed paused while you work or study</li><li class="off">Reels &amp; Explore</li></ul></div>
+      <div class="card mode"><p class="tagl">Safe</p><h3>For family</h3><ul><li>People you follow</li><li>Your own words filtered</li><li class="off">Scam links &amp; strangers</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Audiences + safety -->
+<section id="who" class="alt">
+  <div class="wrap center">
+    <p class="eyebrow">For who</p>
+    <h2>Calm and safe, for everyone</h2>
+    <div class="aud">
+      <div class="card"><h3>Parents</h3><p class="line">Grip on your child</p><p>Your kid keeps their friends, without strangers' posts or endless scrolling. Soon also without scam links.</p></div>
+      <div class="card"><h3>Schools</h3><p class="line">Calm &amp; focus for students</p><p>Fewer distractions in class, and a feed with only people they follow.</p></div>
+      <div class="card"><h3>Students</h3><p class="line">Focus while learning</p><p>Soon: Focus mode keeps your messages and pauses the feed until you're done.</p></div>
+      <div class="card"><h3>Gen Z</h3><p class="line">Back to 2010</p><p>Your friends, not the algorithm. Instagram the way it used to be.</p></div>
+      <div class="card"><h3>Seniors</h3><p class="line">Instagram, simplified</p><p>Just family and friends. Soon, fake giveaways and dodgy links out of sight too.</p></div>
+      <div class="card"><h3>Entrepreneurs</h3><p class="line">Calm and time back</p><p>Soon: filter “get rich quick”, crypto and hype with your own words.</p></div>
+      <div class="card"><h3>Companies</h3><p class="line">Give your employees time</p><p>Less scrolling at work. Soon also fewer scam links on work phones.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <p class="punch">“Control back in my own hands”</p>
+  <div class="cta-row"><a class="btn" href="https://testflight.apple.com/join/Edq4h1nu">Try the Lowtide private filter</a></div>
+</section>
+
+<footer>
+  <p>Lowtide · Scroll less. See more.</p>
+  <p>Features marked “Coming soon” are in development and not in the app yet.</p>
+  <p>Lowtide is an independent app. It is not made by, affiliated with or endorsed by Instagram or Meta.</p>
+  <p>Himbelton (Max Zijlstra) · Zuideinde 39, 1657 EE Abbekerk, the Netherlands · Chamber of Commerce (KvK) 78374316 · VAT NL003329279B56 · <a href="https://himbelton.nl">himbelton.nl</a></p>
+  <p><a href="./">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></p>
+</footer>
+
+<script>
+  // Own-words demo: each word hides the example posts that mention it.
+  (function () {
+    const form = document.getElementById('wform'), input = document.getElementById('w');
+    const chips = document.getElementById('chips'), posts = [...document.querySelectorAll('.fp')];
+    let words = ['Crypto', 'AI'];
+    const norm = s => s.toLowerCase().trim();
+    function render() {
+      chips.innerHTML = '';
+      for (const w of words) {
+        const c = document.createElement('span'); c.className = 'chip'; c.textContent = w;
+        const x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'Remove ' + w);
+        x.onclick = () => { words = words.filter(v => v !== w); render(); };
+        c.appendChild(x); chips.appendChild(c);
+      }
+      for (const p of posts) {
+        const txt = p.querySelector('span');
+        const gone = words.some(w => p.dataset.k.split(' ').includes(norm(w)) || new RegExp('\\b' + norm(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(txt.textContent));
+        p.classList.toggle('gone', gone);
+      }
+    }
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const w = input.value.trim();
+      if (w && !words.some(v => norm(v) === norm(w))) words.push(w);
+      input.value = ''; render();
+    });
+    render();
+  })();
+</script>
+</body>
+</html>
