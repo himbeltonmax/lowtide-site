@@ -194,6 +194,66 @@
   .yn .yes li::before { content: "✓"; color: #bfe6cc; }
   .yn .no li::before { content: "✕"; color: #f2b3ab; }
   @media (max-width: 620px) { .yn-grid { grid-template-columns: 1fr; } }
+
+  /* Plug & play (from filter.html) */
+  .pp { margin-top: 64px; }
+  .pp h2 { margin-top: 10px; }
+  .pp .grid { display: grid; gap: 16px; margin-top: 40px; }
+  .pp .g4 { grid-template-columns: repeat(4, 1fr); }
+  .pp .card { background: var(--foam); color: var(--ink); border-radius: 22px; padding: 24px 22px; box-shadow: 0 14px 40px rgba(20,50,40,.16); text-align: left; }
+  .pp .card .ic { width: 44px; height: 44px; border-radius: 12px; background: rgba(69,128,107,.16); display: grid; place-items: center; margin-bottom: 14px; }
+  .pp .card .ic svg { width: 22px; height: 22px; fill: none; stroke: #2f7a55; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .pp .card h3 { font: 600 18px/1.3 var(--sans); }
+  .pp .card p { margin-top: 6px; font-size: 15px; color: var(--ink2); }
+  .pp .grid.flts { gap: 10px; margin-top: 32px; align-items: start; }
+  .pp .flt { padding: 12px 14px; border-radius: 16px; }
+  .pp .flt .ftop { display: flex; align-items: center; gap: 12px; }
+  .pp .flt .ftop .ic { margin: 0; width: 36px; height: 36px; border-radius: 10px; flex: none; }
+  .pp .flt .ftop .ic svg { width: 18px; height: 18px; }
+  .pp .flt .fh { flex: 1; min-width: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+  .pp .flt h3 { font-size: 15px; }
+  .pp .flt .badge { font-size: 9px; padding: 3px 7px; }
+  .pp .flt .badge.soon { background: rgba(69,128,107,.12); color: var(--ink2); border: 0; }
+  .pp .flt .badge.now { background: #2f7a55; color: #fff; }
+  .pp .flt p { margin: 4px 0 0 48px; font-size: 13.5px; }
+  .pp .tg { width: 46px; height: 28px; border-radius: 999px; border: 0; background: #2f7a55; position: relative; cursor: pointer; flex: none; transition: background .25s; }
+  .pp .tg i { position: absolute; top: 3px; left: 21px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: left .25s; }
+  .pp .tg[aria-checked="false"] { background: #c4d3cb; }
+  .pp .tg[aria-checked="false"] i { left: 3px; }
+  .pp .flt p { display: none; }
+  .pp .flt.off p { display: block; color: var(--ink); animation: ppfin .3s ease; }
+  @keyframes ppfin { from { opacity: 0; transform: translateY(-4px); } }
+  .pp .wb { margin-top: 10px; padding: 14px; border-radius: 16px; }
+  .pp .wb .ftop { display: flex; align-items: center; gap: 12px; }
+  .pp .wb .ic { margin: 0; width: 36px; height: 36px; border-radius: 10px; }
+  .pp .wb .ic svg { width: 18px; height: 18px; }
+  .pp .wb h3 { font-size: 15px; }
+  .pp .wform { display: flex; gap: 8px; margin-top: 12px; }
+  .pp .wform input { flex: 1; min-width: 0; font: 16px var(--sans); padding: 11px 14px; border-radius: 12px; border: 1.5px solid #cfe0d5; color: var(--ink); background: #fff; }
+  .pp .wform input:focus { outline: none; border-color: var(--line); }
+  .pp .wform button { font: 600 15px var(--sans); padding: 0 18px; border-radius: 12px; border: 0; background: #2f7a55; color: #fff; cursor: pointer; }
+  .pp .wres { display: grid; gap: 8px; margin-top: 12px; animation: pppop .35s ease; }
+  .pp .wres[hidden] { display: none; }
+  @keyframes pppop { from { opacity: 0; transform: translateY(8px) scale(.98); } }
+  .pp .mp { position: relative; display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: rgba(69,128,107,.10); }
+  .pp .mp .av { width: 30px; height: 30px; border-radius: 50%; background: #cfe0d5; flex: none; }
+  .pp .mp b { display: block; font-size: 12px; color: var(--ink2); font-weight: 600; }
+  .pp .mp span, .pp .mp em { font-size: 14px; font-style: normal; }
+  .pp .mp.gone > div { opacity: .35; text-decoration: line-through; text-decoration-color: rgba(184,72,62,.7); }
+  .pp .mp > div { min-width: 0; overflow-wrap: anywhere; }
+  .pp .mp .rm { margin-left: auto; flex: none; font: 700 11px var(--sans); color: #fff; background: #b8483e; padding: 4px 9px; border-radius: 999px; max-width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pp .mp .rm span { font-size: 11px; }
+  @media (max-width: 860px) { .pp .g4 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .pp .g4 { grid-template-columns: 1fr; } }
+  .phone-logo { position: absolute; top: -20px; left: -20px; z-index: 4; width: 56px; height: 56px; border-radius: 12.5px; box-shadow: 0 6px 16px rgba(20,50,40,.35); transform: rotate(-6deg); }
+  .h1-row { display: flex; align-items: center; gap: 22px; }
+  .h1-logo { width: 72px; height: 72px; flex: none; border-radius: 16px; box-shadow: 0 6px 16px rgba(20,50,40,.3); transform: rotate(6deg); }
+  @media (max-width: 520px) { .h1-logo { width: 56px; height: 56px; border-radius: 12.5px; } .phone-logo { left: -10px; width: 48px; height: 48px; border-radius: 11px; } }
+  /* Try-out 11-15: all text centered */
+  .hero-in > div:first-child { text-align: center; }
+  .hero-in .sub { margin-left: auto; margin-right: auto; }
+  .hero-in .cta-row, .h1-row { justify-content: center; }
+  .how-card { text-align: center; }
   .how-card { position: relative; max-width: 360px; margin: 36px auto 0; text-align: left; background: var(--foam); color: #24443a; border-radius: 22px; padding: 26px 26px 24px; box-shadow: 0 14px 40px rgba(20,50,40,.2); }
   .hc-logo { position: absolute; top: -22px; right: -18px; width: 56px; height: 56px; border-radius: 12.5px; box-shadow: 0 6px 16px rgba(20,50,40,.3); transform: rotate(6deg); }
   .hc-list { list-style: none; margin: 0; display: grid; gap: 12px; font: 16px/1.3 var(--sans); border-radius: 18px; padding: 20px 18px; background: rgba(69,128,107,.16); }
@@ -262,7 +322,7 @@
 
   <div class="hero-in">
     <div>
-      <h1><span lang="nl">Scroll minder.<br>Zie meer.</span><span lang="en">Scroll less.<br>See more.</span></h1>
+      <div class="h1-row"><h1><span lang="nl">Scroll minder.<br>Zie meer.</span><span lang="en">Scroll less.<br>See more.</span></h1><img class="h1-logo" src="icon.png" alt="Lowtide" width="72" height="72"></div>
       <p class="sub" lang="nl">Wist je dat..<br>mensen gemiddeld <b>2,5 uur per dag</b> op social media zitten? <br>Algoritmes houden je verslaafd.<br>Je ziet niemand meer die je volgt.<br><br><b>Krijg je Instagram terug zoals het in 2012 was:</b><br>alleen de mensen die je volgt. Probeer het gratis.</p>
       <p class="sub" lang="en"><b>Did you know...</b><br>The average person spends <b>2.5 hours a day</b> on social media?<br><br>Instead of seeing unlimited AI-suggested content,<br><b>what if you could choose what you see?</b></p>
       <div class="cta-row">
@@ -276,6 +336,7 @@
         <button type="button" data-view="calm" aria-pressed="true"><span lang="nl">Met Lowtide</span><span lang="en">With Lowtide</span></button>
       </div>
       <div class="phone is-calm" id="phone" aria-hidden="true">
+        <img class="phone-logo" src="icon.png" alt="" width="56" height="56">
         <div class="screen loud">
           <div class="s-head"></div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
@@ -314,7 +375,21 @@
     </div>
     <div class="how-card">
       <img class="hc-logo" src="icon.png" alt="Lowtide" width="56" height="56">
-      <ul class="hc-list"><li class="off">Doomscrolling</li><li class="off">Suggested posts</li><li class="off">AI posts</li><li>Choose who &amp; what you see</li></ul>
+      <ul class="hc-list"><li>Choose who &amp; what you see</li></ul>
+    </div>
+    <div class="pp">
+      <p class="eyebrow">Plug &amp; play</p>
+      <h2>Filters with a purpose</h2>
+      <div class="grid g4 flts"><div class="card flt"><div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div><div class="fh"><h3>Doomscroll Blocker</h3></div><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Doomscroll Blocker"><i></i></button></div><p>Feed stops when you're caught up.</p></div><div class="card flt"><div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-3.5 3.8-5.5 7-5.5s6 2 7 5.5"/></svg></div><div class="fh"><h3>Suggestion Blocker</h3></div><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Suggestion Blocker"><i></i></button></div><p>Only people you follow.</p></div><div class="card flt"><div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/></svg></div><div class="fh"><h3>AI Blocker</h3></div><button type="button" class="tg" role="switch" aria-checked="true" aria-label="AI Blocker"><i></i></button></div><p>AI-made posts and profiles out.</p></div><div class="card flt"><div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/><path d="M4 4l16 16"/></svg></div><div class="fh"><h3>Scamlink Blocker</h3></div><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Scamlink Blocker"><i></i></button></div><p>Fake giveaways and phishing links out.</p></div><div class="card flt"><div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg></div><div class="fh"><h3>Comment Blocker</h3></div><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Comment Blocker"><i></i></button></div><p>Cleaner experience &amp; more safe.</p></div><div class="card flt"><div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.2"/><path d="M4 19c.8-3 3.2-4.8 6-4.8 1.5 0 2.9.5 4 1.4"/><path d="M17 15v6M14 18h6"/></svg></div><div class="fh"><h3>Request Blocker</h3></div><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Request Blocker"><i></i></button></div><p>No message requests from strangers.</p></div><div class="card flt"><div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H8l-4 4z"/></svg></div><div class="fh"><h3>Message Blocker</h3></div><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Message Blocker"><i></i></button></div><p>Messages out while you focus.</p></div></div>
+    <div class="card wb" id="words">
+      <div class="ftop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M15 15l5 5M20 15l-5 5"/></svg></div><div class="fh"><h3>Word Blocker</h3></div></div>
+      <form class="wform" id="wform" autocomplete="off"><input id="w" maxlength="24" placeholder="Type any word, e.g. Crypto" aria-label="Type a word to block"><button type="submit">Block</button></form>
+      <div class="wres" id="wres" hidden>
+        <div class="mp"><i class="av"></i><div><b>Someone you follow</b><span>Sunday at the beach with the kids.</span></div></div>
+        <div class="mp gone"><i class="av"></i><div><b>Someone you follow</b><span>A post about “<em id="ww1"></em>”</span></div><strong class="rm">Removed</strong></div>
+        <div class="mp"><i class="av"></i><div><b>Someone you follow</b><span>Dinner with friends tonight.</span></div></div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -431,6 +506,26 @@
     addEventListener('resize', () => { size(); if (still) draw(0); });
     still ? draw(0) : requestAnimationFrame(draw);
   })();
+</script>
+<script>
+  // Word Blocker demo: works for any word, the middle example post carries it and shows as removed.
+  (function () {
+    const input = document.getElementById('w'), res = document.getElementById('wres');
+    function show() {
+      const w = input.value.trim();
+      if (!w) { res.hidden = true; return; }
+      document.getElementById('ww1').textContent = w;
+      if (res.hidden) { res.hidden = false; }
+    }
+    input.addEventListener('input', show);
+    document.getElementById('wform').addEventListener('submit', e => { e.preventDefault(); show(); input.blur(); });
+  })();
+  // Filter switches: just a demo of how they turn on and off.
+  document.querySelectorAll('.pp .tg').forEach(t => t.addEventListener('click', () => {
+    const on = t.getAttribute('aria-checked') !== 'true';
+    t.setAttribute('aria-checked', String(on));
+    t.closest('.flt').classList.toggle('off', !on);
+  }));
 </script>
 </body>
 </html>
