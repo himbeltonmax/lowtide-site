@@ -220,6 +220,8 @@
   .pp .tg i { position: absolute; top: 3px; left: 21px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: left .25s; }
   .pp .tg[aria-checked="false"] { background: #c4d3cb; }
   .pp .tg[aria-checked="false"] i { left: 3px; }
+  .pp .tg i::after { content: "i"; position: absolute; inset: 0; display: grid; place-items: center; font: italic 700 13px/1 Georgia, serif; color: #2f7a55; }
+  .pp .tg[aria-checked="false"] i::after { color: #9bb0a6; }
   .pp .flt p { display: none; }
   .pp .flt.off p { display: block; color: var(--ink); animation: ppfin .3s ease; }
   @keyframes ppfin { from { opacity: 0; transform: translateY(-4px); } }
