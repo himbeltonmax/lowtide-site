@@ -262,7 +262,7 @@
   @media (max-width: 520px) { .h1-logo { width: 56px; height: 56px; border-radius: 12.5px; } .phone-logo { right: -10px; width: 48px; height: 48px; border-radius: 11px; } }
   /* Animated blocker icons */
   .pp .ic svg * { transform-box: fill-box; }
-  .pp .ic .sl { stroke-dasharray: 1; animation: icDraw 3.2s ease-in-out infinite; }
+  .pp .ic .sl { stroke-dasharray: 1 1.4; animation: icDraw 3.2s ease-in-out infinite; }
   .pp .ic .s2 { animation-delay: .25s; }
   .pp .a-ai .pl { animation: icFade 3.2s ease-in-out infinite; }
   .pp .a-com circle { animation: icDot 1.8s ease-in-out infinite; }
@@ -286,11 +286,11 @@
   @keyframes icBreakB { 0%, 25%, 100% { transform: translate(0, 0); } 45%, 80% { transform: translate(-1.6px, 1.6px); } }
   @keyframes icSpark { 0%, 35%, 90%, 100% { opacity: 0; } 50%, 75% { opacity: 1; } }
   /* One icon style (11-15): object + line through it */
-  .pp .ic .gap { stroke: #dbe7df; stroke-width: 3.4; stroke-dasharray: 1; animation: icDraw 3.2s ease-in-out infinite; }
+  .pp .ic .gap { stroke: #dbe7df; stroke-width: 3.4; stroke-dasharray: 1 1.4; animation: icDraw 3.2s ease-in-out infinite; }
   .pp .ic .gap, .pp .ic .sl { animation-delay: var(--d, 0s); }
   .pp .i1 .reels { animation: icReel .7s cubic-bezier(.6,0,.2,1) infinite; }
   @keyframes icReel { 0%, 25% { transform: translateY(0); } 100% { transform: translateY(-17px); } }
-  @keyframes icDraw { 0%, 15% { stroke-dashoffset: 1; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }
+  @keyframes icDraw { 0%, 15% { stroke-dashoffset: 1.2; } 45%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1.2; } }
   @keyframes icDrop { 0% { transform: translateY(-3px); opacity: 0; } 25% { opacity: 1; } 60%, 85% { transform: translateY(1px); opacity: 1; } 100% { transform: translateY(1px); opacity: 0; } }
   @keyframes icFade { 0%, 15% { opacity: 1; } 45%, 85% { opacity: .35; } 100% { opacity: 1; } }
   @keyframes icSwing { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } }
