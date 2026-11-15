@@ -26,6 +26,8 @@ for a, b in swap:
 # Relative links/images (icon.png, filter.html, ...) live one folder up.
 src = re.sub(r'((?:src|href)=")(?!https?:|#|/|\./|mailto:|data:)([^"]+")', r'\1../\2', src)
 
+src = src.replace('<!doctype html>\n', '<!doctype html>\n<!-- GENERATED from index.html by tools/build-nl.py. Do not edit: edit index.html (span lang="nl" pairs). -->\n', 1)
+
 os.makedirs(os.path.join(out, 'nl'), exist_ok=True)
 open(os.path.join(out, 'nl', 'index.html'), 'w', encoding='utf-8').write(src)
 print('built', os.path.join(out, 'nl', 'index.html'))
