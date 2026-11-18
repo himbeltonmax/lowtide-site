@@ -267,9 +267,13 @@
   .pp .g4 { grid-template-columns: 1fr; }
   .phone-logo { position: absolute; top: -20px; right: -20px; z-index: 4; width: 56px; height: 56px; border-radius: 12.5px; box-shadow: 0 6px 16px rgba(20,50,40,.35); transform: rotate(6deg); opacity: 0; transition: opacity .4s; }
   .phone.is-calm .phone-logo { opacity: 1; }
+  .phone-thief { position: absolute; top: -20px; right: -20px; z-index: 4; width: 56px; height: 56px; border-radius: 12.5px; background: linear-gradient(160deg,#3a3f45,#1d2125); box-shadow: 0 6px 16px rgba(20,30,30,.4); display: grid; place-items: center; transform: rotate(6deg); opacity: 1; transition: opacity .4s; animation: thiefPeek 2.6s ease-in-out infinite; }
+  .phone-thief svg { width: 94%; height: 94%; }
+  .phone.is-calm .phone-thief { opacity: 0; animation: none; }
+  @keyframes thiefPeek { 0%,100% { transform: rotate(6deg) translateY(0); } 50% { transform: rotate(-4deg) translateY(-3px); } }
   .h1-row { display: flex; align-items: center; gap: 22px; }
   .h1-logo { width: 72px; height: 72px; flex: none; border-radius: 16px; box-shadow: 0 6px 16px rgba(20,50,40,.3); transform: rotate(6deg); }
-  @media (max-width: 520px) { .h1-logo { width: 56px; height: 56px; border-radius: 12.5px; } .phone-logo { right: -10px; width: 48px; height: 48px; border-radius: 11px; } }
+  @media (max-width: 520px) { .h1-logo { width: 56px; height: 56px; border-radius: 12.5px; } .phone-logo { right: -10px; width: 48px; height: 48px; border-radius: 11px; } .phone-thief { right: -10px; width: 48px; height: 48px; border-radius: 11px; } }
   /* Animated blocker icons */
   .pp .ic svg * { transform-box: fill-box; }
   .pp .ic .sl { stroke-dasharray: 1 1.4; animation: icDraw 3.2s ease-in-out infinite; }
@@ -391,6 +395,7 @@
       </div>
       <div class="phone is-calm" id="phone" aria-hidden="true">
         <img class="phone-logo" src="icon.png" alt="" width="56" height="56">
+        <div class="phone-thief" aria-hidden="true"><svg viewBox="6 2.5 28 33"><path d="M9 17c0-7 5-11 11-11s11 4 11 11z" fill="#c8373b"/><rect x="7.5" y="15.5" width="25" height="3.5" rx="1.75" fill="#e6474b"/><circle cx="20" cy="5.6" r="2.4" fill="#e6474b"/><path d="M11 19h18v6c0 5-4 9-9 9s-9-4-9-9z" fill="#f2c9a5"/><path d="M10 20.5h20v5.5H10z" fill="#111"/><ellipse cx="15.6" cy="23.2" rx="2.3" ry="1.5" fill="#fff"/><ellipse cx="24.4" cy="23.2" rx="2.3" ry="1.5" fill="#fff"/><circle cx="16.2" cy="23.2" r=".9" fill="#111"/><circle cx="25" cy="23.2" r=".9" fill="#111"/><path d="M16.5 30.3q3.5 1.6 7 0" stroke="#7a4a2e" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg></div>
         <div class="screen loud">
           <div class="s-head"></div><div class="stories"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="feed">
