@@ -45,7 +45,11 @@
 
   /* ---------- Hero ---------- */
   .hero { position: relative; padding: 96px 16px 64px; background: linear-gradient(var(--top), var(--bottom)); overflow: hidden; }
-  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  /* Waves fixed to the bottom of the screen; all content is drawn above them. */
+  #sea { position: fixed; left: 0; right: 0; bottom: 0; width: 100%; height: 90px; z-index: 1; pointer-events: none; }
+  .hero-in, .hero-nums, section > *, footer > * { position: relative; z-index: 2; }
+  footer { padding-bottom: 120px !important; }
+  @media (max-width: 640px) { #sea { height: 64px; } footer { padding-bottom: 96px !important; } }
   .hero-in { position: relative; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
   h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(46px, 7.5vw, 84px); line-height: 1.02; letter-spacing: -0.01em; }
   .sub { margin-top: 22px; max-width: 30em; font-size: clamp(17px, 2.1vw, 20px); color: var(--soft); }
@@ -515,9 +519,9 @@
     const ctx = canvas.getContext('2d');
     const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const layers = [
-      { level: 0.86, amp: 7, len: 46, speed: 0.55, phase: 0.0, alpha: 0.08 },
-      { level: 0.90, amp: 6, len: 38, speed: -0.45, phase: 1.7, alpha: 0.10 },
-      { level: 0.94, amp: 5, len: 30, speed: 0.38, phase: 3.1, alpha: 0.12 },
+      { level: 0.30, amp: 5, len: 46, speed: 0.55, phase: 0.0, alpha: 0.08 },
+      { level: 0.52, amp: 4, len: 38, speed: -0.45, phase: 1.7, alpha: 0.10 },
+      { level: 0.74, amp: 3, len: 30, speed: 0.38, phase: 3.1, alpha: 0.12 },
     ];
     let w, h, unit, dpr;
     function size() {
