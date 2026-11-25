@@ -263,14 +263,10 @@
   .k-row b { display: block; font: 400 clamp(34px, 5vw, 48px)/1.1 var(--serif); }
   .k-row span { font-size: 14px; color: var(--soft); }
   .k-eq { font: 30px var(--serif); color: var(--soft); font-style: normal; }
-  /* Screentime slider above the 2.5 h = 38 d = 7 y row (max 11-25) */
+  /* Screentime question above, average below the 2.5 h = 38 d = 7 y row (max 11-25) */
   .k-q { text-align: center; margin: 0 auto 22px; max-width: 640px; }
   .k-q p { font-size: clamp(18px, 2.4vw, 22px); font-weight: 600; color: var(--foam); }
-  .k-q small { font-size: 15px; font-weight: 400; color: var(--soft); }
-  #k-range { -webkit-appearance: none; appearance: none; width: 100%; max-width: 420px; height: 8px; margin: 18px auto 0; display: block; border-radius: 999px; background: rgba(247,250,245,.3); outline: none; touch-action: pan-y; }
-  #k-range::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; background: var(--foam); border: 0; box-shadow: 0 2px 10px rgba(20,50,40,.3); cursor: grab; }
-  #k-range::-moz-range-thumb { width: 30px; height: 30px; border-radius: 50%; background: var(--foam); border: 0; box-shadow: 0 2px 10px rgba(20,50,40,.3); cursor: grab; }
-  #k-range:focus-visible { box-shadow: 0 0 0 3px rgba(247,250,245,.5); }
+  .k-avg { text-align: center; margin-top: 18px; font-size: 15px; color: var(--soft); }
   .yn { padding: 56px 16px; background: var(--bottom); }
   .yn-grid { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .yn ul { list-style: none; margin: 0; padding: 22px 24px; border-radius: 22px; background: rgba(247,250,245,.10); display: grid; gap: 12px; align-content: start; }
@@ -474,8 +470,7 @@
   </div>
 
   <div class="hero-nums">
-  <div class="k-q"><p><span lang="nl">Hoeveel tijd zit jij per dag op social media?</span><span lang="en">How much time do you spend on social media a day?</span><br><small><span lang="nl">Gemiddeld is het 2,5 uur. Sleep en kijk.</span><span lang="en">The average is 2.5 hours. Drag and see.</span></small></p>
-  <input type="range" id="k-range" min="0.5" max="8" step="0.5" value="2.5" aria-label="Social media hours a day"></div>
+  <div class="k-q"><p><span lang="nl">Wat is jouw social media schermtijd?</span><span lang="en">What's your social media screentime?</span></p></div>
   <div class="k-row">
     <div><b lang="nl" data-k="h">2,5 uur</b><b lang="en" data-k="H">2.5 hours</b><span lang="nl">per dag</span><span lang="en">a day</span></div>
     <i class="k-eq">=</i>
@@ -483,6 +478,7 @@
     <i class="k-eq">=</i>
     <div><b lang="nl" data-k="y">7 jaar</b><b lang="en" data-k="Y">7 years</b><span lang="nl">van je leven</span><span lang="en">of your life</span></div>
   </div>
+  <p class="k-avg"><span lang="nl">Gemiddeld is het 2,5 uur per dag.</span><span lang="en">The average is 2.5 hours a day.</span></p>
   </div>
 </header>
 
@@ -644,22 +640,6 @@
     t.setAttribute('aria-checked', String(on));
     t.closest('.flt').classList.toggle('off', !on);
   }));
-</script>
-<script>
-  // Screentime slider: hours a day -> days a year -> years of a ~67-year waking life span (2.5 h = 38 d = 7 y).
-  (function () {
-    const r = document.getElementById('k-range'); if (!r) return;
-    const set = (k, t) => document.querySelectorAll('[data-k="' + k + '"]').forEach(e => e.textContent = t);
-    function upd() {
-      const h = +r.value, d = Math.round(h * 365 / 24), y = h / 24 * 67;
-      const yr = y < 2 ? Math.round(y * 10) / 10 : Math.round(y);
-      set('h', String(h).replace('.', ',') + ' uur'); set('H', h + (h === 1 ? ' hour' : ' hours'));
-      set('d', d + ' dagen'); set('D', d + ' days');
-      set('y', String(yr).replace('.', ',') + ' jaar'); set('Y', yr + (yr === 1 ? ' year' : ' years'));
-      r.style.background = 'linear-gradient(90deg, var(--foam) ' + ((h - 0.5) / 7.5 * 100) + '%, rgba(247,250,245,.3) 0)';
-    }
-    r.addEventListener('input', upd); upd();
-  })();
 </script>
 <div id="fact-pop" role="dialog" aria-modal="true"><div class="card"><button type="button" class="x" aria-label="Close">×</button><div class="in"></div></div></div>
 <script>
