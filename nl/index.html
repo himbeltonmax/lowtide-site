@@ -45,11 +45,10 @@
 
   /* ---------- Hero ---------- */
   .hero { position: relative; padding: 96px 16px 64px; background: linear-gradient(var(--top), var(--bottom)); overflow: hidden; }
-  /* Waves fixed to the bottom of the screen; all content is drawn above them. */
-  #sea { position: fixed; left: 0; right: 0; bottom: 0; width: 100%; height: 90px; z-index: 1; pointer-events: none; }
+  /* Waves at the bottom of the hero; they scroll away with it (max 11-25). */
+  #sea { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 90px; z-index: 1; pointer-events: none; }
   .hero-in, .hero-nums, section > *, footer > * { position: relative; z-index: 2; }
-  footer { padding-bottom: 120px !important; }
-  @media (max-width: 640px) { #sea { height: 64px; } footer { padding-bottom: 96px !important; } }
+  @media (max-width: 640px) { #sea { height: 64px; } }
   .hero-in { position: relative; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
   h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(46px, 7.5vw, 84px); line-height: 1.02; letter-spacing: -0.01em; }
   .sub { margin-top: 22px; max-width: 30em; font-size: clamp(17px, 2.1vw, 20px); color: var(--soft); }
