@@ -416,13 +416,12 @@
   .langs a[aria-current="true"] { background: var(--foam); color: #24443a; }
 
   /* ---- Ported from the homepage (11-24) ---- */
-  /* Waves fixed to the bottom of the screen; all content is drawn above them. */
-  #sea { position: fixed; left: 0; right: 0; bottom: 0; width: 100%; height: 90px; z-index: 1; pointer-events: none; }
+  /* Waves at the bottom of the hero; they scroll away with it (max 11-25). */
+  #sea { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 90px; z-index: 1; pointer-events: none; }
   .hero-in, .facts-row, section > *, footer > * { position: relative; z-index: 2; }
   .langs { z-index: 3; }
   .pp .wform input::placeholder { color: #9bb0a6; opacity: 1; }
-  footer { padding-bottom: 120px !important; }
-  @media (max-width: 640px) { #sea { height: 64px; } footer { padding-bottom: 96px !important; } }
+  @media (max-width: 640px) { #sea { height: 64px; } }
   .stats { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, auto); justify-content: start; gap: 18px 6cqi; }
   .stats li { display: flex; flex-direction: column; gap: 4px; padding-left: 14px; border-left: 2px solid rgba(247,250,245,.35); }
   .stats li:first-child { border-left: 0; padding-left: 0; }
@@ -559,9 +558,9 @@
 </style>
 </head>
 <body>
-<canvas id="sea" aria-hidden="true"></canvas>
 
 <header class="hero">
+  <canvas id="sea" aria-hidden="true"></canvas>
   <nav class="langs" aria-label="Language"><a href="/bedrijven" hreflang="nl" aria-current="true">NL</a><a href="/companies" hreflang="en" aria-current="false">EN</a></nav>
   <div class="hero-in">
     <div class="hero-text">
