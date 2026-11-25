@@ -423,11 +423,16 @@
   .pp .wform input::placeholder { color: #9bb0a6; opacity: 1; }
   footer { padding-bottom: 120px !important; }
   @media (max-width: 640px) { #sea { height: 64px; } footer { padding-bottom: 96px !important; } }
-  .stats { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 18px 2.6cqi; }
+  .stats { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, auto); justify-content: start; gap: 18px 6cqi; }
   .stats li { display: flex; flex-direction: column; gap: 4px; padding-left: 14px; border-left: 2px solid rgba(247,250,245,.35); }
   .stats li:first-child { border-left: 0; padding-left: 0; }
   .stats .st-n { font: 400 clamp(40px, 5vw, 54px)/1 var(--serif); color: var(--foam); white-space: nowrap; }
   .sub:has(.stats) { container-type: inline-size; }
+  /* Secondary fact under the blockers (moved from hero, max 11-25) */
+  .side-fact { margin: 16px auto 0; max-width: 400px; display: flex; align-items: baseline; justify-content: center; gap: 10px; flex-wrap: wrap; color: var(--foam); }
+  .side-fact .sf-n { font: 400 30px/1 var(--serif); white-space: nowrap; }
+  .side-fact .sf-n small { font-size: .5em; }
+  .side-fact a.st-t { font-size: 14px; color: var(--foam); opacity: .9; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(247,250,245,.45); cursor: pointer; }
   .stats .st-n small { font-size: .36em; letter-spacing: .01em; }
   .stats .st-t { font-size: 13.5px; line-height: 1.35; white-space: nowrap; color: var(--foam); opacity: .9; }
   .stats .src { font-size: 11px; opacity: .75; margin-top: auto; padding-top: 2px; align-self: flex-start; }
@@ -562,7 +567,7 @@
     <div class="hero-text">
       <p class="name"><svg class="bean-s" viewBox="-70 -70 140 140" aria-hidden="true"><g transform="rotate(35.5)"><ellipse rx="46" ry="64" fill="#f7faf5"/><line y1="-42" y2="42" stroke="#61a680" stroke-width="5.5"/></g></svg>Lowtide voor bedrijven</p>
       <h1>Geef uw team<br>tijd terug.</h1>
-      <div class="sub"><ul class="stats"><li><b class="st-n">2,5<small> uur/dag</small></b><a class="st-t" href="https://www.frankwatching.com/archive/2026/01/23/social-media-onderzoek-2026/" target="_blank" rel="noopener">gem. social media schermtijd</a><div class="st-pop" hidden><b class="sp-h">2,5 uur per dag</b><p>Jongeren van 15 tot 19 jaar zitten gemiddeld 2 uur en 40 minuten per dag op social media (160 minuten). Over alle Nederlanders van 15 jaar en ouder is het gemiddelde ongeveer 2 uur. De 2,5 uur hier is het cijfer voor jongeren, naar beneden afgerond. Zelf opgegeven in een online vragenlijst onder 6.685 Nederlanders, 2026.</p><span class="sp-l"><a href="https://www.newcom.nl/publicaties/nationale-social-media-onderzoek-basis-2026/" target="_blank" rel="noopener">Newcom, Nationale Social Media Onderzoek 2026 ↗</a><a href="https://www.frankwatching.com/archive/2026/01/23/social-media-onderzoek-2026/" target="_blank" rel="noopener">Samenvatting op Frankwatching ↗</a></span></div></li><li><b class="st-n">50<small>%+</small></b><a class="st-t" href="https://s21.q4cdn.com/399680738/files/doc_financials/2024/q1/META-Q1-2024-Earnings-Call-Transcript.pdf" target="_blank" rel="noopener">is voorgesteld door AI</a><div class="st-pop" hidden><b class="sp-h">Meer dan 50% voorgesteld door AI</b><p><b>Het is meer dan 50%.</b> Mark Zuckerberg (Meta) zei op 24 april 2024: “voor het eerst ooit wordt meer dan 50% van de content die mensen op Instagram zien door AI aanbevolen.” Dit geldt wereldwijd voor Instagram, niet voor alle social media. Voor de Facebook-feed noemde hij ongeveer 30%.</p><span class="sp-l"><a href="https://s21.q4cdn.com/399680738/files/doc_financials/2024/q1/META-Q1-2024-Earnings-Call-Transcript.pdf" target="_blank" rel="noopener">Meta, Q1 2024 earnings call (transcript, PDF) ↗</a></span></div></li><li><b class="st-n">10<small>%+ mensen per jaar</small></b><a class="st-t" href="https://www.cbs.nl/nl-nl/longread/rapportages/2026/veiligheidsmonitor-2025/6-online-criminaliteit" target="_blank" rel="noopener">wordt online opgelicht</a><div class="st-pop" hidden><b class="sp-h">10,3% online opgelicht</b><p><b>Het is meer dan 10%: 10,3%.</b> 10,3% van de Nederlanders van 15 jaar en ouder was in 2025 slachtoffer van online oplichting of fraude (in de 12 maanden voor de enquête). Alleen echte slachtoffers tellen mee: bijvoorbeeld betaald maar niets gekregen, of geld kwijt door phishing.</p><span class="sp-l"><a href="https://www.cbs.nl/nl-nl/longread/rapportages/2026/veiligheidsmonitor-2025/6-online-criminaliteit" target="_blank" rel="noopener">CBS, Veiligheidsmonitor 2025 ↗</a></span></div></li></ul><p class="st-q"><b>Beslis zelf</b> wat u krijgt te zien met <b>Lowtide Privé Filters</b><br>En maak vandaag een positieve impact!</p></div>
+      <div class="sub"><ul class="stats"><li><b class="st-n">2,5<small> uur/dag</small></b><a class="st-t" href="https://www.frankwatching.com/archive/2026/01/23/social-media-onderzoek-2026/" target="_blank" rel="noopener">gem. social media schermtijd</a><div class="st-pop" hidden><b class="sp-h">2,5 uur per dag</b><p>Jongeren van 15 tot 19 jaar zitten gemiddeld 2 uur en 40 minuten per dag op social media (160 minuten). Over alle Nederlanders van 15 jaar en ouder is het gemiddelde ongeveer 2 uur. De 2,5 uur hier is het cijfer voor jongeren, naar beneden afgerond. Zelf opgegeven in een online vragenlijst onder 6.685 Nederlanders, 2026.</p><span class="sp-l"><a href="https://www.newcom.nl/publicaties/nationale-social-media-onderzoek-basis-2026/" target="_blank" rel="noopener">Newcom, Nationale Social Media Onderzoek 2026 ↗</a><a href="https://www.frankwatching.com/archive/2026/01/23/social-media-onderzoek-2026/" target="_blank" rel="noopener">Samenvatting op Frankwatching ↗</a></span></div></li><li><b class="st-n">50<small>%+</small></b><a class="st-t" href="https://s21.q4cdn.com/399680738/files/doc_financials/2024/q1/META-Q1-2024-Earnings-Call-Transcript.pdf" target="_blank" rel="noopener">is voorgesteld door AI</a><div class="st-pop" hidden><b class="sp-h">Meer dan 50% voorgesteld door AI</b><p><b>Het is meer dan 50%.</b> Mark Zuckerberg (Meta) zei op 24 april 2024: “voor het eerst ooit wordt meer dan 50% van de content die mensen op Instagram zien door AI aanbevolen.” Dit geldt wereldwijd voor Instagram, niet voor alle social media. Voor de Facebook-feed noemde hij ongeveer 30%.</p><span class="sp-l"><a href="https://s21.q4cdn.com/399680738/files/doc_financials/2024/q1/META-Q1-2024-Earnings-Call-Transcript.pdf" target="_blank" rel="noopener">Meta, Q1 2024 earnings call (transcript, PDF) ↗</a></span></div></li></ul><p class="st-q"><b>Beslis zelf</b> wat u krijgt te zien met <b>Lowtide Privé Filters</b><br>En maak vandaag een positieve impact!</p></div>
       <div class="cta-row">
         <button class="btn" type="button" data-go="bestellen"><img class="btn-ico" src="icon.png" alt="" width="28" height="28"><span>Geef Lowtide cadeau</span></button>
       </div>
@@ -618,6 +623,7 @@
         <div class="mp"><i class="av"></i><div><b>Iemand die u volgt</b><span>Vanavond uit eten met vrienden.</span></div></div>
       </div>
     </div>
+    <div class="side-fact"><b class="sf-n">10<small>%+</small></b><a class="st-t" href="https://www.cbs.nl/nl-nl/longread/rapportages/2026/veiligheidsmonitor-2025/6-online-criminaliteit" target="_blank" rel="noopener">mensen per jaar wordt online opgelicht</a><div class="st-pop" hidden><b class="sp-h">10,3% online opgelicht</b><p><b>Het is meer dan 10%: 10,3%.</b> 10,3% van de Nederlanders van 15 jaar en ouder was in 2025 slachtoffer van online oplichting of fraude (in de 12 maanden voor de enquête). Alleen echte slachtoffers tellen mee: bijvoorbeeld betaald maar niets gekregen, of geld kwijt door phishing.</p><span class="sp-l"><a href="https://www.cbs.nl/nl-nl/longread/rapportages/2026/veiligheidsmonitor-2025/6-online-criminaliteit" target="_blank" rel="noopener">CBS, Veiligheidsmonitor 2025 ↗</a></span></div></div>
     </div>
   </div>
   <div class="wrap how-b">
@@ -1044,7 +1050,7 @@
 <script>
   (() => {
     const box = document.getElementById('fact-pop'), inner = box.querySelector('.in');
-    document.querySelectorAll('.stats a.st-t').forEach(a => a.addEventListener('click', e => {
+    document.querySelectorAll('.stats a.st-t, .side-fact a.st-t').forEach(a => a.addEventListener('click', e => {
       const p = a.parentElement.querySelector('.st-pop'); if (!p) return;
       e.preventDefault(); inner.innerHTML = p.innerHTML; box.classList.add('open'); box.querySelector('.x').focus();
     }));
